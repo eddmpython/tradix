@@ -8,6 +8,7 @@ parameter optimizations in 0.02 seconds.
 Features:
     - Vectorized engine: 100x faster than event-driven loops
     - 50+ technical indicators: SMA, EMA, RSI, MACD, Bollinger, ATR, Ichimoku, etc.
+    - 33 preset strategies: Trend, momentum, oscillator, volatility, multi-indicator
     - Declarative strategy builder: Method chaining, no subclassing needed
     - Walk-forward analysis: Built-in overfitting prevention
     - Parameter optimization: Grid search / random search
@@ -15,6 +16,15 @@ Features:
     - Realistic simulation: Commission, slippage, fill logic, position sizing
     - Risk analytics: VaR, CVaR, Monte Carlo, Sharpe, Sortino, Calmar
     - Factor analysis: Multi-factor models, statistical arbitrage
+    - Strategy DNA: 12-dimensional strategy fingerprinting
+    - Black Swan Defense: Extreme event resilience scoring (0-100)
+    - Strategy Health: Overfitting/stability/consistency diagnostics
+    - What-If Simulator: Commission/slippage/capital sensitivity analysis
+    - Drawdown Simulator: Historical worst-case drawdown scenarios
+    - Seasonality Analyzer: Monthly/weekday/quarterly pattern discovery
+    - Correlation Matrix: Multi-strategy correlation and clustering
+    - Trading Journal: Automatic trade diary with MFE/MAE analytics
+    - Strategy Leaderboard: Multi-strategy ranking and badge system
     - Korean market native: Transaction tax (0.18%), brokerage fees, KRX mapping
     - Korean language API: Full Korean function names supported
 
@@ -36,7 +46,7 @@ Quick Start:
     >>> result = backtest("005930", strategy)
 
 Modules:
-    - easy: 2-line API, preset strategies, Korean API
+    - easy: 2-line API, 33 preset strategies, Korean API
     - vectorized: Pure NumPy vectorized engine and indicators
     - strategy: Strategy base class, 50+ indicators, ensemble combiner
     - datafeed: Data feeds (FinanceDataReader, Parquet cache)
@@ -44,10 +54,10 @@ Modules:
     - risk: Position sizing, VaR, Monte Carlo simulation
     - optimize: Grid / random search parameter optimization
     - walkforward: Walk-forward analysis for overfitting prevention
-    - analytics: Performance metrics, charts, tearsheet, report generation
+    - analytics: Strategy DNA, Black Swan, Health Score, What-If, Seasonality, etc.
     - portfolio: Portfolio tracking and optimization
     - quant: Factor analysis, statistical arbitrage
-    - signal: Signal prediction, adaptive signals, forecasting
+    - signals: Signal prediction, adaptive signals, forecasting
     - advisor: Market regime classification, strategy recommendation
 """
 
@@ -61,6 +71,27 @@ from tradex.walkforward import WalkForwardAnalyzer, WalkForwardResult, PeriodSpl
 from tradex.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy, MultiAssetResult
 from tradex.datafeed import MultiDataFeed
 from tradex.analytics.charts import BacktestChart
+from tradex.analytics.metrics import PerformanceMetrics
+from tradex.analytics import (
+    StrategyDNA,
+    StrategyDnaAnalyzer,
+    BlackSwanScore,
+    BlackSwanAnalyzer,
+    StrategyHealthScore,
+    StrategyHealthAnalyzer,
+    WhatIfResult,
+    WhatIfSimulator,
+    DrawdownScenario,
+    DrawdownSimulator,
+    SeasonalPattern,
+    SeasonalityAnalyzer,
+    CorrelationResult,
+    CorrelationAnalyzer,
+    JournalEntry,
+    TradingJournal,
+    LeaderboardEntry,
+    StrategyLeaderboard,
+)
 from tradex.advisor import StrategyAdvisor, MarketClassifier, MarketRegime
 from tradex.version import CURRENT_VERSION, getVersion, checkVersion, VersionManager
 from tradex.signals import (
@@ -86,6 +117,32 @@ from tradex.easy import (
     breakout,
     meanReversion,
     trendFollowing,
+    emaCross,
+    tripleScreen,
+    dualMomentum,
+    momentumCross,
+    rocBreakout,
+    stochasticCross,
+    williamsReversal,
+    cciBreakout,
+    rsiDivergence,
+    volatilityBreakout,
+    keltnerChannel,
+    bollingerSqueeze,
+    superTrend,
+    ichimokuCloud,
+    parabolicSar,
+    donchianBreakout,
+    tripleEma,
+    macdRsiCombo,
+    trendMomentum,
+    bollingerRsi,
+    gapTrading,
+    pyramiding,
+    swingTrading,
+    scalpingMomentum,
+    buyAndHold,
+    dollarCostAverage,
     백테스트,
     최적화,
     전략,
@@ -140,14 +197,25 @@ from tradex.tui import (
     printResult,
     printComparison,
     printTrades,
+    printMonthlyHeatmap,
+    printStrategyDna,
+    printHealthScore,
+    printBlackSwanScore,
     plotEquityCurve,
     plotDrawdown,
     plotCandlestick,
     plotReturns,
+    plotTradeMarkers,
     plotDashboard,
+    plotMonthlyHeatmap,
+    plotRollingMetrics,
+    plotTradeScatter,
+    plotCorrelationBars,
+    plotStrategyDna,
+    plotSeasonality,
 )
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     # Version
@@ -159,7 +227,7 @@ __all__ = [
     "quickTest",
     "QuickStrategy",
 
-    # Preset Strategies
+    # Preset Strategies (33)
     "goldenCross",
     "rsiOversold",
     "bollingerBreakout",
@@ -167,6 +235,32 @@ __all__ = [
     "breakout",
     "meanReversion",
     "trendFollowing",
+    "emaCross",
+    "tripleScreen",
+    "dualMomentum",
+    "momentumCross",
+    "rocBreakout",
+    "stochasticCross",
+    "williamsReversal",
+    "cciBreakout",
+    "rsiDivergence",
+    "volatilityBreakout",
+    "keltnerChannel",
+    "bollingerSqueeze",
+    "superTrend",
+    "ichimokuCloud",
+    "parabolicSar",
+    "donchianBreakout",
+    "tripleEma",
+    "macdRsiCombo",
+    "trendMomentum",
+    "bollingerRsi",
+    "gapTrading",
+    "pyramiding",
+    "swingTrading",
+    "scalpingMomentum",
+    "buyAndHold",
+    "dollarCostAverage",
 
     # Condition Builders
     "sma",
@@ -249,6 +343,7 @@ __all__ = [
 
     # === Visualization ===
     "BacktestChart",
+    "PerformanceMetrics",
 
     # === Strategy Advisor ===
     "StrategyAdvisor",
@@ -277,11 +372,22 @@ __all__ = [
     "printResult",
     "printComparison",
     "printTrades",
+    "printMonthlyHeatmap",
+    "printStrategyDna",
+    "printHealthScore",
+    "printBlackSwanScore",
     "plotEquityCurve",
     "plotDrawdown",
     "plotCandlestick",
     "plotReturns",
+    "plotTradeMarkers",
     "plotDashboard",
+    "plotMonthlyHeatmap",
+    "plotRollingMetrics",
+    "plotTradeScatter",
+    "plotCorrelationBars",
+    "plotStrategyDna",
+    "plotSeasonality",
 
     # === Signal Predictor ===
     "SignalPredictor",
@@ -292,4 +398,24 @@ __all__ = [
     "SignalScanner",
     "SymbolSignal",
     "MarketSignal",
+
+    # === Advanced Analytics ===
+    "StrategyDNA",
+    "StrategyDnaAnalyzer",
+    "BlackSwanScore",
+    "BlackSwanAnalyzer",
+    "StrategyHealthScore",
+    "StrategyHealthAnalyzer",
+    "WhatIfResult",
+    "WhatIfSimulator",
+    "DrawdownScenario",
+    "DrawdownSimulator",
+    "SeasonalPattern",
+    "SeasonalityAnalyzer",
+    "CorrelationResult",
+    "CorrelationAnalyzer",
+    "JournalEntry",
+    "TradingJournal",
+    "LeaderboardEntry",
+    "StrategyLeaderboard",
 ]

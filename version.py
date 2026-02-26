@@ -135,7 +135,7 @@ class Version:
 
 
 # 현재 버전
-CURRENT_VERSION = Version(2, 0, 0)
+CURRENT_VERSION = Version(1, 1, 0)
 
 # 버전별 기능 맵
 VERSION_FEATURES: Dict[str, List[str]] = {
@@ -169,12 +169,26 @@ VERSION_FEATURES: Dict[str, List[str]] = {
         "ExecutionSimulator",
         "BenchmarkComparator",
     ],
-    "2.0.0": [
+    "1.1.0": [
         "FactorAnalyzer",
         "FactorModel",
         "StatArbStrategy",
         "PairTrading",
         "RegimeFactorIntegration",
+        "StrategyDNA (12-dimensional fingerprinting)",
+        "BlackSwanAnalyzer (extreme event resilience)",
+        "StrategyHealthAnalyzer (overfitting diagnostics)",
+        "WhatIfSimulator (sensitivity analysis)",
+        "DrawdownSimulator (worst-case scenarios)",
+        "SeasonalityAnalyzer (monthly/weekday patterns)",
+        "CorrelationAnalyzer (multi-strategy correlation)",
+        "TradingJournal (automatic trade diary)",
+        "StrategyLeaderboard (ranking system)",
+        "33 preset strategies (from 9)",
+        "TradingView-style TUI (3 styles: modern/bloomberg/minimal)",
+        "12 terminal chart types (Plotext)",
+        "Interactive Textual dashboard (5 views)",
+        "Typer CLI (backtest/optimize/chart/compare)",
     ],
 }
 

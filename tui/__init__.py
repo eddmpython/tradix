@@ -8,13 +8,29 @@ Tradex TUI - Rich 기반 터미널 UI. 백테스트 결과를 테이블, 프로�
 터미널 차트로 출력합니다.
 """
 
-from tradex.tui.console import console, printResult, printComparison, printTrades
+from tradex.tui.console import (
+    console,
+    printResult,
+    printComparison,
+    printTrades,
+    printMonthlyHeatmap,
+    printStrategyDna,
+    printHealthScore,
+    printBlackSwanScore,
+)
 from tradex.tui.charts import (
     plotEquityCurve,
     plotDrawdown,
     plotCandlestick,
     plotReturns,
+    plotTradeMarkers,
     plotDashboard,
+    plotMonthlyHeatmap,
+    plotRollingMetrics,
+    plotTradeScatter,
+    plotCorrelationBars,
+    plotStrategyDna,
+    plotSeasonality,
 )
 from tradex.tui.progress import optimizeProgress, backtestProgress
 
@@ -23,11 +39,22 @@ __all__ = [
     "printResult",
     "printComparison",
     "printTrades",
+    "printMonthlyHeatmap",
+    "printStrategyDna",
+    "printHealthScore",
+    "printBlackSwanScore",
     "plotEquityCurve",
     "plotDrawdown",
     "plotCandlestick",
     "plotReturns",
+    "plotTradeMarkers",
     "plotDashboard",
+    "plotMonthlyHeatmap",
+    "plotRollingMetrics",
+    "plotTradeScatter",
+    "plotCorrelationBars",
+    "plotStrategyDna",
+    "plotSeasonality",
     "optimizeProgress",
     "backtestProgress",
 ]

@@ -47,15 +47,38 @@ Tradex gives you all of the above — **for free, under MIT license** — with a
 
 ## Features
 
+### Core Engine
 - **Vectorized Engine** — NumPy-powered core, 100x faster than event-driven loops
 - **50+ Technical Indicators** — SMA, EMA, RSI, MACD, Bollinger, ATR, Ichimoku, Supertrend, and more
+- **33 Preset Strategies** — Trend, momentum, oscillator, volatility, multi-indicator, buy & hold, DCA
 - **Declarative Strategy Builder** — Build strategies with method chaining, no subclassing needed
 - **Walk-Forward Analysis** — Built-in overfitting prevention with time-series cross-validation
 - **Parameter Optimization** — Grid search and random search with any metric
 - **Multi-Asset Portfolios** — Backtest across multiple symbols with rebalancing
 - **Realistic Simulation** — Commission models, slippage, fill logic, position sizing
+
+### Advanced Analytics
+- **Strategy DNA** — 12-dimensional strategy fingerprinting (trend sensitivity, mean reversion, volatility preference, etc.)
+- **Black Swan Defense** — Extreme event resilience scoring (0-100) with crisis period breakdown
+- **Strategy Health Score** — Overfitting risk, parameter stability, performance consistency diagnostics
+- **What-If Simulator** — Commission, slippage, capital, and timing sensitivity analysis
+- **Drawdown Simulator** — Historical worst-case drawdown scenario generation
+- **Seasonality Analyzer** — Monthly, weekday, and quarterly pattern discovery
+- **Correlation Matrix** — Multi-strategy correlation analysis and clustering
+- **Trading Journal** — Automatic trade diary with MFE/MAE analytics
+- **Strategy Leaderboard** — Multi-strategy ranking with composite scoring and badge system
+
+### Risk & Quant
 - **Risk Analytics** — VaR, CVaR, Monte Carlo simulation, Sharpe, Sortino, Calmar
-- **Factor Analysis** — Multi-factor models, statistical arbitrage
+- **Factor Analysis** — Multi-factor models, statistical arbitrage, pair trading
+
+### Terminal UI (TradingView-inspired)
+- **3 Display Styles** — Modern (TradingView cards), Bloomberg (dense 4-quadrant), Minimal (hedge fund report)
+- **12 Chart Types** — Equity curve, drawdown, candlestick+volume, return distribution, seasonality, rolling metrics, trade scatter, correlation bars, strategy DNA, monthly heatmap, trade markers, equity overlay
+- **Interactive Dashboard** — 5-view Textual app (Overview, Metrics, Trades, Charts, Compare) with keyboard navigation
+- **CLI** — `tradex backtest`, `tradex chart`, `tradex compare`, `tradex optimize`, `tradex list`
+
+### Korean Market
 - **Korean Market Native** — Built-in transaction tax (0.18%), brokerage fees, KRX stock mapping
 - **Korean Language API** — Full Korean function names: `백테스트("삼성전자", 골든크로스())`
 
@@ -287,17 +310,60 @@ from tradex import 백테스트, 골든크로스
 print(결과.요약())
 ```
 
-## Preset Strategies
+## Preset Strategies (33)
 
-| Strategy | Description | Key Parameters |
-|----------|-------------|----------------|
-| `goldenCross()` | SMA crossover | `fast`, `slow`, `stopLoss`, `takeProfit` |
-| `rsiOversold()` | RSI reversal | `period`, `oversold`, `overbought` |
-| `bollingerBreakout()` | Bollinger band breakout | `period`, `std` |
-| `macdCross()` | MACD histogram crossover | `fast`, `slow`, `signal` |
-| `breakout()` | Channel breakout (Turtle) | `period` |
-| `meanReversion()` | Mean reversion to bands | `period`, `threshold` |
-| `trendFollowing()` | Trend following + ADX filter | `fastPeriod`, `slowPeriod`, `adxThreshold` |
+### Trend Following
+| Strategy | Description |
+|----------|-------------|
+| `goldenCross()` | SMA crossover (fast/slow) |
+| `emaCross()` | EMA crossover |
+| `tripleEma()` | Triple EMA crossover |
+| `trendFollowing()` | ADX-filtered trend following with trailing stop |
+| `superTrend()` | Supertrend indicator reversal |
+| `ichimokuCloud()` | Ichimoku cloud breakout |
+| `parabolicSar()` | Parabolic SAR reversal |
+| `donchianBreakout()` | Donchian channel breakout |
+| `breakout()` | Channel breakout (Turtle Trading) |
+
+### Momentum & Oscillator
+| Strategy | Description |
+|----------|-------------|
+| `rsiOversold()` | RSI reversal (oversold/overbought) |
+| `macdCross()` | MACD histogram crossover |
+| `stochasticCross()` | Stochastic K/D crossover |
+| `williamsReversal()` | Williams %R reversal |
+| `cciBreakout()` | CCI overbought/oversold breakout |
+| `rsiDivergence()` | RSI divergence detection |
+| `momentumCross()` | Momentum zero-line crossover |
+| `rocBreakout()` | Rate of Change breakout |
+
+### Volatility
+| Strategy | Description |
+|----------|-------------|
+| `bollingerBreakout()` | Bollinger band breakout |
+| `bollingerSqueeze()` | Bollinger squeeze expansion |
+| `keltnerChannel()` | Keltner channel breakout |
+| `volatilityBreakout()` | ATR-based volatility breakout |
+| `meanReversion()` | Bollinger mean reversion |
+
+### Multi-Indicator & Combo
+| Strategy | Description |
+|----------|-------------|
+| `tripleScreen()` | Elder's triple screen system |
+| `dualMomentum()` | Absolute + relative momentum |
+| `macdRsiCombo()` | MACD + RSI combined signal |
+| `trendMomentum()` | Trend + momentum filter |
+| `bollingerRsi()` | Bollinger + RSI combined |
+
+### Special
+| Strategy | Description |
+|----------|-------------|
+| `gapTrading()` | Gap up/down trading |
+| `pyramiding()` | Pyramiding position building |
+| `swingTrading()` | Swing high/low trading |
+| `scalpingMomentum()` | Short-term momentum scalping |
+| `buyAndHold()` | Passive buy and hold |
+| `dollarCostAverage()` | Dollar cost averaging |
 
 ## Indicators (50+)
 
@@ -403,6 +469,77 @@ from tradex.tui.dashboard import launchDashboard
 launchDashboard(result)  # Full-screen Textual app (q=quit, d=theme)
 ```
 
+## Advanced Analytics
+
+```python
+from tradex import (
+    StrategyDnaAnalyzer, BlackSwanAnalyzer, StrategyHealthAnalyzer,
+    WhatIfSimulator, DrawdownSimulator, SeasonalityAnalyzer,
+    CorrelationAnalyzer, TradingJournal, StrategyLeaderboard,
+)
+
+result = backtest("005930", goldenCross())
+
+dna = StrategyDnaAnalyzer().analyze(result)
+printStrategyDna(dna)
+
+health = StrategyHealthAnalyzer().analyze(result)
+printHealthScore(health)
+
+blackSwan = BlackSwanAnalyzer().analyze(result)
+printBlackSwanScore(blackSwan)
+
+whatIf = WhatIfSimulator().analyze(result)
+
+drawdown = DrawdownSimulator().simulate(result)
+
+seasonality = SeasonalityAnalyzer().analyze(result)
+
+journal = TradingJournal()
+journal.record(result)
+
+leaderboard = StrategyLeaderboard()
+leaderboard.addResult("goldenCross", result)
+leaderboard.addResult("rsiOversold", result2)
+leaderboard.printRanking()
+```
+
+## Terminal UI Styles
+
+### Modern (TradingView)
+```python
+result.show()                              # Default: metric cards + detail table
+result.show(style="modern")                # Same as above
+```
+
+### Bloomberg (Dense)
+```python
+result.show(style="bloomberg")             # 4-quadrant layout + monthly heatmap
+```
+
+### Minimal (Hedge Fund)
+```python
+result.show(style="minimal")               # Clean report with quality indicators
+```
+
+### Chart Types (12)
+```python
+from tradex.tui.charts import *
+
+plotEquityCurve(result, smaPeriods=[20, 60])  # Equity + SMA + trade markers
+plotDrawdown(result)                           # Drawdown with MDD annotation
+plotCandlestick(df, smaPeriods=[5, 20])        # OHLCV candlestick + volume subplot
+plotReturns(result)                            # Return distribution (skew/kurtosis)
+plotSeasonality(result)                        # Monthly seasonality bars
+plotMonthlyHeatmap(result)                     # Year x Month heatmap
+plotRollingMetrics(result)                     # Rolling Sharpe + volatility
+plotTradeScatter(result)                       # Holding days vs return scatter
+plotTradeMarkers(result)                       # Equity + buy/sell markers
+plotCorrelationBars(names, matrix)             # Strategy correlation horizontal bars
+plotStrategyDna(dna)                           # 12-dimension DNA horizontal bars
+plotDashboard(result, lang="ko")               # All-in-one dashboard
+```
+
 ## Architecture
 
 ```
@@ -417,13 +554,15 @@ tradex/
 ├── risk/                  # Position sizing, VaR, Monte Carlo
 ├── optimize/              # Grid / random search optimizer
 ├── walkforward/           # Walk-forward analysis
-├── analytics/             # Metrics, charts, tearsheet, report generation
+├── analytics/             # Strategy DNA, Black Swan, Health Score, What-If, Seasonality, etc.
 ├── portfolio/             # Portfolio tracking + optimization
 ├── quant/                 # Factor analysis, statistical arbitrage
 ├── signals/               # Signal prediction + adaptive signals
 ├── advisor/               # Market regime + strategy recommendation
 ├── entities/              # Bar, Order, Position, Trade
 ├── events/                # Event system (Market, Signal, Order, Fill)
+├── tui/                   # Terminal UI (Rich + Plotext + Textual), 3 styles, 12 chart types
+├── cli.py                 # Typer CLI (backtest, optimize, chart, compare, list)
 └── tests/                 # Unit + integration tests (68 tests)
 ```
 

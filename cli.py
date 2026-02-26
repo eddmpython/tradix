@@ -185,7 +185,7 @@ def chart_cmd(
         console.print("[red]Failed to load data.[/red]")
         raise typer.Exit(1)
 
-    plotCandlestick(df, title=f"{symbol} ({ticker})", last_n=bars)
+    plotCandlestick(df, title=f"{symbol} ({ticker})", lastN=bars)
 
 
 @app.command()
