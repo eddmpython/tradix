@@ -1,22 +1,24 @@
-<p align="center">
-  <h1 align="center">Tradex</h1>
-  <p align="center">
-    <strong>퀀트 트레이딩을 위한 초고속 백테스팅 엔진</strong>
-  </p>
-  <p align="center">
-    <a href="#설치">설치</a> &middot;
-    <a href="#빠른-시작">빠른 시작</a> &middot;
-    <a href="#주요-기능">주요 기능</a> &middot;
-    <a href="#api-레퍼런스">API 레퍼런스</a> &middot;
-    <a href="README.md">English</a>
-  </p>
-  <p align="center">
-    <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
-    <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
-    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
-    <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-후원하기-orange?style=flat-square&logo=buy-me-a-coffee&logoColor=white" alt="Buy Me a Coffee"></a>
-  </p>
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=TradeX&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=%ED%80%80%ED%8A%B8%20%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%B4%88%EA%B3%A0%EC%86%8D%20%EB%B0%B1%ED%85%8C%EC%8A%A4%ED%8C%85%20%EC%97%94%EC%A7%84&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
+
+<p>
+  <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
+  <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
 </p>
+
+<p>
+  <a href="#설치">설치</a> &middot;
+  <a href="#빠른-시작">빠른 시작</a> &middot;
+  <a href="#주요-기능">주요 기능</a> &middot;
+  <a href="#터미널-ui">터미널 UI</a> &middot;
+  <a href="#api-레퍼런스">API 레퍼런스</a> &middot;
+  <a href="README.md">English</a>
+</p>
+
+</div>
 
 ---
 

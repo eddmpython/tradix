@@ -1,22 +1,24 @@
-<p align="center">
-  <h1 align="center">Tradex</h1>
-  <p align="center">
-    <strong>Blazing-fast backtesting engine for quantitative trading</strong>
-  </p>
-  <p align="center">
-    <a href="#installation">Installation</a> &middot;
-    <a href="#quick-start">Quick Start</a> &middot;
-    <a href="#features">Features</a> &middot;
-    <a href="#api-reference">API Reference</a> &middot;
-    <a href="README_KR.md">한국어</a>
-  </p>
-  <p align="center">
-    <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
-    <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
-    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
-    <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-orange?style=flat-square&logo=buy-me-a-coffee&logoColor=white" alt="Buy Me a Coffee"></a>
-  </p>
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=TradeX&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=Blazing-fast%20backtesting%20engine%20for%20quantitative%20trading&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
+
+<p>
+  <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
+  <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
 </p>
+
+<p>
+  <a href="#installation">Installation</a> &middot;
+  <a href="#quick-start">Quick Start</a> &middot;
+  <a href="#features">Features</a> &middot;
+  <a href="#terminal-ui">Terminal UI</a> &middot;
+  <a href="#api-reference">API Reference</a> &middot;
+  <a href="README_KR.md">한국어</a>
+</p>
+
+</div>
 
 ---
 
@@ -356,6 +358,50 @@ Benchmarked on 10 years of daily data (2,458 bars):
 | `crossunder(fast, slow)` | Crossunder condition |
 
 Indicators support comparison operators: `sma(10) > sma(30)`, `rsi(14) < 30`
+
+## Terminal UI
+
+Tradex includes a TradingView-inspired terminal dashboard. No browser needed.
+
+### Result Visualization
+
+```python
+result = backtest("AAPL", goldenCross())
+
+result.show()    # Rich metric cards (Return, Sharpe, MDD, Win Rate, Trades)
+result.chart()   # Full dashboard: Equity + Drawdown + Returns histogram
+```
+
+### CLI Commands
+
+```bash
+tradex backtest AAPL -s goldenCross --dashboard   # Full dashboard
+tradex chart AAPL -n 60                            # Candlestick chart
+tradex compare AAPL -s goldenCross,rsiOversold     # Strategy comparison
+tradex optimize AAPL -s goldenCross                # Parameter optimization
+tradex list                                        # Available strategies
+```
+
+### Individual Charts
+
+```python
+from tradex.tui.charts import plotEquityCurve, plotCandlestick, plotDrawdown
+
+plotEquityCurve(result, sma_periods=[20, 60])  # Equity + SMA overlay
+plotCandlestick(df, sma_periods=[5, 20])       # Candlestick + Volume
+plotDrawdown(result)                            # Drawdown chart
+```
+
+### Interactive Dashboard (Optional)
+
+```bash
+pip install tradex-backtest[tui]
+```
+
+```python
+from tradex.tui.dashboard import launchDashboard
+launchDashboard(result)  # Full-screen Textual app (q=quit, d=theme)
+```
 
 ## Architecture
 
