@@ -450,10 +450,11 @@ result.chart()   # Full dashboard: Equity + Drawdown + Returns histogram
 
 ```bash
 tradex backtest AAPL -s goldenCross --dashboard   # Full dashboard
+tradex backtest AAPL -s bollingerSqueeze --style bloomberg  # Bloomberg style
 tradex chart AAPL -n 60                            # Candlestick chart
 tradex compare AAPL -s goldenCross,rsiOversold     # Strategy comparison
 tradex optimize AAPL -s goldenCross                # Parameter optimization
-tradex list                                        # Available strategies
+tradex list                                        # All 33 strategies
 ```
 
 ### Individual Charts

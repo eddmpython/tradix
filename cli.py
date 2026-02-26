@@ -34,6 +34,32 @@ STRATEGY_MAP = {
     "breakout": "breakout",
     "meanReversion": "meanReversion",
     "trendFollowing": "trendFollowing",
+    "emaCross": "emaCross",
+    "tripleScreen": "tripleScreen",
+    "dualMomentum": "dualMomentum",
+    "momentumCross": "momentumCross",
+    "rocBreakout": "rocBreakout",
+    "stochasticCross": "stochasticCross",
+    "williamsReversal": "williamsReversal",
+    "cciBreakout": "cciBreakout",
+    "rsiDivergence": "rsiDivergence",
+    "volatilityBreakout": "volatilityBreakout",
+    "keltnerChannel": "keltnerChannel",
+    "bollingerSqueeze": "bollingerSqueeze",
+    "superTrend": "superTrend",
+    "ichimokuCloud": "ichimokuCloud",
+    "parabolicSar": "parabolicSar",
+    "donchianBreakout": "donchianBreakout",
+    "tripleEma": "tripleEma",
+    "macdRsiCombo": "macdRsiCombo",
+    "trendMomentum": "trendMomentum",
+    "bollingerRsi": "bollingerRsi",
+    "gapTrading": "gapTrading",
+    "pyramiding": "pyramiding",
+    "swingTrading": "swingTrading",
+    "scalpingMomentum": "scalpingMomentum",
+    "buyAndHold": "buyAndHold",
+    "dollarCostAverage": "dollarCostAverage",
     "골든크로스": "goldenCross",
     "RSI과매도": "rsiOversold",
     "볼린저돌파": "bollingerBreakout",
@@ -48,6 +74,15 @@ def _getPreset(name: str):
     from tradex.easy.presets import (
         goldenCross, rsiOversold, bollingerBreakout,
         macdCross, breakout, meanReversion, trendFollowing,
+        emaCross, tripleScreen, dualMomentum,
+        momentumCross, rocBreakout, stochasticCross,
+        williamsReversal, cciBreakout, rsiDivergence,
+        volatilityBreakout, keltnerChannel, bollingerSqueeze,
+        superTrend, ichimokuCloud, parabolicSar,
+        donchianBreakout, tripleEma, macdRsiCombo,
+        trendMomentum, bollingerRsi, gapTrading,
+        pyramiding, swingTrading, scalpingMomentum,
+        buyAndHold, dollarCostAverage,
     )
     presets = {
         "goldenCross": goldenCross,
@@ -57,12 +92,39 @@ def _getPreset(name: str):
         "breakout": breakout,
         "meanReversion": meanReversion,
         "trendFollowing": trendFollowing,
+        "emaCross": emaCross,
+        "tripleScreen": tripleScreen,
+        "dualMomentum": dualMomentum,
+        "momentumCross": momentumCross,
+        "rocBreakout": rocBreakout,
+        "stochasticCross": stochasticCross,
+        "williamsReversal": williamsReversal,
+        "cciBreakout": cciBreakout,
+        "rsiDivergence": rsiDivergence,
+        "volatilityBreakout": volatilityBreakout,
+        "keltnerChannel": keltnerChannel,
+        "bollingerSqueeze": bollingerSqueeze,
+        "superTrend": superTrend,
+        "ichimokuCloud": ichimokuCloud,
+        "parabolicSar": parabolicSar,
+        "donchianBreakout": donchianBreakout,
+        "tripleEma": tripleEma,
+        "macdRsiCombo": macdRsiCombo,
+        "trendMomentum": trendMomentum,
+        "bollingerRsi": bollingerRsi,
+        "gapTrading": gapTrading,
+        "pyramiding": pyramiding,
+        "swingTrading": swingTrading,
+        "scalpingMomentum": scalpingMomentum,
+        "buyAndHold": buyAndHold,
+        "dollarCostAverage": dollarCostAverage,
     }
     resolved = STRATEGY_MAP.get(name, name)
     fn = presets.get(resolved)
     if fn is None:
         console.print(f"[red]Unknown strategy: {name}[/red]")
-        console.print(f"[dim]Available: {', '.join(presets.keys())}[/dim]")
+        console.print(f"[dim]Available: {', '.join(sorted(presets.keys()))}[/dim]")
+        console.print("[dim]Run 'tradex list' to see all strategies.[/dim]")
         raise typer.Exit(1)
     return fn
 
@@ -76,6 +138,7 @@ def backtest(
     chart: bool = typer.Option(False, "--chart", help="Show equity curve chart"),
     dashboard: bool = typer.Option(False, "--dashboard", "-d", help="Show full dashboard with charts"),
     lang: str = typer.Option("en", "--lang", "-l", help="Language (en/ko)"),
+    style: str = typer.Option("modern", "--style", help="Display style (modern/bloomberg/minimal)"),
 ):
     """Run a backtest with a preset strategy.
 
@@ -84,6 +147,7 @@ def backtest(
         tradex backtest AAPL
         tradex backtest 삼성전자 -s goldenCross -p 5년 --chart
         tradex backtest AAPL -s rsiOversold --dashboard
+        tradex backtest AAPL -s bollingerSqueeze --style bloomberg
     """
     from tradex.easy import backtest as _backtest
     from tradex.tui.console import printResult
@@ -99,7 +163,7 @@ def backtest(
     if dashboard:
         plotDashboard(result, lang=lang)
     else:
-        printResult(result, lang=lang)
+        printResult(result, lang=lang, style=style)
         if chart:
             plotEquityCurve(result, title=f"{symbol} Equity Curve")
 
@@ -237,22 +301,52 @@ def version():
 
 @app.command(name="list")
 def list_strategies():
-    """List all available preset strategies."""
+    """List all 33 available preset strategies."""
     from rich.table import Table
     from rich import box
 
-    table = Table(title="Available Strategies", box=box.ROUNDED, header_style="bold cyan")
-    table.add_column("Name", style="bold white")
-    table.add_column("Korean", style="cyan")
+    table = Table(title="Available Strategies (33)", box=box.ROUNDED, header_style="bold cyan")
+    table.add_column("Name", style="bold white", min_width=20)
+    table.add_column("Category", style="dim")
     table.add_column("Description")
 
-    table.add_row("goldenCross", "골든크로스", "SMA crossover (fast crosses above slow)")
-    table.add_row("rsiOversold", "RSI과매도", "Buy when RSI < 30, sell when RSI > 70")
-    table.add_row("bollingerBreakout", "볼린저돌파", "Buy on lower band touch, sell on upper")
-    table.add_row("macdCross", "MACD크로스", "Buy/sell on MACD signal line crossover")
-    table.add_row("breakout", "돌파전략", "Channel breakout (Turtle Trading)")
-    table.add_row("meanReversion", "평균회귀", "Bollinger Band mean reversion")
-    table.add_row("trendFollowing", "추세추종", "ADX-filtered trend following with trailing stop")
+    table.add_row("goldenCross", "Trend", "SMA crossover (fast/slow)")
+    table.add_row("emaCross", "Trend", "EMA crossover")
+    table.add_row("tripleEma", "Trend", "Triple EMA crossover")
+    table.add_row("trendFollowing", "Trend", "ADX-filtered trend with trailing stop")
+    table.add_row("superTrend", "Trend", "Supertrend indicator reversal")
+    table.add_row("ichimokuCloud", "Trend", "Ichimoku cloud breakout")
+    table.add_row("parabolicSar", "Trend", "Parabolic SAR reversal")
+    table.add_row("donchianBreakout", "Trend", "Donchian channel breakout")
+    table.add_row("breakout", "Trend", "Channel breakout (Turtle Trading)")
+
+    table.add_row("rsiOversold", "Momentum", "RSI oversold/overbought reversal")
+    table.add_row("macdCross", "Momentum", "MACD signal line crossover")
+    table.add_row("stochasticCross", "Momentum", "Stochastic K/D crossover")
+    table.add_row("williamsReversal", "Momentum", "Williams %R reversal")
+    table.add_row("cciBreakout", "Momentum", "CCI overbought/oversold breakout")
+    table.add_row("rsiDivergence", "Momentum", "RSI divergence detection")
+    table.add_row("momentumCross", "Momentum", "Momentum zero-line crossover")
+    table.add_row("rocBreakout", "Momentum", "Rate of Change breakout")
+
+    table.add_row("bollingerBreakout", "Volatility", "Bollinger band breakout")
+    table.add_row("bollingerSqueeze", "Volatility", "Bollinger squeeze expansion")
+    table.add_row("keltnerChannel", "Volatility", "Keltner channel breakout")
+    table.add_row("volatilityBreakout", "Volatility", "ATR-based volatility breakout")
+    table.add_row("meanReversion", "Volatility", "Bollinger mean reversion")
+
+    table.add_row("tripleScreen", "Combo", "Elder's triple screen system")
+    table.add_row("dualMomentum", "Combo", "Absolute + relative momentum")
+    table.add_row("macdRsiCombo", "Combo", "MACD + RSI combined signal")
+    table.add_row("trendMomentum", "Combo", "Trend + momentum filter")
+    table.add_row("bollingerRsi", "Combo", "Bollinger + RSI combined")
+
+    table.add_row("gapTrading", "Special", "Gap up/down trading")
+    table.add_row("pyramiding", "Special", "Pyramiding position building")
+    table.add_row("swingTrading", "Special", "Swing high/low trading")
+    table.add_row("scalpingMomentum", "Special", "Short-term momentum scalping")
+    table.add_row("buyAndHold", "Special", "Passive buy and hold")
+    table.add_row("dollarCostAverage", "Special", "Dollar cost averaging")
 
     console.print()
     console.print(table)

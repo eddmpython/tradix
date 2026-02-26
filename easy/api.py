@@ -187,10 +187,15 @@ class EasyResult:
     def summary(self) -> str:
         return self._result.summary()
 
-    def show(self, lang: str = "en") -> None:
-        """Print Rich-styled result table to terminal. 터미널에 Rich 스타일 결과 출력."""
+    def show(self, lang: str = "en", style: str = "modern") -> None:
+        """Print Rich-styled result table. 터미널에 Rich 스타일 결과 출력.
+
+        Args:
+            lang: Language ('en' or 'ko'). / 언어.
+            style: Display style ('modern', 'bloomberg', 'minimal'). / 출력 스타일.
+        """
         from tradex.tui.console import printResult
-        printResult(self, lang=lang)
+        printResult(self, lang=lang, style=style)
 
     def chart(self, lang: str = "en") -> None:
         """Print full dashboard with charts. 차트 포함 대시보드 출력."""
