@@ -35,15 +35,11 @@ That's it. Two lines to a full backtest with commission, slippage, and performan
 
 ## Why Tradex?
 
-| Library | Issue |
-|---------|-------|
-| **VectorBT** | Free version discontinued, Pro is $29/mo |
-| **Backtesting.py** | AGPL license, limited portfolio support |
-| **Lumibot** | Heavy, hard to customize |
-| **LEAN** | C#-based, requires Docker, steep learning curve |
-| **bt** | No position sizing, no transaction costs |
-
-Tradex gives you all of the above — **for free, under MIT license** — with an API designed to get out of your way.
+- **Fast** — NumPy vectorized engine runs 1,000 optimizations in 0.02s, no Numba or C required
+- **Simple** — Two lines to a full backtest: `backtest("AAPL", goldenCross())`
+- **Complete** — 33 preset strategies, 60+ indicators, walk-forward, multi-asset, risk analytics
+- **Realistic** — Commission, slippage, fill simulation, Korean market tax (0.18%) built in
+- **Free forever** — MIT license, no paid tiers, no feature gates
 
 ## Features
 
@@ -68,7 +64,7 @@ Tradex gives you all of the above — **for free, under MIT license** — with a
 - **Trading Journal** — Automatic trade diary with MFE/MAE analytics
 - **Strategy Leaderboard** — Multi-strategy ranking with composite scoring and badge system
 
-### Innovative Analytics (World-First)
+### Innovative Analytics
 - **Monte Carlo Stress Test** — 10,000-path bootstrap simulation with ruin probability, confidence bands, Sharpe/MDD distributions
 - **Fractal Analysis** — Hurst Exponent and fractal dimension for market character classification (trending/random/mean-reverting)
 - **Regime Detector** — GMM-based probabilistic regime detection with transition matrix and per-regime performance decomposition
@@ -141,15 +137,16 @@ pip install -e ".[dev]"
 
 ## Quick Start
 
-### 1. Two-Line Backtest
+> **Note:** Install with `pip install tradex-backtest` (PyPI package) — import as `tradex` in code.
 
-The simplest way to run a backtest with a preset strategy:
+### 1. Two-Line Backtest
 
 ```python
 from tradex import backtest, goldenCross
 
 result = backtest("005930", goldenCross())  # Samsung Electronics
-print(result.summary())
+result.show()                               # TradingView-style dashboard
+result.show(style="bloomberg")              # Bloomberg terminal style
 ```
 
 Output:
@@ -166,20 +163,7 @@ Trades:  18
 Win Rate: 61.1%
 ```
 
-### 2. Vectorized Mode (100x Faster)
-
-For batch computation over entire price histories:
-
-```python
-from tradex import vbacktest
-
-result = vbacktest("005930", "goldenCross", fast=10, slow=30)
-print(f"Return: {result.totalReturn:+.2f}%")
-print(f"Sharpe: {result.sharpeRatio:.2f}")
-print(f"Max DD: {result.maxDrawdown:.2f}%")
-```
-
-### 3. Declarative Strategy Builder
+### 2. Declarative Strategy Builder
 
 Build strategies with method chaining — zero boilerplate:
 
@@ -197,12 +181,43 @@ strategy = (
 )
 
 result = backtest("AAPL", strategy)
-print(result.summary())
+result.show()
 ```
 
-### 4. Class-Based Strategy (Full Control)
+### 3. Parameter Optimization
 
-For maximum flexibility, write your own strategy class:
+Find the best parameters in seconds:
+
+```python
+from tradex import voptimize
+
+best = voptimize(
+    "005930",
+    "goldenCross",
+    fast=(5, 20, 5),     # (start, end, step)
+    slow=(20, 60, 10),
+    metric="sharpeRatio"
+)
+
+print(f"Best: fast={best['best']['params']['fast']}, slow={best['best']['params']['slow']}")
+print(f"Sharpe: {best['best']['metric']:.2f}")
+```
+
+<details>
+<summary><strong>More Examples</strong> — Vectorized mode, class-based strategy, walk-forward, multi-asset, risk, Korean API</summary>
+
+#### Vectorized Mode (100x Faster)
+
+```python
+from tradex import vbacktest
+
+result = vbacktest("005930", "goldenCross", fast=10, slow=30)
+print(f"Return: {result.totalReturn:+.2f}%")
+print(f"Sharpe: {result.sharpeRatio:.2f}")
+print(f"Max DD: {result.maxDrawdown:.2f}%")
+```
+
+#### Class-Based Strategy (Full Control)
 
 ```python
 from tradex import Strategy, Bar, BacktestEngine
@@ -228,35 +243,30 @@ class DualMomentum(Strategy):
 data = FinanceDataReaderFeed("005930", "2020-01-01", "2024-12-31")
 engine = BacktestEngine(data, DualMomentum(), initialCash=10_000_000)
 result = engine.run()
-print(result.summary())
+result.show()
 ```
 
-### 5. Parameter Optimization
-
-Find the best parameters in seconds:
+#### Walk-Forward Analysis
 
 ```python
-from tradex import voptimize
+from tradex import Strategy, Bar, WalkForwardAnalyzer, ParameterSpace
+from tradex.datafeed import FinanceDataReaderFeed
 
-best = voptimize(
-    "005930",
-    "goldenCross",
-    fast=(5, 20, 5),     # (start, end, step)
-    slow=(20, 60, 10),
-    metric="sharpeRatio"
-)
+def createStrategy(params):
+    class MySma(Strategy):
+        def initialize(self):
+            self.fast = params["fast"]
+            self.slow = params["slow"]
+        def onBar(self, bar: Bar):
+            f, s = self.sma(self.fast), self.sma(self.slow)
+            if f and s:
+                if f > s and not self.hasPosition(bar.symbol):
+                    self.buy(bar.symbol)
+                elif f < s and self.hasPosition(bar.symbol):
+                    self.closePosition(bar.symbol)
+    return MySma()
 
-print(f"Best: fast={best['best']['params']['fast']}, slow={best['best']['params']['slow']}")
-print(f"Sharpe: {best['best']['metric']:.2f}")
-```
-
-### 6. Walk-Forward Analysis
-
-Prevent overfitting with out-of-sample validation:
-
-```python
-from tradex import WalkForwardAnalyzer, ParameterSpace
-
+data = FinanceDataReaderFeed("005930", "2020-01-01", "2024-12-31")
 space = ParameterSpace()
 space.addInt("fast", 5, 20, step=5)
 space.addInt("slow", 20, 60, step=10)
@@ -273,7 +283,7 @@ result = wfa.run()
 print(f"Robustness: {result.robustnessRatio:.1%}")
 ```
 
-### 7. Multi-Asset Portfolio
+#### Multi-Asset Portfolio
 
 ```python
 from tradex import MultiAssetEngine, MultiAssetStrategy
@@ -288,36 +298,43 @@ class EqualWeight(MultiAssetStrategy):
 
 engine = MultiAssetEngine(strategy=EqualWeight())
 result = engine.run()
-print(result.summary())
+result.show()
 ```
 
-### 8. Risk Simulation
+#### Risk Simulation
 
 ```python
+import pandas as pd
+from tradex import backtest, goldenCross
 from tradex.risk import RiskSimulator, VaRMethod
+
+result = backtest("005930", goldenCross())
+returns = pd.DataFrame({"returns": pd.Series(result.equityCurve).pct_change().dropna()})
 
 simulator = RiskSimulator()
 simulator.fit(returns)
 
-var = simulator.calcVaR(confidence=0.95, method=VaRMethod.HISTORICAL)
-print(f"95% VaR: {var.var:.2%}")
-print(f"CVaR: {var.cvar:.2%}")
+var95, cvar95 = simulator.calcVaR(confidence=0.95, method=VaRMethod.HISTORICAL)
+print(f"95% VaR: {var95:.2%}")
+print(f"CVaR: {cvar95:.2%}")
 
 mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 ```
 
-### 9. Korean Language API
-
-For Korean developers — write strategies entirely in Korean:
+#### Korean Language API
 
 ```python
 from tradex import 백테스트, 골든크로스
 
 결과 = 백테스트("삼성전자", 골든크로스())
-print(결과.요약())
+결과.보기()   # 한글 대시보드
+결과.차트()   # 한글 차트
 ```
 
-## Preset Strategies (33)
+</details>
+
+<details>
+<summary><strong>Preset Strategies (33)</strong> — Trend, momentum, volatility, multi-indicator, special</summary>
 
 ### Trend Following
 | Strategy | Description |
@@ -372,7 +389,10 @@ print(결과.요약())
 | `buyAndHold()` | Passive buy and hold |
 | `dollarCostAverage()` | Dollar cost averaging |
 
-## Indicators (60+)
+</details>
+
+<details>
+<summary><strong>Indicators (60+)</strong> — Moving averages, momentum, volatility, volume, trend, price</summary>
 
 | Category | Indicators |
 |----------|-----------|
@@ -383,6 +403,8 @@ print(결과.요약())
 | **Trend** | `adx` `supertrend` `psar` `ichimoku` `trix` `dpo` `linearRegression` |
 | **Price** | `pivotPoints` `fibonacciRetracement` `zigzag` `elderRay` `twap` |
 | **Other** | `ulcer` `percentChange` `highest` `lowest` |
+
+</details>
 
 ## Performance
 
@@ -396,7 +418,8 @@ Benchmarked on 10 years of daily data (2,458 bars):
 | Full backtest (single) | **0.132ms** |
 | 1,000 param optimization | **0.02s** |
 
-## API Reference
+<details>
+<summary><strong>API Reference</strong> — Core functions, strategy builder, condition builders</summary>
 
 ### Core
 
@@ -427,11 +450,15 @@ Benchmarked on 10 years of daily data (2,458 bars):
 | `ema(period)` | EMA indicator |
 | `rsi(period)` | RSI indicator |
 | `macd(fast, slow, signal)` | MACD indicator |
+| `bollinger(period, std)` | Bollinger Bands |
 | `atr(period)` | ATR indicator |
+| `price()` | Current price |
 | `crossover(fast, slow)` | Crossover condition |
 | `crossunder(fast, slow)` | Crossunder condition |
 
 Indicators support comparison operators: `sma(10) > sma(30)`, `rsi(14) < 30`
+
+</details>
 
 ## Terminal UI
 
@@ -462,8 +489,8 @@ tradex list                                        # All 33 strategies
 ```python
 from tradex.tui.charts import plotEquityCurve, plotCandlestick, plotDrawdown
 
-plotEquityCurve(result, sma_periods=[20, 60])  # Equity + SMA overlay
-plotCandlestick(df, sma_periods=[5, 20])       # Candlestick + Volume
+plotEquityCurve(result, smaPeriods=[20, 60])   # Equity + SMA overlay
+plotCandlestick(df, smaPeriods=[5, 20])        # Candlestick + Volume
 plotDrawdown(result)                            # Drawdown chart
 ```
 
@@ -568,7 +595,12 @@ result.show(style="minimal")               # Clean report with quality indicator
 
 ### Chart Types (12)
 ```python
-from tradex.tui.charts import *
+from tradex.tui.charts import (
+    plotEquityCurve, plotDrawdown, plotCandlestick, plotReturns,
+    plotSeasonality, plotMonthlyHeatmap, plotRollingMetrics,
+    plotTradeScatter, plotTradeMarkers, plotCorrelationBars,
+    plotStrategyDna, plotDashboard,
+)
 
 plotEquityCurve(result, smaPeriods=[20, 60])  # Equity + SMA + trade markers
 plotDrawdown(result)                           # Drawdown with MDD annotation
