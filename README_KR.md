@@ -95,7 +95,7 @@ pip install "tradex-backtest[full]"
 ### 소스에서 설치 (개발용)
 
 ```bash
-git clone https://github.com/chani/tradex.git
+git clone https://github.com/eddmpython/tradex.git
 cd tradex
 
 # uv 사용
@@ -394,7 +394,7 @@ pytest
 기여는 언제나 환영합니다! Issue와 Pull Request를 자유롭게 올려주세요.
 
 ```bash
-git clone https://github.com/chani/tradex.git
+git clone https://github.com/eddmpython/tradex.git
 cd tradex
 
 # uv 사용 (권장)
@@ -410,8 +410,8 @@ pytest
 
 Tradex가 트레이딩 리서치에 도움이 되셨다면, 프로젝트를 후원해 주세요:
 
-<a href="https://www.buymeacoffee.com/chani">
-  <img src="https://img.buymeacoffee.com/button-api/?text=커피 한 잔 후원하기&emoji=&slug=chani&button_colour=FF5F5F&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" />
+<a href="https://buymeacoffee.com/eddmpython" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="217">
 </a>
 
 여러분의 후원이 이 프로젝트를 무료로 유지하고 새로운 기능을 개발하는 원동력이 됩니다. 커피 한 잔이 새로운 기능이 됩니다.

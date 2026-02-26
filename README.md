@@ -95,7 +95,7 @@ pip install "tradex-backtest[full]"
 ### From source (development)
 
 ```bash
-git clone https://github.com/chani/tradex.git
+git clone https://github.com/eddmpython/tradex.git
 cd tradex
 
 # Using uv
@@ -396,7 +396,7 @@ pytest
 Contributions are welcome! Feel free to open issues and pull requests.
 
 ```bash
-git clone https://github.com/chani/tradex.git
+git clone https://github.com/eddmpython/tradex.git
 cd tradex
 
 # Using uv (recommended)
@@ -412,8 +412,8 @@ pytest
 
 If Tradex helps your trading research, consider supporting the project:
 
-<a href="https://www.buymeacoffee.com/chani">
-  <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chani&button_colour=FF5F5F&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" />
+<a href="https://buymeacoffee.com/eddmpython" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="217">
 </a>
 
 Your support keeps this project free and actively maintained. Every coffee fuels a new feature.
