@@ -49,7 +49,7 @@ Tradex gives you all of the above — **for free, under MIT license** — with a
 
 ### Core Engine
 - **Vectorized Engine** — NumPy-powered core, 100x faster than event-driven loops
-- **50+ Technical Indicators** — SMA, EMA, RSI, MACD, Bollinger, ATR, Ichimoku, Supertrend, and more
+- **60+ Technical Indicators** — SMA, EMA, RSI, MACD, Bollinger, ATR, Ichimoku, Supertrend, Stochastic RSI, KDJ, and more
 - **33 Preset Strategies** — Trend, momentum, oscillator, volatility, multi-indicator, buy & hold, DCA
 - **Declarative Strategy Builder** — Build strategies with method chaining, no subclassing needed
 - **Walk-Forward Analysis** — Built-in overfitting prevention with time-series cross-validation
@@ -67,6 +67,13 @@ Tradex gives you all of the above — **for free, under MIT license** — with a
 - **Correlation Matrix** — Multi-strategy correlation analysis and clustering
 - **Trading Journal** — Automatic trade diary with MFE/MAE analytics
 - **Strategy Leaderboard** — Multi-strategy ranking with composite scoring and badge system
+
+### Innovative Analytics (World-First)
+- **Monte Carlo Stress Test** — 10,000-path bootstrap simulation with ruin probability, confidence bands, Sharpe/MDD distributions
+- **Fractal Analysis** — Hurst Exponent and fractal dimension for market character classification (trending/random/mean-reverting)
+- **Regime Detector** — GMM-based probabilistic regime detection with transition matrix and per-regime performance decomposition
+- **Information Theory** — Shannon entropy, mutual information, and transfer entropy for signal quality measurement
+- **Portfolio Stress Test** — 6 hypothetical crisis scenarios (market crash, volatility spike, rate shock, liquidity crisis, flash crash, correlation breakdown)
 
 ### Risk & Quant
 - **Risk Analytics** — VaR, CVaR, Monte Carlo simulation, Sharpe, Sortino, Calmar
@@ -365,16 +372,17 @@ print(결과.요약())
 | `buyAndHold()` | Passive buy and hold |
 | `dollarCostAverage()` | Dollar cost averaging |
 
-## Indicators (50+)
+## Indicators (60+)
 
 | Category | Indicators |
 |----------|-----------|
 | **Moving Averages** | `sma` `ema` `wma` `hma` `tema` `dema` `vwma` `alma` |
-| **Momentum** | `rsi` `macd` `stochastic` `roc` `momentum` `cci` `williamsR` `cmo` |
-| **Volatility** | `atr` `bollinger` `keltner` `donchian` |
-| **Volume** | `obv` `vwap` `mfi` `adl` `chaikin` `emv` `forceIndex` `nvi` `pvi` |
-| **Trend** | `adx` `supertrend` `psar` `ichimoku` `trix` `dpo` |
-| **Other** | `pivotPoints` `fibonacciRetracement` `zigzag` `elderRay` `ulcer` |
+| **Momentum** | `rsi` `macd` `stochastic` `roc` `momentum` `cci` `williamsR` `cmo` `stochasticRsi` `kdj` `awesomeOscillator` `ultimateOscillator` |
+| **Volatility** | `atr` `bollinger` `keltner` `donchian` `bollingerPercentB` `bollingerWidth` |
+| **Volume** | `obv` `vwap` `mfi` `adl` `chaikin` `emv` `forceIndex` `nvi` `pvi` `vroc` `pvt` `klingerOscillator` |
+| **Trend** | `adx` `supertrend` `psar` `ichimoku` `trix` `dpo` `linearRegression` |
+| **Price** | `pivotPoints` `fibonacciRetracement` `zigzag` `elderRay` `twap` |
+| **Other** | `ulcer` `percentChange` `highest` `lowest` |
 
 ## Performance
 
@@ -504,6 +512,41 @@ leaderboard.addResult("rsiOversold", result2)
 leaderboard.printRanking()
 ```
 
+### Innovative Analytics
+
+```python
+from tradex import (
+    MonteCarloStressAnalyzer, FractalAnalyzer, RegimeDetector,
+    InformationTheoryAnalyzer, PortfolioStressAnalyzer,
+)
+
+result = backtest("005930", goldenCross())
+
+# Monte Carlo: 10K path stress test
+mc = MonteCarloStressAnalyzer().analyze(result, paths=10000)
+print(f"Ruin probability: {mc.ruinProbability:.2%}")
+print(f"99% confidence band: {mc.confidenceBands['99%']}")
+
+# Fractal: market character classification
+fractal = FractalAnalyzer().analyze(result)
+print(f"Hurst: {fractal.hurstExponent:.3f} → {fractal.marketCharacter}")
+
+# Regime: probabilistic market state detection
+regime = RegimeDetector().analyze(result)
+print(f"Current regime: {regime.currentRegime}")
+print(f"Transition matrix: {regime.transitionMatrix}")
+
+# Information Theory: signal quality measurement
+info = InformationTheoryAnalyzer().analyze(result)
+print(f"Signal quality: {info.signalQuality}")
+print(f"Mutual information: {info.mutualInformation:.4f} bits")
+
+# Portfolio Stress: crisis scenario simulation
+stress = PortfolioStressAnalyzer().analyze(result)
+print(f"Overall grade: {stress.overallGrade}")
+print(f"Survival rate: {stress.survivalRate:.0%}")
+```
+
 ## Terminal UI Styles
 
 ### Modern (TradingView)
@@ -546,7 +589,7 @@ plotDashboard(result, lang="ko")               # All-in-one dashboard
 tradex/
 ├── engine.py              # Core backtest engine
 ├── multiAssetEngine.py    # Multi-asset portfolio engine
-├── strategy/              # Strategy base + 50+ indicators + ensemble combiner
+├── strategy/              # Strategy base + 60+ indicators + ensemble combiner
 ├── easy/                  # 2-line API, presets, Korean API
 ├── vectorized/            # Vectorized engine + indicators (Pure NumPy)
 ├── datafeed/              # Data feeds (FinanceDataReader + Parquet cache)
@@ -563,7 +606,7 @@ tradex/
 ├── events/                # Event system (Market, Signal, Order, Fill)
 ├── tui/                   # Terminal UI (Rich + Plotext + Textual), 3 styles, 12 chart types
 ├── cli.py                 # Typer CLI (backtest, optimize, chart, compare, list)
-└── tests/                 # Unit + integration tests (68 tests)
+└── tests/                 # Unit + integration tests (87 tests)
 ```
 
 ## Running Tests

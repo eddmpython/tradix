@@ -2010,6 +2010,365 @@ class Indicators:
 
         return (None, None, None, None, None)
 
+    def stochasticRsi(self, rsiPeriod: int = 14, stochPeriod: int = 14, kPeriod: int = 3, dPeriod: int = 3, offset: int = 0) -> Tuple[Optional[float], Optional[float]]:
+        """
+        Compute Stochastic RSI (%K, %D). / 스토캐스틱 RSI 계산.
+
+        Args:
+            rsiPeriod: RSI period. / RSI 기간.
+            stochPeriod: Stochastic lookback. / 스토캐스틱 기간.
+            kPeriod: %K smoothing. / %K 스무딩 기간.
+            dPeriod: %D smoothing. / %D 스무딩 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            Tuple of (%K, %D) values in 0-100 range, or (None, None). / (%K, %D) 값.
+        """
+        cacheKey = f'stochRsi_{rsiPeriod}_{stochPeriod}_{kPeriod}_{dPeriod}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            series = self._fullData['close']
+            delta = series.diff()
+            gain = delta.where(delta > 0, 0)
+            loss = (-delta).where(delta < 0, 0)
+            avgGain = gain.rolling(window=rsiPeriod).mean()
+            avgLoss = loss.rolling(window=rsiPeriod).mean()
+            rs = avgGain / avgLoss
+            rsiValues = 100 - (100 / (1 + rs))
+
+            rsiMin = rsiValues.rolling(window=stochPeriod).min()
+            rsiMax = rsiValues.rolling(window=stochPeriod).max()
+            rsiRange = rsiMax - rsiMin
+            stochRsi = np.where(rsiRange != 0, (rsiValues - rsiMin) / rsiRange * 100, 50)
+            k = pd.Series(stochRsi, index=series.index).rolling(window=kPeriod).mean().values
+            d = pd.Series(k, index=series.index).rolling(window=dPeriod).mean().values
+            self._seriesCache[cacheKey] = (k, d)
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached[0]):
+                kVal = cached[0][idx]
+                dVal = cached[1][idx]
+                kVal = kVal if not pd.isna(kVal) else None
+                dVal = dVal if not pd.isna(dVal) else None
+                return (kVal, dVal)
+        return (None, None)
+
+    def kdj(self, period: int = 9, kPeriod: int = 3, dPeriod: int = 3, offset: int = 0) -> Tuple[Optional[float], Optional[float], Optional[float]]:
+        """
+        Compute KDJ indicator. / KDJ 지표 계산.
+
+        Args:
+            period: Stochastic lookback. / 스토캐스틱 기간.
+            kPeriod: %K smoothing. / %K 스무딩 기간.
+            dPeriod: %D smoothing. / %D 스무딩 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            Tuple of (K, D, J) values, or (None, None, None). / (K, D, J) 값.
+        """
+        cacheKey = f'kdj_{period}_{kPeriod}_{dPeriod}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            high = self._fullData['high']
+            low = self._fullData['low']
+            close = self._fullData['close']
+
+            lowestLow = low.rolling(window=period).min()
+            highestHigh = high.rolling(window=period).max()
+            priceRange = highestHigh - lowestLow
+            rsv = np.where(priceRange != 0, (close - lowestLow) / priceRange * 100, 50)
+            rsvSeries = pd.Series(rsv, index=close.index)
+
+            k = rsvSeries.ewm(com=kPeriod - 1, adjust=False).mean().values
+            d = pd.Series(k, index=close.index).ewm(com=dPeriod - 1, adjust=False).mean().values
+            j = 3 * k - 2 * d
+            self._seriesCache[cacheKey] = (k, d, j)
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached[0]):
+                kVal = cached[0][idx]
+                dVal = cached[1][idx]
+                jVal = cached[2][idx]
+                kVal = kVal if not pd.isna(kVal) else None
+                dVal = dVal if not pd.isna(dVal) else None
+                jVal = jVal if not pd.isna(jVal) else None
+                return (kVal, dVal, jVal)
+        return (None, None, None)
+
+    def awesomeOscillator(self, fastPeriod: int = 5, slowPeriod: int = 34, offset: int = 0) -> Optional[float]:
+        """
+        Compute Awesome Oscillator (AO). / 어썸 오실레이터 계산.
+
+        Args:
+            fastPeriod: Fast SMA period (default 5). / 빠른 SMA 기간.
+            slowPeriod: Slow SMA period (default 34). / 느린 SMA 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            float or None: AO value. / AO 값.
+        """
+        if self._lastIndex < slowPeriod + offset:
+            return None
+
+        cacheKey = f'ao_{fastPeriod}_{slowPeriod}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            midPrice = (self._fullData['high'] + self._fullData['low']) / 2
+            fastSma = midPrice.rolling(window=fastPeriod).mean()
+            slowSma = midPrice.rolling(window=slowPeriod).mean()
+            self._seriesCache[cacheKey] = (fastSma - slowSma).values
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached):
+                val = cached[idx]
+                return val if not pd.isna(val) else None
+        return None
+
+    def ultimateOscillator(self, short: int = 7, medium: int = 14, long: int = 28, offset: int = 0) -> Optional[float]:
+        """
+        Compute Ultimate Oscillator. / 얼티밋 오실레이터 계산.
+
+        Args:
+            short: Short period (default 7). / 단기 기간.
+            medium: Medium period (default 14). / 중기 기간.
+            long: Long period (default 28). / 장기 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            float or None: UO value in 0-100 range. / UO 값 (0~100).
+        """
+        if self._lastIndex < long + 1 + offset:
+            return None
+
+        cacheKey = f'uo_{short}_{medium}_{long}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            close = self._fullData['close'].values
+            high = self._fullData['high'].values
+            low = self._fullData['low'].values
+            n = len(close)
+
+            bp = np.zeros(n)
+            tr = np.zeros(n)
+            for i in range(1, n):
+                trueLow = min(low[i], close[i - 1])
+                trueHigh = max(high[i], close[i - 1])
+                bp[i] = close[i] - trueLow
+                tr[i] = trueHigh - trueLow
+
+            bpSeries = pd.Series(bp)
+            trSeries = pd.Series(tr)
+
+            avg7 = bpSeries.rolling(short).sum() / trSeries.rolling(short).sum()
+            avg14 = bpSeries.rolling(medium).sum() / trSeries.rolling(medium).sum()
+            avg28 = bpSeries.rolling(long).sum() / trSeries.rolling(long).sum()
+
+            uo = 100 * (4 * avg7 + 2 * avg14 + avg28) / 7
+            self._seriesCache[cacheKey] = uo.values
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached):
+                val = cached[idx]
+                return val if not pd.isna(val) else None
+        return None
+
+    def klingerOscillator(self, fastPeriod: int = 34, slowPeriod: int = 55, signalPeriod: int = 13, offset: int = 0) -> Tuple[Optional[float], Optional[float]]:
+        """
+        Compute Klinger Volume Oscillator. / 클링거 거래량 오실레이터 계산.
+
+        Args:
+            fastPeriod: Fast EMA period. / 빠른 EMA 기간.
+            slowPeriod: Slow EMA period. / 느린 EMA 기간.
+            signalPeriod: Signal line EMA period. / 시그널 라인 EMA 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            Tuple of (KVO, Signal) values, or (None, None). / (KVO, 시그널) 값.
+        """
+        cacheKey = f'klinger_{fastPeriod}_{slowPeriod}_{signalPeriod}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            high = self._fullData['high'].values
+            low = self._fullData['low'].values
+            close = self._fullData['close'].values
+            volume = self._fullData['volume'].values
+            n = len(close)
+
+            hlc = (high + low + close) / 3
+            trend = np.ones(n)
+            for i in range(1, n):
+                trend[i] = 1 if hlc[i] > hlc[i - 1] else -1
+
+            dm = high - low
+            vf = volume * abs(2 * dm / np.where(dm != 0, dm, 1) - 1) * trend
+
+            vfSeries = pd.Series(vf)
+            kvo = vfSeries.ewm(span=fastPeriod, adjust=False).mean() - vfSeries.ewm(span=slowPeriod, adjust=False).mean()
+            signal = kvo.ewm(span=signalPeriod, adjust=False).mean()
+            self._seriesCache[cacheKey] = (kvo.values, signal.values)
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached[0]):
+                kvoVal = cached[0][idx]
+                sigVal = cached[1][idx]
+                kvoVal = kvoVal if not pd.isna(kvoVal) else None
+                sigVal = sigVal if not pd.isna(sigVal) else None
+                return (kvoVal, sigVal)
+        return (None, None)
+
+    def bollingerPercentB(self, period: int = 20, numStd: float = 2.0, offset: int = 0) -> Optional[float]:
+        """
+        Compute Bollinger Band %B (position within bands). / 볼린저 밴드 %B (밴드 내 위치) 계산.
+
+        Args:
+            period: Bollinger period. / 볼린저 기간.
+            numStd: Standard deviation multiplier. / 표준편차 배수.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            float or None: %B value (0=lower, 1=upper). / %B 값 (0=하단, 1=상단).
+        """
+        if self._lastIndex < period + offset:
+            return None
+
+        cacheKey = f'bbPctB_{period}_{numStd}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            close = self._fullData['close']
+            middle = close.rolling(window=period).mean()
+            std = close.rolling(window=period).std()
+            upper = middle + numStd * std
+            lower = middle - numStd * std
+            bandwidth = upper - lower
+            pctB = np.where(bandwidth != 0, (close - lower) / bandwidth, 0.5)
+            self._seriesCache[cacheKey] = pctB
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached):
+                val = cached[idx]
+                return val if not pd.isna(val) else None
+        return None
+
+    def bollingerWidth(self, period: int = 20, numStd: float = 2.0, offset: int = 0) -> Optional[float]:
+        """
+        Compute Bollinger Band Width (normalized). / 볼린저 밴드 폭 (정규화) 계산.
+
+        Args:
+            period: Bollinger period. / 볼린저 기간.
+            numStd: Standard deviation multiplier. / 표준편차 배수.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            float or None: Bandwidth percentage. / 밴드 폭 (%).
+        """
+        if self._lastIndex < period + offset:
+            return None
+
+        cacheKey = f'bbWidth_{period}_{numStd}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            close = self._fullData['close']
+            middle = close.rolling(window=period).mean()
+            std = close.rolling(window=period).std()
+            upper = middle + numStd * std
+            lower = middle - numStd * std
+            width = np.where(middle != 0, (upper - lower) / middle * 100, 0)
+            self._seriesCache[cacheKey] = width
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached):
+                val = cached[idx]
+                return val if not pd.isna(val) else None
+        return None
+
+    def twap(self, period: int = 20, offset: int = 0) -> Optional[float]:
+        """
+        Compute Time-Weighted Average Price (TWAP). / 시간 가중 평균가 계산.
+
+        Args:
+            period: TWAP period. / TWAP 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            float or None: TWAP value. / TWAP 값.
+        """
+        if self._lastIndex < period + offset:
+            return None
+
+        cacheKey = f'twap_{period}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            ohlc = (self._fullData['open'] + self._fullData['high'] + self._fullData['low'] + self._fullData['close']) / 4
+            self._seriesCache[cacheKey] = ohlc.rolling(window=period).mean().values
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached):
+                val = cached[idx]
+                return val if not pd.isna(val) else None
+        return None
+
+    def linearRegression(self, period: int = 20, offset: int = 0) -> Tuple[Optional[float], Optional[float], Optional[float]]:
+        """
+        Compute Linear Regression (value, slope, R-squared). / 선형회귀 (값, 기울기, R제곱) 계산.
+
+        Args:
+            period: Regression lookback. / 회귀 기간.
+            offset: Bars ago. / 과거 인덱스.
+
+        Returns:
+            Tuple of (regression value, slope, r_squared), or (None, None, None). / (회귀값, 기울기, R제곱).
+        """
+        if self._lastIndex < period + offset:
+            return (None, None, None)
+
+        cacheKey = f'linreg_{period}'
+        if cacheKey not in self._seriesCache and self._fullData is not None:
+            close = self._fullData['close'].values
+            n = len(close)
+            x = np.arange(period, dtype=float)
+            xMean = x.mean()
+            xVar = np.sum((x - xMean) ** 2)
+
+            regVal = np.full(n, np.nan)
+            slope = np.full(n, np.nan)
+            rSq = np.full(n, np.nan)
+
+            for i in range(period - 1, n):
+                y = close[i - period + 1:i + 1]
+                yMean = y.mean()
+                covXY = np.sum((x - xMean) * (y - yMean))
+                b = covXY / xVar if xVar != 0 else 0
+                a = yMean - b * xMean
+                regVal[i] = a + b * (period - 1)
+                slope[i] = b
+                yPred = a + b * x
+                ssTot = np.sum((y - yMean) ** 2)
+                ssRes = np.sum((y - yPred) ** 2)
+                rSq[i] = 1 - ssRes / ssTot if ssTot != 0 else 0
+
+            self._seriesCache[cacheKey] = (regVal, slope, rSq)
+
+        cached = self._seriesCache.get(cacheKey)
+        if cached is not None:
+            idx = self._lastIndex - 1 - offset
+            if 0 <= idx < len(cached[0]):
+                v = cached[0][idx]
+                s = cached[1][idx]
+                r = cached[2][idx]
+                v = v if not pd.isna(v) else None
+                s = s if not pd.isna(s) else None
+                r = r if not pd.isna(r) else None
+                return (v, s, r)
+        return (None, None, None)
+
     def __repr__(self) -> str:
         rows = len(self._data) if self._data is not None else 0
         return f"Indicators(rows={rows})"
