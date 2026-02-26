@@ -24,6 +24,11 @@ Features:
     - CorrelationAnalyzer: Multi-strategy correlation and clustering
     - TradingJournal: Automatic trade diary with MFE/MAE analytics
     - StrategyLeaderboard: Multi-strategy ranking and badge system
+    - MonteCarloStressAnalyzer: 10,000-path bootstrap stress testing (WORLD-FIRST)
+    - FractalAnalyzer: Hurst exponent & fractal dimension analysis (WORLD-FIRST)
+    - RegimeDetector: HMM-based market regime detection & decomposition (WORLD-FIRST)
+    - InformationTheoryAnalyzer: Entropy & mutual information signal analysis (WORLD-FIRST)
+    - PortfolioStressAnalyzer: Hypothetical crisis scenario simulation (WORLD-FIRST)
 
 Usage:
     from tradex.analytics import PerformanceMetrics, Tearsheet
@@ -45,6 +50,11 @@ from tradex.analytics.seasonality import SeasonalPattern, SeasonalityAnalyzer
 from tradex.analytics.correlation import CorrelationResult, CorrelationAnalyzer
 from tradex.analytics.tradingJournal import JournalEntry, TradingJournal
 from tradex.analytics.leaderboard import LeaderboardEntry, StrategyLeaderboard
+from tradex.analytics.monteCarloStress import MonteCarloStressResult, MonteCarloStressAnalyzer
+from tradex.analytics.fractalAnalysis import FractalAnalysisResult, FractalAnalyzer
+from tradex.analytics.regimeDetector import RegimeAnalysisResult, RegimeDetector
+from tradex.analytics.informationTheory import InformationTheoryResult, InformationTheoryAnalyzer
+from tradex.analytics.portfolioStress import StressScenario, PortfolioStressResult, PortfolioStressAnalyzer
 
 __all__ = [
     "PerformanceMetrics",
@@ -76,4 +86,20 @@ __all__ = [
 
     "LeaderboardEntry",
     "StrategyLeaderboard",
+
+    "MonteCarloStressResult",
+    "MonteCarloStressAnalyzer",
+
+    "FractalAnalysisResult",
+    "FractalAnalyzer",
+
+    "RegimeAnalysisResult",
+    "RegimeDetector",
+
+    "InformationTheoryResult",
+    "InformationTheoryAnalyzer",
+
+    "StressScenario",
+    "PortfolioStressResult",
+    "PortfolioStressAnalyzer",
 ]

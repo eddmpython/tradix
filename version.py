@@ -135,9 +135,8 @@ class Version:
 
 
 # 현재 버전
-CURRENT_VERSION = Version(1, 1, 0)
+CURRENT_VERSION = Version(1, 2, 0)
 
-# 버전별 기능 맵
 VERSION_FEATURES: Dict[str, List[str]] = {
     "1.0.0": [
         "BacktestEngine",
@@ -150,31 +149,12 @@ VERSION_FEATURES: Dict[str, List[str]] = {
         "Optimizer (Grid/Random Search)",
         "ParameterSpace",
         "WalkForwardAnalyzer",
-    ],
-    "1.2.0": [
         "MultiAssetEngine",
-        "MultiAssetStrategy",
         "MultiDataFeed",
-    ],
-    "1.3.0": [
         "StrategyAdvisor",
         "MarketClassifier",
-        "LearnedPatterns",
-    ],
-    "1.4.0": [
-        "RegimeForecaster",
-        "PortfolioOptimizer",
-        "RiskSimulator",
-        "StrategyCombiner",
-        "ExecutionSimulator",
-        "BenchmarkComparator",
-    ],
-    "1.1.0": [
         "FactorAnalyzer",
-        "FactorModel",
         "StatArbStrategy",
-        "PairTrading",
-        "RegimeFactorIntegration",
         "StrategyDNA (12-dimensional fingerprinting)",
         "BlackSwanAnalyzer (extreme event resilience)",
         "StrategyHealthAnalyzer (overfitting diagnostics)",
@@ -184,11 +164,17 @@ VERSION_FEATURES: Dict[str, List[str]] = {
         "CorrelationAnalyzer (multi-strategy correlation)",
         "TradingJournal (automatic trade diary)",
         "StrategyLeaderboard (ranking system)",
-        "33 preset strategies (from 9)",
-        "TradingView-style TUI (3 styles: modern/bloomberg/minimal)",
+        "33 preset strategies",
+        "TradingView-style TUI (3 styles)",
         "12 terminal chart types (Plotext)",
-        "Interactive Textual dashboard (5 views)",
         "Typer CLI (backtest/optimize/chart/compare)",
+    ],
+    "1.2.0": [
+        "MonteCarloStressAnalyzer (10K path stress test)",
+        "FractalAnalyzer (Hurst exponent / fractal dimension)",
+        "RegimeDetector (GMM-based regime detection)",
+        "InformationTheoryAnalyzer (entropy / mutual information)",
+        "PortfolioStressAnalyzer (6 crisis scenarios)",
     ],
 }
 
@@ -196,14 +182,13 @@ VERSION_FEATURES: Dict[str, List[str]] = {
 VERSION_DEPENDENCIES: Dict[str, Dict[str, str]] = {
     "1.0.0": {
         "pandas": ">=1.3.0",
-        "numpy": ">=1.20.0",
+        "numpy": ">=1.21.0",
     },
-    "1.4.0": {
+    "1.1.0": {
         "scipy": ">=1.7.0",
-    },
-    "2.0.0": {
-        "statsmodels": ">=0.13.0",
-        "scikit-learn": ">=1.0.0",
+        "rich": ">=13.0",
+        "plotext": ">=5.3",
+        "typer": ">=0.12",
     },
 }
 

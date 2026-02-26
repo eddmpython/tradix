@@ -91,6 +91,17 @@ from tradex.analytics import (
     TradingJournal,
     LeaderboardEntry,
     StrategyLeaderboard,
+    MonteCarloStressResult,
+    MonteCarloStressAnalyzer,
+    FractalAnalysisResult,
+    FractalAnalyzer,
+    RegimeAnalysisResult,
+    RegimeDetector,
+    InformationTheoryResult,
+    InformationTheoryAnalyzer,
+    StressScenario,
+    PortfolioStressResult,
+    PortfolioStressAnalyzer,
 )
 from tradex.advisor import StrategyAdvisor, MarketClassifier, MarketRegime
 from tradex.version import CURRENT_VERSION, getVersion, checkVersion, VersionManager
@@ -215,7 +226,7 @@ from tradex.tui import (
     plotSeasonality,
 )
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 __all__ = [
     # Version
@@ -418,4 +429,17 @@ __all__ = [
     "TradingJournal",
     "LeaderboardEntry",
     "StrategyLeaderboard",
+
+    # === Innovative Analytics (World-First) ===
+    "MonteCarloStressResult",
+    "MonteCarloStressAnalyzer",
+    "FractalAnalysisResult",
+    "FractalAnalyzer",
+    "RegimeAnalysisResult",
+    "RegimeDetector",
+    "InformationTheoryResult",
+    "InformationTheoryAnalyzer",
+    "StressScenario",
+    "PortfolioStressResult",
+    "PortfolioStressAnalyzer",
 ]
