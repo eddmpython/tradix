@@ -584,7 +584,7 @@ def _printResultModern(
         _cv(mdd, fmt=".2f"),
         _l(ko, "MDD Duration", "\ub099\ud3ed\uae30\uac04"),
         Text(
-            f"{int(mddDur)}{'d' if not ko else '\uc77c'}",
+            f"{int(mddDur)}{'d' if not ko else '일'}",
             style="dim",
         ),
     )
@@ -597,7 +597,7 @@ def _printResultModern(
     detail.add_row(
         _l(ko, "Avg Holding", "\ud3c9\uade0\ubcf4\uc720"),
         Text(
-            f"{avgHold:.1f}{'d' if not ko else '\uc77c'}",
+            f"{avgHold:.1f}{'d' if not ko else '일'}",
             style="white",
         ),
         _l(ko, "Avg Loss", "\ud3c9\uade0\uc190\uc2e4"),
@@ -757,7 +757,7 @@ def _printResultBloomberg(
     )
     ddTable.add_row(
         _l(ko, "MDD Duration", "\ub099\ud3ed\uae30\uac04"),
-        Text(f"{int(mddDur)}{'d' if not ko else '\uc77c'}", style="dim"),
+        Text(f"{int(mddDur)}{'d' if not ko else '일'}", style="dim"),
     )
     ddTable.add_row(
         _l(ko, "Ulcer Index", "\uc5bc\uc11c \uc9c0\uc218"),
@@ -799,7 +799,7 @@ def _printResultBloomberg(
     )
     tradeTable.add_row(
         _l(ko, "Avg Hold", "\ud3c9\uade0\ubcf4\uc720"),
-        Text(f"{avgHold:.1f}{'d' if not ko else '\uc77c'}", style="white"),
+        Text(f"{avgHold:.1f}{'d' if not ko else '일'}", style="white"),
     )
     tradeTable.add_row(
         _l(ko, "W/L Streak", "\uc5f0\uc18d \uc2b9/\ud328"),
@@ -920,7 +920,7 @@ def _printResultMinimal(
         ),
         _minMetric(
             _l(ko, "MDD Duration", "\ub099\ud3ed\uae30\uac04"),
-            f"{int(mddDur)}{'d' if not ko else '\uc77c'}", "-",
+            f"{int(mddDur)}{'d' if not ko else '일'}", "-",
         ),
     )
     grid.add_row(
@@ -940,7 +940,7 @@ def _printResultMinimal(
         ),
         _minMetric(
             _l(ko, "Avg Holding", "\ud3c9\uade0\ubcf4\uc720"),
-            f"{avgHold:.1f}{'d' if not ko else '\uc77c'}", "-",
+            f"{avgHold:.1f}{'d' if not ko else '일'}", "-",
         ),
     )
     grid.add_row(
@@ -1195,7 +1195,7 @@ def printTrades(result: Any, limit: int = 20, lang: str = "en") -> None:
         elif pnl < 0:
             rowStyle = "on rgb(40,0,0)"
 
-        holdStr = f"{holdDays}{'d' if not ko else '\uc77c'}" if holdDays else "-"
+        holdStr = f"{holdDays}{'d' if not ko else '일'}" if holdDays else "-"
 
         table.add_row(
             str(i), sideText, ed, xd,
@@ -1220,7 +1220,7 @@ def printTrades(result: Any, limit: int = 20, lang: str = "en") -> None:
             _cv(totalPnl, fmt=",.0f", suffix=""),
             _cv(avgRetPct, fmt="+.2f", suffix="% avg"),
             Text(
-                f"{tradeWr:.0f}%{'win' if not ko else '\uc2b9'}",
+                f"{tradeWr:.0f}%{'win' if not ko else '승'}",
                 style="bold green" if tradeWr >= 50 else "bold red",
             ),
             style="on rgb(30,30,50)",
