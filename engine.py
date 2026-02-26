@@ -249,6 +249,16 @@ class BacktestResult:
             f"{'='*50}\n"
         )
 
+    def show(self, lang: str = "en") -> None:
+        """Print Rich-styled result table to terminal. 터미널에 Rich 스타일 결과 출력."""
+        from tradex.tui.console import printResult
+        printResult(self, lang=lang)
+
+    def chart(self, lang: str = "en") -> None:
+        """Print full dashboard with charts. 차트 포함 대시보드 출력."""
+        from tradex.tui.charts import plotDashboard
+        plotDashboard(self, lang=lang)
+
     def toDict(self) -> dict:
         """Convert the result to a serializable dictionary. 결과를 직렬화 가능한 딕셔너리로 변환.
 

@@ -122,6 +122,16 @@ class VectorizedResult:
             f"{'='*50}\n"
         )
 
+    def show(self, lang: str = "en") -> None:
+        """Print Rich-styled result table to terminal. 터미널에 Rich 스타일 결과 출력."""
+        from tradex.tui.console import printResult
+        printResult(self, lang=lang)
+
+    def chart(self, lang: str = "en") -> None:
+        """Print full dashboard with charts. 차트 포함 대시보드 출력."""
+        from tradex.tui.charts import plotDashboard
+        plotDashboard(self, lang=lang)
+
     @property
     def 수익률(self) -> float:
         return self.totalReturn

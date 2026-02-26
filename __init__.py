@@ -136,6 +136,17 @@ from tradex.vectorized import (
     voptimize,
 )
 
+from tradex.tui import (
+    printResult,
+    printComparison,
+    printTrades,
+    plotEquityCurve,
+    plotDrawdown,
+    plotCandlestick,
+    plotReturns,
+    plotDashboard,
+)
+
 __version__ = "1.0.0"
 
 __all__ = [
@@ -261,6 +272,16 @@ __all__ = [
     "돌파전략",
     "평균회귀",
     "추세추종",
+
+    # === Terminal UI ===
+    "printResult",
+    "printComparison",
+    "printTrades",
+    "plotEquityCurve",
+    "plotDrawdown",
+    "plotCandlestick",
+    "plotReturns",
+    "plotDashboard",
 
     # === Signal Predictor ===
     "SignalPredictor",
