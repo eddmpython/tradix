@@ -389,12 +389,8 @@ class VectorizedEngine:
         )
     """
 
-    STRATEGIES = {
-        "goldenCross": "vgoldenCross",
-        "rsi": "vrsiSignal",
-        "macd": "vmacdSignal",
-        "bollinger": "vbollingerSignal",
-        "breakout": "vbreakoutSignal",
+    VECTORIZED_STRATEGIES = {
+        "goldenCross", "rsi", "macd", "bollinger", "breakout",
     }
 
     def __init__(
@@ -446,6 +442,12 @@ class VectorizedEngine:
             symbol = 'UNKNOWN'
 
         if signals is None:
+            if strategy and strategy not in self.VECTORIZED_STRATEGIES:
+                raise ValueError(
+                    f"Strategy '{strategy}' is not supported in vectorized mode. "
+                    f"Supported: {', '.join(sorted(self.VECTORIZED_STRATEGIES))}. "
+                    f"Use backtest() with mode='event' for this strategy."
+                )
             signals = self._generateSignals(close, high, low, strategy, **strategyParams)
 
         stopLossPct = stopLoss / 100 if stopLoss > 0 else 0
@@ -573,6 +575,22 @@ def vbacktest(
         result = vbacktest("005930", "goldenCross", fast=10, slow=30)
         print(result.summary())
     """
+    if strategy not in VectorizedEngine.VECTORIZED_STRATEGIES:
+        import warnings
+        warnings.warn(
+            f"Strategy '{strategy}' not supported in vectorized mode. "
+            f"Falling back to event-driven mode.",
+            stacklevel=2,
+        )
+        from tradex.easy.api import backtest as _eventBacktest
+        return _eventBacktest(
+            symbol=symbol,
+            strategy=strategy,
+            period=period,
+            initialCash=initialCash,
+            mode="event",
+        )
+
     from tradex.datafeed.fdr import FinanceDataReaderFeed
     from tradex.easy.api import _resolveSymbol, _resolvePeriod
 
@@ -655,7 +673,7 @@ def voptimize(
 
     bestResult = None
     bestParams = None
-    bestMetric = float('-inf') if metric != 'maxDrawdown' else float('inf')
+    bestMetric = float('-inf')
 
     results = []
 
@@ -667,16 +685,12 @@ def voptimize(
 
             metricValue = getattr(result, metric, 0)
 
-            if metric == 'maxDrawdown':
-                if metricValue > bestMetric:
-                    bestMetric = metricValue
-                    bestResult = result
-                    bestParams = params
-            else:
-                if metricValue > bestMetric:
-                    bestMetric = metricValue
-                    bestResult = result
-                    bestParams = params
+            compareValue = metricValue if metric != 'maxDrawdown' else -abs(metricValue)
+
+            if compareValue > bestMetric:
+                bestMetric = compareValue
+                bestResult = result
+                bestParams = params
 
             results.append({
                 'params': params,
@@ -684,10 +698,15 @@ def voptimize(
                 'result': result
             })
 
-        except Exception:
+        except Exception as e:
+            import warnings
+            warnings.warn(f"Optimization failed for params {params}: {e}", stacklevel=2)
             continue
 
-    results.sort(key=lambda x: x['metric'], reverse=(metric != 'maxDrawdown'))
+    if metric == 'maxDrawdown':
+        results.sort(key=lambda x: abs(x['metric']))
+    else:
+        results.sort(key=lambda x: x['metric'], reverse=True)
 
     return {
         'best': {

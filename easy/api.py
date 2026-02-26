@@ -477,7 +477,7 @@ def optimize(
 
     bestResult = None
     bestParams = None
-    bestMetric = float('-inf') if metric != 'maxDrawdown' else float('inf')
+    bestMetric = float('-inf')
 
     results = []
 
@@ -488,16 +488,12 @@ def optimize(
 
             metricValue = result.metrics.get(metric, 0)
 
-            if metric == 'maxDrawdown':
-                if metricValue > bestMetric:
-                    bestMetric = metricValue
-                    bestResult = result
-                    bestParams = params
-            else:
-                if metricValue > bestMetric:
-                    bestMetric = metricValue
-                    bestResult = result
-                    bestParams = params
+            compareValue = metricValue if metric != 'maxDrawdown' else -abs(metricValue)
+
+            if compareValue > bestMetric:
+                bestMetric = compareValue
+                bestResult = result
+                bestParams = params
 
             results.append({
                 'params': params,
@@ -506,9 +502,14 @@ def optimize(
             })
 
         except Exception as e:
+            import warnings
+            warnings.warn(f"Optimization failed for params {params}: {e}", stacklevel=2)
             continue
 
-    results.sort(key=lambda x: x['metric'], reverse=(metric != 'maxDrawdown'))
+    if metric == 'maxDrawdown':
+        results.sort(key=lambda x: abs(x['metric']))
+    else:
+        results.sort(key=lambda x: x['metric'], reverse=True)
 
     return {
         'best': {

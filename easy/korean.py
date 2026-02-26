@@ -31,13 +31,15 @@ from typing import Union, Callable
 from tradex.easy.api import backtest, optimize, EasyResult, quickTest
 from tradex.easy.quick import QuickStrategy
 from tradex.easy.presets import (
-    goldenCross,
-    rsiOversold,
-    bollingerBreakout,
-    macdCross,
-    breakout,
-    meanReversion,
-    trendFollowing,
+    goldenCross, rsiOversold, bollingerBreakout, macdCross,
+    breakout, meanReversion, trendFollowing, emaCross,
+    tripleScreen, dualMomentum, momentumCross, rocBreakout,
+    stochasticCross, williamsReversal, cciBreakout, rsiDivergence,
+    volatilityBreakout, keltnerChannel, bollingerSqueeze,
+    superTrend, ichimokuCloud, parabolicSar, donchianBreakout,
+    tripleEma, macdRsiCombo, trendMomentum, bollingerRsi,
+    gapTrading, pyramiding, swingTrading, scalpingMomentum,
+    buyAndHold, dollarCostAverage,
 )
 from tradex.strategy.base import Strategy
 
@@ -411,3 +413,133 @@ def 추세추종(
         adxThreshold=ADX임계값,
         trailingStop=추적손절
     )
+
+
+def EMA크로스(단기: int = 12, 장기: int = 26, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """EMA 크로스 전략."""
+    return emaCross(fast=단기, slow=장기, stopLoss=손절, takeProfit=익절)
+
+
+def 삼중스크린(장기: int = 50, 중기: int = 20, RSI기간: int = 14, RSI과매도: float = 30, 손절: float = 5) -> QuickStrategy:
+    """엘더 삼중 스크린 전략."""
+    return tripleScreen(longPeriod=장기, mediumPeriod=중기, rsiPeriod=RSI기간, rsiOversold=RSI과매도, stopLoss=손절)
+
+
+def 듀얼모멘텀(관찰기간: int = 252, 보유기간: int = 21, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """듀얼 모멘텀 전략."""
+    return dualMomentum(lookback=관찰기간, holdPeriod=보유기간, stopLoss=손절, takeProfit=익절)
+
+
+def 모멘텀크로스(단기: int = 10, 장기: int = 30, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """모멘텀 크로스 전략."""
+    return momentumCross(fast=단기, slow=장기, stopLoss=손절, takeProfit=익절)
+
+
+def ROC돌파(기간: int = 14, 임계값: float = 5, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """ROC 돌파 전략."""
+    return rocBreakout(period=기간, threshold=임계값, stopLoss=손절, takeProfit=익절)
+
+
+def 스토캐스틱크로스(K기간: int = 14, D기간: int = 3, 과매도: float = 20, 과매수: float = 80, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """스토캐스틱 크로스 전략."""
+    return stochasticCross(kPeriod=K기간, dPeriod=D기간, oversold=과매도, overbought=과매수, stopLoss=손절, takeProfit=익절)
+
+
+def 윌리엄스반전(기간: int = 14, 과매도: float = -80, 과매수: float = -20, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """윌리엄스 %R 반전 전략."""
+    return williamsReversal(period=기간, oversold=과매도, overbought=과매수, stopLoss=손절, takeProfit=익절)
+
+
+def CCI돌파(기간: int = 20, 임계값: float = 100, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """CCI 돌파 전략."""
+    return cciBreakout(period=기간, threshold=임계값, stopLoss=손절, takeProfit=익절)
+
+
+def RSI다이버전스(기간: int = 14, 과매도: float = 30, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """RSI 다이버전스 전략."""
+    return rsiDivergence(period=기간, oversold=과매도, stopLoss=손절, takeProfit=익절)
+
+
+def 변동성돌파(ATR기간: int = 14, 배수: float = 2.0, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """변동성 돌파 전략."""
+    return volatilityBreakout(atrPeriod=ATR기간, multiplier=배수, stopLoss=손절, takeProfit=익절)
+
+
+def 켈트너채널(기간: int = 20, 배수: float = 2.0, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """켈트너 채널 전략."""
+    return keltnerChannel(period=기간, multiplier=배수, stopLoss=손절, takeProfit=익절)
+
+
+def 볼린저스퀴즈(기간: int = 20, 표준편차: float = 2.0, 스퀴즈임계값: float = 0.04, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """볼린저 스퀴즈 전략."""
+    return bollingerSqueeze(period=기간, std=표준편차, squeezeThreshold=스퀴즈임계값, stopLoss=손절, takeProfit=익절)
+
+
+def 슈퍼트렌드(ATR기간: int = 10, 배수: float = 3.0, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """슈퍼트렌드 전략."""
+    return superTrend(atrPeriod=ATR기간, multiplier=배수, stopLoss=손절, takeProfit=익절)
+
+
+def 일목균형표(전환선: int = 9, 기준선: int = 26, 선행스팬: int = 52, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """일목균형표 전략."""
+    return ichimokuCloud(tenkan=전환선, kijun=기준선, senkou=선행스팬, stopLoss=손절, takeProfit=익절)
+
+
+def 파라볼릭SAR(가속계수: float = 0.02, 최대가속: float = 0.2, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """파라볼릭 SAR 전략."""
+    return parabolicSar(step=가속계수, maxStep=최대가속, stopLoss=손절, takeProfit=익절)
+
+
+def 돈치안돌파(기간: int = 20, 청산기간: int = 10, 손절: float = None, 익절: float = None, 추적손절: float = None) -> QuickStrategy:
+    """돈치안 채널 돌파 전략."""
+    return donchianBreakout(period=기간, exitPeriod=청산기간, stopLoss=손절, takeProfit=익절, trailingStop=추적손절)
+
+
+def 삼중EMA(단기: int = 5, 중기: int = 13, 장기: int = 34, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """삼중 EMA 크로스 전략."""
+    return tripleEma(fast=단기, medium=중기, slow=장기, stopLoss=손절, takeProfit=익절)
+
+
+def MACD_RSI콤보(RSI기간: int = 14, MACD단기: int = 12, MACD장기: int = 26, 시그널기간: int = 9, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """MACD + RSI 콤보 전략."""
+    return macdRsiCombo(rsiPeriod=RSI기간, macdFast=MACD단기, macdSlow=MACD장기, macdSignalPeriod=시그널기간, stopLoss=손절, takeProfit=익절)
+
+
+def 추세모멘텀(SMA기간: int = 50, RSI기간: int = 14, ADX기간: int = 14, ADX임계값: float = 25, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """추세 + 모멘텀 조합 전략."""
+    return trendMomentum(smaPeriod=SMA기간, rsiPeriod=RSI기간, adxPeriod=ADX기간, adxThreshold=ADX임계값, stopLoss=손절, takeProfit=익절)
+
+
+def 볼린저RSI(BB기간: int = 20, RSI기간: int = 14, BB표준편차: float = 2.0, RSI과매도: float = 30, RSI과매수: float = 70, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """볼린저 + RSI 전략."""
+    return bollingerRsi(bbPeriod=BB기간, rsiPeriod=RSI기간, bbStd=BB표준편차, rsiOversold=RSI과매도, rsiOverbought=RSI과매수, stopLoss=손절, takeProfit=익절)
+
+
+def 갭트레이딩(갭비율: float = 2.0, 손절: float = 3, 익절: float = None) -> QuickStrategy:
+    """갭 트레이딩 전략."""
+    return gapTrading(gapPercent=갭비율, stopLoss=손절, takeProfit=익절)
+
+
+def 피라미딩(기간목록: list = None, 손절: float = None, 익절: float = None, 추적손절: float = 10) -> QuickStrategy:
+    """피라미딩 전략."""
+    return pyramiding(periods=기간목록, stopLoss=손절, takeProfit=익절, trailingStop=추적손절)
+
+
+def 스윙트레이딩(ATR기간: int = 14, RSI기간: int = 14, RSI과매도: float = 30, RSI과매수: float = 70, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """스윙 트레이딩 전략."""
+    return swingTrading(atrPeriod=ATR기간, rsiPeriod=RSI기간, rsiOversold=RSI과매도, rsiOverbought=RSI과매수, stopLoss=손절, takeProfit=익절)
+
+
+def 스캘핑모멘텀(EMA기간: int = 5, RSI기간: int = 7, RSI진입: float = 50, 손절: float = 2, 익절: float = 3) -> QuickStrategy:
+    """스캘핑 모멘텀 전략."""
+    return scalpingMomentum(emaPeriod=EMA기간, rsiPeriod=RSI기간, rsiEntry=RSI진입, stopLoss=손절, takeProfit=익절)
+
+
+def 바이앤홀드(손절: float = None, 익절: float = None) -> QuickStrategy:
+    """바이앤홀드 전략."""
+    return buyAndHold(stopLoss=손절, takeProfit=익절)
+
+
+def 적립식투자(간격: int = 21, 손절: float = None, 익절: float = None) -> QuickStrategy:
+    """적립식 투자(DCA) 전략."""
+    return dollarCostAverage(interval=간격, stopLoss=손절, takeProfit=익절)
