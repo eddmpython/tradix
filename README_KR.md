@@ -14,7 +14,7 @@
     <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
     <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
-    <a href="https://www.buymeacoffee.com/chani"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-후원하기-orange?style=flat-square&logo=buy-me-a-coffee&logoColor=white" alt="Buy Me a Coffee"></a>
+    <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-후원하기-orange?style=flat-square&logo=buy-me-a-coffee&logoColor=white" alt="Buy Me a Coffee"></a>
   </p>
 </p>
 
