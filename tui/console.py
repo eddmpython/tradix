@@ -1783,15 +1783,15 @@ def printBlackSwanScore(score: Any, lang: str = "en") -> None:
         )
         tailGrid.add_row(
             Text(
-                f"  {_l(ko, 'Skewness', '\uc654\ub3c4')}: {tailDetails.get('skewness', 0):.3f}",
+                f"  {_l(ko, 'Skewness', '왜도')}: {tailDetails.get('skewness', 0):.3f}",
                 style="white",
             ),
             Text(
-                f"{_l(ko, 'Kurtosis', '\ucca8\ub3c4')}: {tailDetails.get('excessKurtosis', 0):.3f}",
+                f"{_l(ko, 'Kurtosis', '첨도')}: {tailDetails.get('excessKurtosis', 0):.3f}",
                 style="white",
             ),
             Text(
-                f"{_l(ko, 'Tail Ratio', '\uaf2c\ub9ac\ube44')}: {tailDetails.get('tailRatio', 0):.3f}",
+                f"{_l(ko, 'Tail Ratio', '꼬리비')}: {tailDetails.get('tailRatio', 0):.3f}",
                 style="white",
             ),
         )
