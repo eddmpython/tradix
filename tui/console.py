@@ -6,6 +6,15 @@ Rich 기반 백테스트 결과 터미널 출력.
 """
 
 from typing import Any, Dict, List, Optional, Union
+import sys
+
+# Windows cp949 encoding fix for unicode output
+if sys.platform == "win32" and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
@@ -16,18 +25,31 @@ from rich import box
 
 console = Console()
 
-_SPARKLINE_CHARS = "▁▂▃▄▅▆▇█"
+_SPARKLINE_CHARS = "\u2581\u2582\u2583\u2584\u2585\u2586\u2587\u2588"
+_SPARKLINE_FALLBACK = " .:;|"
+
+
+def _canUnicode() -> bool:
+    """Check if terminal supports unicode sparkline characters."""
+    import sys
+    try:
+        "\u2581".encode(sys.stdout.encoding or "utf-8")
+        return True
+    except (UnicodeEncodeError, LookupError):
+        return False
 
 
 def _sparkline(values: list, width: int = 20) -> str:
     if not values or len(values) < 2:
         return ""
+    chars = _SPARKLINE_CHARS if _canUnicode() else _SPARKLINE_FALLBACK
     mn, mx = min(values), max(values)
     rng = mx - mn if mx != mn else 1
     step = max(1, len(values) // width)
     sampled = [values[i] for i in range(0, len(values), step)][:width]
+    max_idx = len(chars) - 1
     return "".join(
-        _SPARKLINE_CHARS[min(int((v - mn) / rng * 7), 7)] for v in sampled
+        chars[min(int((v - mn) / rng * max_idx), max_idx)] for v in sampled
     )
 
 

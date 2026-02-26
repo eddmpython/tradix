@@ -8,6 +8,16 @@ Plotext 기반 터미널 차트. 자산곡선, 캔들스틱, 낙폭, 수익분�
 """
 
 from typing import Any, List, Optional
+import sys
+import io
+
+# Windows cp949 encoding fix for plotext unicode output
+if sys.platform == "win32" and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 import plotext as plt
 
 
@@ -119,7 +129,6 @@ def plotDrawdown(result: Any, title: str = "Drawdown", height: int = 15, width: 
     plt.theme("dark")
 
     plt.plot(dd, color="red", label="Drawdown %")
-    plt.fill(dd, color="red+")
     plt.hline(0, color="gray")
     plt.ylabel("%")
     plt.xlabel("Days")
