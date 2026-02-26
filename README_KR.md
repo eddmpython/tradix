@@ -410,9 +410,11 @@ pytest
 
 Tradex가 트레이딩 리서치에 도움이 되셨다면, 프로젝트를 후원해 주세요:
 
-<a href="https://buymeacoffee.com/eddmpython" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="217">
-</a>
+<p>
+  <a href="https://buymeacoffee.com/eddmpython" target="_blank">
+    <img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee">
+  </a>
+</p>
 
 여러분의 후원이 이 프로젝트를 무료로 유지하고 새로운 기능을 개발하는 원동력이 됩니다. 커피 한 잔이 새로운 기능이 됩니다.
 

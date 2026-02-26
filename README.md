@@ -412,9 +412,11 @@ pytest
 
 If Tradex helps your trading research, consider supporting the project:
 
-<a href="https://buymeacoffee.com/eddmpython" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="217">
-</a>
+<p>
+  <a href="https://buymeacoffee.com/eddmpython" target="_blank">
+    <img src="https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me A Coffee">
+  </a>
+</p>
 
 Your support keeps this project free and actively maintained. Every coffee fuels a new feature.
 
