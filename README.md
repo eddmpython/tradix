@@ -1,21 +1,32 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=Tradix&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=Blazing-fast%20backtesting%20engine%20for%20quantitative%20trading&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
-
 <br>
 
-<img src="https://img.shields.io/badge/33-Strategies-58a6ff?style=for-the-badge&labelColor=0d1117" alt="Strategies">
-<img src="https://img.shields.io/badge/60+-Indicators-79c0ff?style=for-the-badge&labelColor=0d1117" alt="Indicators">
-<img src="https://img.shields.io/badge/2-Lines%20to%20Backtest-a5d6ff?style=for-the-badge&labelColor=0d1117" alt="Two Lines">
+```
+  ████████╗██████╗  █████╗ ██████╗ ██╗██╗  ██╗
+  ╚══██╔══╝██╔══██╗██╔══██╗██╔══██╗██║╚██╗██╔╝
+     ██║   ██████╔╝███████║██║  ██║██║ ╚███╔╝
+     ██║   ██╔══██╗██╔══██║██║  ██║██║ ██╔██╗
+     ██║   ██║  ██║██║  ██║██████╔╝██║██╔╝ ██╗
+     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝
+```
+
+<h3>Blazing-Fast Vectorized Backtesting Engine</h3>
+
+<p>
+<img src="https://img.shields.io/badge/33-Strategies-00d4aa?style=for-the-badge&labelColor=0a0a0a" alt="Strategies">
+<img src="https://img.shields.io/badge/60+-Indicators-00b4d8?style=for-the-badge&labelColor=0a0a0a" alt="Indicators">
+<img src="https://img.shields.io/badge/2-Lines%20to%20Backtest-0096c7?style=for-the-badge&labelColor=0a0a0a" alt="Two Lines">
+</p>
+
+<p>
+<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=for-the-badge&color=00d4aa&labelColor=0a0a0a&logo=pypi&logoColor=white" alt="PyPI"></a>
+<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/pyversions/tradix?style=for-the-badge&labelColor=0a0a0a&logo=python&logoColor=white" alt="Python"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-00d4aa?style=for-the-badge&labelColor=0a0a0a" alt="License"></a>
+<img src="https://img.shields.io/badge/Tests-87%20passed-00d4aa?style=for-the-badge&labelColor=0a0a0a&logo=pytest&logoColor=white" alt="Tests">
+</p>
 
 <br>
-
-<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=for-the-badge&color=58a6ff&labelColor=0d1117&logo=pypi&logoColor=white" alt="PyPI"></a>
-<a href="https://www.python.org/downloads/"><img src="https://img.shields.io/pypi/pyversions/tradix?style=for-the-badge&labelColor=0d1117&logo=python&logoColor=white" alt="Python"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-3fb950?style=for-the-badge&labelColor=0d1117" alt="License"></a>
-<img src="https://img.shields.io/badge/Tests-87%20passed-3fb950?style=for-the-badge&labelColor=0d1117&logo=pytest&logoColor=white" alt="Tests">
-
-<br><br>
 
 <a href="#-quick-start">Quick Start</a> ·
 <a href="#-why-tradix">Why Tradix?</a> ·
@@ -24,12 +35,11 @@
 <a href="#-api-reference">API Reference</a> ·
 <a href="README_KR.md">한국어</a>
 
-<br><br>
-
 </div>
 
+<br>
+
 > **Two lines.** `backtest` · `show` — that's the entire workflow.
-> One function call. Auto data download, commission, slippage, and a TradingView-style dashboard.
 
 ```python
 from tradix import backtest, goldenCross
