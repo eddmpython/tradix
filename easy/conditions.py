@@ -1,5 +1,5 @@
 """
-Tradex Condition Builders Module - Declarative indicator and condition definitions.
+Tradix Condition Builders Module - Declarative indicator and condition definitions.
 
 Provides a TradingView Pine Script-like interface for defining trading conditions.
 Indicators are composable with comparison operators (>, <, >=, <=, ==) and
@@ -17,7 +17,7 @@ Features:
     - Price accessors: price, open_, high, low, close, volume
 
 Usage:
-    >>> from tradex.easy.conditions import sma, rsi, crossover
+    >>> from tradix.easy.conditions import sma, rsi, crossover
     >>>
     >>> strategy = (
     ...     QuickStrategy("MyStrategy")

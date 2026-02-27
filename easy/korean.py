@@ -1,5 +1,5 @@
 """
-Tradex Korean API Module - Full Korean-language wrappers for backtesting.
+Tradix Korean API Module - Full Korean-language wrappers for backtesting.
 
 Provides Korean-named functions that delegate to the English Easy API,
 enabling users to write complete backtesting code entirely in Korean.
@@ -17,7 +17,7 @@ Features:
     - 돌파전략, 평균회귀, 추세추종: Advanced preset strategies
 
 Usage:
-    >>> from tradex.easy import 백테스트, 골든크로스, 전략
+    >>> from tradix.easy import 백테스트, 골든크로스, 전략
     >>>
     >>> 결과 = 백테스트("삼성전자", 골든크로스())
     >>> print(결과.수익률)
@@ -28,9 +28,9 @@ Usage:
 """
 
 from typing import Union, Callable
-from tradex.easy.api import backtest, optimize, EasyResult, quickTest
-from tradex.easy.quick import QuickStrategy
-from tradex.easy.presets import (
+from tradix.easy.api import backtest, optimize, EasyResult, quickTest
+from tradix.easy.quick import QuickStrategy
+from tradix.easy.presets import (
     goldenCross, rsiOversold, bollingerBreakout, macdCross,
     breakout, meanReversion, trendFollowing, emaCross,
     tripleScreen, dualMomentum, momentumCross, rocBreakout,
@@ -41,7 +41,7 @@ from tradex.easy.presets import (
     gapTrading, pyramiding, swingTrading, scalpingMomentum,
     buyAndHold, dollarCostAverage,
 )
-from tradex.strategy.base import Strategy
+from tradix.strategy.base import Strategy
 
 
 def 백테스트(

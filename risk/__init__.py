@@ -1,5 +1,5 @@
 """
-Tradex Risk Management Package.
+Tradix Risk Management Package.
 
 Provides position sizing, pre-trade risk validation, and advanced risk
 simulation tools for portfolio risk assessment during backtesting.
@@ -14,13 +14,13 @@ Features:
     - Tail risk analysis and drawdown statistics
 
 Usage:
-    >>> from tradex.risk import RiskManager, PercentEquitySizer, RiskSimulator
+    >>> from tradix.risk import RiskManager, PercentEquitySizer, RiskSimulator
     >>> manager = RiskManager.moderate()
     >>> sizer = PercentEquitySizer(percent=0.1)
     >>> simulator = RiskSimulator()
 """
 
-from tradex.risk.sizing import (
+from tradix.risk.sizing import (
     PositionSizer,
     FixedQuantitySizer,
     FixedAmountSizer,
@@ -28,8 +28,8 @@ from tradex.risk.sizing import (
     FixedRiskSizer,
     KellySizer,
 )
-from tradex.risk.manager import RiskManager
-from tradex.risk.simulator import (
+from tradix.risk.manager import RiskManager
+from tradix.risk.simulator import (
     RiskSimulator,
     VaRResult,
     VaRMethod,

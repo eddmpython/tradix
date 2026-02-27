@@ -508,7 +508,7 @@ def _printResultModern(
     console.print()
     console.print(Panel(
         hdr,
-        title="[bold]TRADEX[/bold]",
+        title="[bold]TRADIX[/bold]",
         subtitle=f"{initial:,.0f} \u2192 {final:,.0f}",
         border_style="blue",
     ))
@@ -832,7 +832,7 @@ def _printResultBloomberg(
 
     console.print(Panel(
         innerContent,
-        title="[bold white]TRADEX BLOOMBERG[/bold white]",
+        title="[bold white]TRADIX BLOOMBERG[/bold white]",
         subtitle=f"{initial:,.0f} \u2192 {final:,.0f}",
         border_style="blue",
         box=box.DOUBLE,
@@ -1455,7 +1455,7 @@ def printStrategyDna(dna: Any, lang: str = "en") -> None:
         console.print(traitText)
 
     try:
-        from tradex.analytics.strategyDna import StrategyDnaAnalyzer
+        from tradix.analytics.strategyDna import StrategyDnaAnalyzer
         analyzer = StrategyDnaAnalyzer()
         classification = analyzer.classify(dna)
         classText = Text()

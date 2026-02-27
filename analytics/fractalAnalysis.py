@@ -22,7 +22,7 @@ Features:
     - Confidence measurement via R-squared of log-log regression
 
 Usage:
-    from tradex.analytics.fractalAnalysis import FractalAnalyzer
+    from tradix.analytics.fractalAnalysis import FractalAnalyzer
 
     analyzer = FractalAnalyzer()
     result = analyzer.analyze(backtestResult)
@@ -36,7 +36,7 @@ from typing import Dict, Tuple, Optional
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
+from tradix.engine import BacktestResult
 
 
 HURST_TRENDING_THRESHOLD = 0.55

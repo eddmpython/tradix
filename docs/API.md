@@ -1,6 +1,6 @@
-# Tradex API Reference
+# Tradix API Reference
 
-Complete API documentation for Tradex v2.1.0.
+Complete API documentation for Tradix v2.1.0.
 
 ## Table of Contents
 
@@ -53,7 +53,7 @@ def backtest(
 **Example:**
 
 ```python
-from tradex import backtest, goldenCross
+from tradix import backtest, goldenCross
 
 # Simple usage
 result = backtest("005930", goldenCross())
@@ -106,7 +106,7 @@ def vbacktest(
 **Example:**
 
 ```python
-from tradex import vbacktest
+from tradix import vbacktest
 
 result = vbacktest("005930", "goldenCross", fast=10, slow=30)
 print(f"Return: {result.totalReturn:+.2f}%")
@@ -144,7 +144,7 @@ def optimize(
 **Example:**
 
 ```python
-from tradex import optimize
+from tradix import optimize
 
 best = optimize(
     "005930",
@@ -177,7 +177,7 @@ def voptimize(
 **Example:**
 
 ```python
-from tradex import voptimize
+from tradix import voptimize
 
 # Optimize 1000 parameter combinations in ~0.02s
 best = voptimize(
@@ -209,7 +209,7 @@ class QuickStrategy:
 **Example:**
 
 ```python
-from tradex import QuickStrategy, backtest, sma, rsi, crossover
+from tradix import QuickStrategy, backtest, sma, rsi, crossover
 
 strategy = (
     QuickStrategy("MyStrategy")
@@ -243,7 +243,7 @@ Ready-to-use trading strategies.
 **Example:**
 
 ```python
-from tradex import backtest, rsiOversold, bollingerBreakout
+from tradix import backtest, rsiOversold, bollingerBreakout
 
 # RSI strategy with custom parameters
 result = backtest("005930", rsiOversold(period=14, oversold=25, overbought=75))
@@ -290,7 +290,7 @@ price() > bollinger(20).upper  # Price above upper band
 **Example:**
 
 ```python
-from tradex import QuickStrategy, sma, ema, rsi, crossover, crossunder
+from tradix import QuickStrategy, sma, ema, rsi, crossover, crossunder
 
 strategy = (
     QuickStrategy("MultiCondition")
@@ -331,7 +331,7 @@ vadx(high, low, close, period=14) -> np.ndarray
 
 ```python
 import numpy as np
-from tradex import vsma, vrsi, vmacd
+from tradix import vsma, vrsi, vmacd
 
 close = np.random.randn(2500).cumsum() + 100
 
@@ -361,7 +361,7 @@ Signal values: `1` = buy, `-1` = sell, `0` = hold
 **Example:**
 
 ```python
-from tradex import vgoldenCross, vrsiSignal, vrsi
+from tradix import vgoldenCross, vrsiSignal, vrsi
 
 close = data['close'].values
 
@@ -422,8 +422,8 @@ class Strategy:
 **Example:**
 
 ```python
-from tradex import Strategy, Bar, BacktestEngine
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import Strategy, Bar, BacktestEngine
+from tradix.datafeed import FinanceDataReaderFeed
 
 class MyStrategy(Strategy):
     def initialize(self):
@@ -456,7 +456,7 @@ result = engine.run()
 Load data from Korean/US/Japan markets.
 
 ```python
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix.datafeed import FinanceDataReaderFeed
 
 # Korean stock
 data = FinanceDataReaderFeed("005930", "2020-01-01", "2024-12-31")
@@ -473,7 +473,7 @@ data = FinanceDataReaderFeed("005930", "2020-01-01", "2024-12-31", cache=True)
 For multi-asset strategies.
 
 ```python
-from tradex.datafeed import MultiDataFeed
+from tradix.datafeed import MultiDataFeed
 
 data = MultiDataFeed()
 data.addSymbol("005930", "2020-01-01", "2024-12-31")
@@ -487,7 +487,7 @@ data.addSymbol("000660", "2020-01-01", "2024-12-31")
 ### RiskSimulator
 
 ```python
-from tradex.risk import RiskSimulator, VaRMethod
+from tradix.risk import RiskSimulator, VaRMethod
 
 simulator = RiskSimulator()
 simulator.fit(returns)  # Daily returns array
@@ -506,7 +506,7 @@ print(f"95% CI: [{mc.percentile5:.2%}, {mc.percentile95:.2%}]")
 ### Position Sizing
 
 ```python
-from tradex.risk import (
+from tradix.risk import (
     FixedQuantitySizer,
     PercentEquitySizer,
     FixedRiskSizer,
@@ -533,7 +533,7 @@ sizer = KellySizer(winRate=0.55, avgWin=2.0, avgLoss=1.0)
 Prevent overfitting with out-of-sample validation.
 
 ```python
-from tradex import WalkForwardAnalyzer, ParameterSpace
+from tradix import WalkForwardAnalyzer, ParameterSpace
 
 def createStrategy(params):
     return goldenCross(fast=params['fast'], slow=params['slow'])
@@ -602,7 +602,7 @@ class BacktestResult:
 
 ## Korean Market Support
 
-Tradex includes built-in support for Korean markets:
+Tradix includes built-in support for Korean markets:
 
 - **Commission**: 0.015% (both buy and sell)
 - **Tax**: 0.18% (sell only, securities transaction tax)
@@ -637,8 +637,8 @@ Tested on 10-year daily data (2,458 bars):
 ## Error Handling
 
 ```python
-from tradex import backtest
-from tradex.exceptions import (
+from tradix import backtest
+from tradix.exceptions import (
     DataNotFoundError,
     InvalidSymbolError,
     InvalidParameterError

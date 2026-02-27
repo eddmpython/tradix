@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tradex-backtest"
-version = "1.2.0"
+name = "tradix"
+version = "1.0.0"
 description = "Blazing-fast vectorized backtesting engine for quantitative trading. 50+ indicators, 33 preset strategies, Strategy DNA, Korean market native."
 readme = "README.md"
 license = {text = "MIT"}
@@ -66,37 +66,37 @@ dev = [
 ]
 
 [project.scripts]
-tradex = "tradex.cli:app"
+tradix = "tradix.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/eddmpython/tradex"
-Repository = "https://github.com/eddmpython/tradex"
-Issues = "https://github.com/eddmpython/tradex/issues"
+Homepage = "https://github.com/eddmpython/tradix"
+Repository = "https://github.com/eddmpython/tradix"
+Issues = "https://github.com/eddmpython/tradix/issues"
 "Buy Me a Coffee" = "https://buymeacoffee.com/eddmpython"
 
 [tool.setuptools]
 packages = [
-    "tradex",
-    "tradex.advisor",
-    "tradex.analytics",
-    "tradex.benchmark",
-    "tradex.broker",
-    "tradex.datafeed",
-    "tradex.easy",
-    "tradex.entities",
-    "tradex.events",
-    "tradex.examples",
-    "tradex.optimize",
-    "tradex.portfolio",
-    "tradex.quant",
-    "tradex.risk",
-    "tradex.signals",
-    "tradex.strategy",
-    "tradex.vectorized",
-    "tradex.walkforward",
-    "tradex.tui",
+    "tradix",
+    "tradix.advisor",
+    "tradix.analytics",
+    "tradix.benchmark",
+    "tradix.broker",
+    "tradix.datafeed",
+    "tradix.easy",
+    "tradix.entities",
+    "tradix.events",
+    "tradix.examples",
+    "tradix.optimize",
+    "tradix.portfolio",
+    "tradix.quant",
+    "tradix.risk",
+    "tradix.signals",
+    "tradix.strategy",
+    "tradix.vectorized",
+    "tradix.walkforward",
+    "tradix.tui",
 ]
-package-dir = {"tradex" = "."}
+package-dir = {"tradix" = "."}
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]

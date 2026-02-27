@@ -1,5 +1,5 @@
 """
-Tradex Risk Manager Module.
+Tradix Risk Manager Module.
 
 Provides pre-trade risk validation and portfolio-level risk controls
 including position sizing limits, drawdown protection, daily loss limits,
@@ -17,7 +17,7 @@ Features:
     - Manual trading halt/resume controls
 
 Usage:
-    >>> from tradex.risk.manager import RiskManager
+    >>> from tradix.risk.manager import RiskManager
     >>> manager = RiskManager(maxPositionPercent=0.2, maxDrawdown=0.15)
     >>> approved, reason = manager.checkOrder(order, portfolio, price=50000)
     >>> if approved:
@@ -28,10 +28,10 @@ from dataclasses import dataclass, field
 from datetime import datetime, date
 from typing import Optional, Tuple, TYPE_CHECKING
 
-from tradex.entities.order import Order, OrderSide
+from tradix.entities.order import Order, OrderSide
 
 if TYPE_CHECKING:
-    from tradex.portfolio.portfolio import Portfolio
+    from tradix.portfolio.portfolio import Portfolio
 
 
 @dataclass

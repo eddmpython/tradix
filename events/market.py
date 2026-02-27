@@ -1,9 +1,9 @@
 """
-Tradex Market Event - Market data arrival notification.
-Tradex 시장 이벤트 - 시장 데이터 도착 알림.
+Tradix Market Event - Market data arrival notification.
+Tradix 시장 이벤트 - 시장 데이터 도착 알림.
 
 This module defines the MarketEvent class, which is emitted when new OHLCV
-bar data arrives in the Tradex backtesting engine. MarketEvents are the first
+bar data arrives in the Tradix backtesting engine. MarketEvents are the first
 stage in the event pipeline, triggering strategy evaluation and subsequent
 signal generation.
 
@@ -13,8 +13,8 @@ Features:
     - Seamless integration with the event-driven pipeline
 
 Usage:
-    >>> from tradex.events.market import MarketEvent
-    >>> from tradex.entities.bar import Bar
+    >>> from tradix.events.market import MarketEvent
+    >>> from tradix.entities.bar import Bar
     >>> from datetime import datetime
     >>> bar = Bar("AAPL", datetime(2025, 1, 15), 150, 155, 148, 153, 1000000)
     >>> event = MarketEvent(timestamp=bar.datetime, symbol="AAPL", bar=bar)
@@ -25,8 +25,8 @@ Usage:
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from tradex.events.base import Event, EventType
-from tradex.entities.bar import Bar
+from tradix.events.base import Event, EventType
+from tradix.entities.bar import Bar
 
 
 @dataclass
@@ -35,11 +35,11 @@ class MarketEvent(Event):
     Market data event emitted when a new OHLCV bar arrives.
     새로운 OHLCV 바 데이터가 도착했을 때 발생하는 시장 데이터 이벤트.
 
-    The first event in the Tradex processing pipeline. Contains a Bar entity
+    The first event in the Tradix processing pipeline. Contains a Bar entity
     with price and volume data for a specific symbol. Strategies consume
     MarketEvents to evaluate trading conditions and generate signals.
 
-    Tradex 처리 파이프라인의 첫 번째 이벤트입니다. 특정 종목의 가격 및
+    Tradix 처리 파이프라인의 첫 번째 이벤트입니다. 특정 종목의 가격 및
     거래량 데이터를 담은 Bar 엔티티를 포함합니다.
 
     Attributes:

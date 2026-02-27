@@ -1,5 +1,5 @@
 """
-Tradex Backtest Chart Module.
+Tradix Backtest Chart Module.
 
 Provides interactive Plotly-based visualizations for backtest results,
 including equity curves, drawdown charts, monthly return heatmaps,
@@ -18,7 +18,7 @@ Features:
     - HTML export for sharing and archiving
 
 Usage:
-    from tradex.analytics.charts import BacktestChart
+    from tradix.analytics.charts import BacktestChart
 
     chart = BacktestChart(result)
     chart.show('dashboard')
@@ -36,7 +36,7 @@ try:
 except ImportError:
     HAS_PLOTLY = False
 
-from tradex.engine import BacktestResult
+from tradix.engine import BacktestResult
 
 
 class BacktestChart:
@@ -54,7 +54,7 @@ class BacktestChart:
         title (str): Chart title displayed on figures (차트 제목).
 
     Example:
-        >>> from tradex.analytics.charts import BacktestChart
+        >>> from tradix.analytics.charts import BacktestChart
         >>> result = engine.run()
         >>> chart = BacktestChart(result)
         >>> chart.equityCurve()

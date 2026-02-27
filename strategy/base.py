@@ -1,5 +1,5 @@
 """
-Tradex Strategy Base Module - Abstract base class for all trading strategies.
+Tradix Strategy Base Module - Abstract base class for all trading strategies.
 
 Provides the foundational Strategy class that all user-defined and preset
 strategies must inherit from. Implements lifecycle methods (initialize, onBar,
@@ -18,8 +18,8 @@ Features:
     - Cross detection: crossover, crossunder
 
 Usage:
-    >>> from tradex.strategy.base import Strategy
-    >>> from tradex.entities.bar import Bar
+    >>> from tradix.strategy.base import Strategy
+    >>> from tradix.entities.bar import Bar
     >>>
     >>> class MyStrategy(Strategy):
     ...     def initialize(self):
@@ -39,28 +39,28 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, TYPE_CHECKING
 import pandas as pd
 
-from tradex.entities.bar import Bar
-from tradex.entities.order import Order, OrderSide, OrderType, TimeInForce
-from tradex.entities.position import Position
-from tradex.events.fill import FillEvent
-from tradex.events.signal import SignalEvent, SignalType
-from tradex.strategy.indicators import Indicators
+from tradix.entities.bar import Bar
+from tradix.entities.order import Order, OrderSide, OrderType, TimeInForce
+from tradix.entities.position import Position
+from tradix.events.fill import FillEvent
+from tradix.events.signal import SignalEvent, SignalType
+from tradix.strategy.indicators import Indicators
 
 if TYPE_CHECKING:
-    from tradex.portfolio.portfolio import Portfolio
-    from tradex.broker.simulator import BrokerSimulator
+    from tradix.portfolio.portfolio import Portfolio
+    from tradix.broker.simulator import BrokerSimulator
 
 
 class Strategy(ABC):
     """
-    Abstract base class for all Tradex trading strategies.
+    Abstract base class for all Tradix trading strategies.
 
     Provides a React/Lumibot-style lifecycle with initialize(), onBar(),
     onOrderFill(), and onEnd() hooks. Subclass this to implement custom
     trading logic. Built-in indicator methods (sma, ema, rsi, macd, etc.)
     are available directly on the strategy instance.
 
-    모든 Tradex 트레이딩 전략의 추상 기반 클래스.
+    모든 Tradix 트레이딩 전략의 추상 기반 클래스.
     라이프사이클 훅과 내장 지표 메서드를 제공합니다.
 
     Attributes:

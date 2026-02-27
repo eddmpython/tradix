@@ -1,5 +1,5 @@
 """
-Tradex Portfolio Management Module.
+Tradix Portfolio Management Module.
 
 Manages portfolio state including cash, positions, orders, trades, and equity
 tracking during backtesting. Handles buy/sell fill processing, position
@@ -18,7 +18,7 @@ Features:
     - Trade statistics computation
 
 Usage:
-    from tradex.portfolio import Portfolio
+    from tradix.portfolio import Portfolio
 
     portfolio = Portfolio(initialCash=10_000_000)
     portfolio.processFill(fill_event)
@@ -31,10 +31,10 @@ from datetime import datetime
 from typing import Dict, List, Optional
 import uuid
 
-from tradex.entities.order import Order, OrderSide, OrderStatus
-from tradex.entities.position import Position
-from tradex.entities.trade import Trade
-from tradex.events.fill import FillEvent
+from tradix.entities.order import Order, OrderSide, OrderStatus
+from tradix.entities.position import Position
+from tradix.entities.trade import Trade
+from tradix.events.fill import FillEvent
 
 
 class Portfolio:

@@ -1,5 +1,5 @@
 """
-Tradex Portfolio Optimizer Module.
+Tradix Portfolio Optimizer Module.
 
 Computes optimal asset allocation weights across multiple assets or strategies
 using classical portfolio optimization methods. Provides efficient frontier
@@ -19,7 +19,7 @@ Features:
     - Weight constraints (min/max per asset)
 
 Usage:
-    from tradex.portfolio.optimizer import PortfolioOptimizer, OptimizationMethod
+    from tradix.portfolio.optimizer import PortfolioOptimizer, OptimizationMethod
 
     optimizer = PortfolioOptimizer(riskFreeRate=0.02)
     optimizer.fit(daily_returns_df)

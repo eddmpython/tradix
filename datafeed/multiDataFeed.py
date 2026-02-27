@@ -1,5 +1,5 @@
 """
-Tradex Multi-Data Feed Module.
+Tradix Multi-Data Feed Module.
 
 Manages synchronized multi-symbol data feeds for portfolio-level
 backtesting. Aligns multiple data sources by date and provides
@@ -16,7 +16,7 @@ Features:
     - Per-symbol historical data retrieval
 
 Usage:
-    >>> from tradex.datafeed import FinanceDataReaderFeed, MultiDataFeed
+    >>> from tradix.datafeed import FinanceDataReaderFeed, MultiDataFeed
     >>> feeds = {
     ...     '005930': FinanceDataReaderFeed('005930', '2020-01-01', '2024-12-31'),
     ...     '000660': FinanceDataReaderFeed('000660', '2020-01-01', '2024-12-31'),
@@ -33,8 +33,8 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
-from tradex.datafeed.feed import DataFeed
-from tradex.entities.bar import Bar
+from tradix.datafeed.feed import DataFeed
+from tradix.entities.bar import Bar
 
 
 class MultiDataFeed:

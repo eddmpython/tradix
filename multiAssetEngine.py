@@ -1,5 +1,5 @@
 """
-Tradex Multi-Asset Backtest Engine.
+Tradix Multi-Asset Backtest Engine.
 
 Event-driven backtesting engine for multi-asset portfolio strategies. Supports
 simultaneous trading across multiple symbols with synchronized bar data,
@@ -19,8 +19,8 @@ Features:
     - Next-bar execution to prevent look-ahead bias
 
 Usage:
-    >>> from tradex.datafeed import FinanceDataReaderFeed, MultiDataFeed
-    >>> from tradex.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy
+    >>> from tradix.datafeed import FinanceDataReaderFeed, MultiDataFeed
+    >>> from tradix.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy
     >>>
     >>> feeds = {
     ...     '005930': FinanceDataReaderFeed('005930', '2020-01-01', '2024-12-31'),
@@ -46,14 +46,14 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
-from tradex.entities.bar import Bar
-from tradex.entities.order import Order, OrderSide, OrderStatus
-from tradex.entities.trade import Trade
-from tradex.datafeed.multiDataFeed import MultiDataFeed
-from tradex.strategy.base import Strategy
-from tradex.strategy.indicators import Indicators
-from tradex.portfolio.portfolio import Portfolio
-from tradex.engine import SimpleBroker, SimpleSizer
+from tradix.entities.bar import Bar
+from tradix.entities.order import Order, OrderSide, OrderStatus
+from tradix.entities.trade import Trade
+from tradix.datafeed.multiDataFeed import MultiDataFeed
+from tradix.strategy.base import Strategy
+from tradix.strategy.indicators import Indicators
+from tradix.portfolio.portfolio import Portfolio
+from tradix.engine import SimpleBroker, SimpleSizer
 
 
 @dataclass
@@ -554,8 +554,8 @@ class MultiAssetEngine:
             True이면 주문이 다음 바 시가에 체결됩니다.
 
     Example:
-        >>> from tradex.datafeed import FinanceDataReaderFeed, MultiDataFeed
-        >>> from tradex.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy
+        >>> from tradix.datafeed import FinanceDataReaderFeed, MultiDataFeed
+        >>> from tradix.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy
         >>>
         >>> feeds = {
         ...     '005930': FinanceDataReaderFeed('005930', '2020-01-01', '2024-12-31'),

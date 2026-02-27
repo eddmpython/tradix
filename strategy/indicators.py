@@ -1,5 +1,5 @@
 """
-Tradex Indicators Module - Technical indicator computation engine.
+Tradix Indicators Module - Technical indicator computation engine.
 
 Provides the Indicators class used internally by Strategy to compute and cache
 40+ technical indicators. All indicators are pre-computed on the full dataset
@@ -16,7 +16,7 @@ Features:
     - Offset parameter for historical value access
 
 Usage:
-    >>> from tradex.strategy.indicators import Indicators
+    >>> from tradix.strategy.indicators import Indicators
     >>> indicators = Indicators()
     >>> indicators.setFullData(df)
     >>> indicators.setIndex(100)

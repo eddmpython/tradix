@@ -14,15 +14,15 @@ examples - 예제 전략 모음
     - MeanReversionStrategy: 볼린저 + RSI 복합
 """
 
-from tradex.examples.smaCross import SmaCrossStrategy
-from tradex.examples.smaCrossWithRisk import SmaCrossWithRiskStrategy
-from tradex.examples.rsiStrategy import RsiStrategy
-from tradex.examples.bollingerStrategy import BollingerStrategy
-from tradex.examples.macdStrategy import MacdStrategy
-from tradex.examples.dualMomentumStrategy import DualMomentumStrategy
-from tradex.examples.breakoutStrategy import BreakoutStrategy
-from tradex.examples.meanReversionStrategy import MeanReversionStrategy
-from tradex.examples.trendFilterStrategy import TrendFilterStrategy
+from tradix.examples.smaCross import SmaCrossStrategy
+from tradix.examples.smaCrossWithRisk import SmaCrossWithRiskStrategy
+from tradix.examples.rsiStrategy import RsiStrategy
+from tradix.examples.bollingerStrategy import BollingerStrategy
+from tradix.examples.macdStrategy import MacdStrategy
+from tradix.examples.dualMomentumStrategy import DualMomentumStrategy
+from tradix.examples.breakoutStrategy import BreakoutStrategy
+from tradix.examples.meanReversionStrategy import MeanReversionStrategy
+from tradix.examples.trendFilterStrategy import TrendFilterStrategy
 
 __all__ = [
     "SmaCrossStrategy",

@@ -1,5 +1,5 @@
 """
-Tradex Walk-Forward Analysis Package.
+Tradix Walk-Forward Analysis Package.
 
 Provides rolling-window out-of-sample validation to detect and prevent
 overfitting in strategy parameter optimization. Includes period splitting
@@ -15,7 +15,7 @@ Features:
     - FoldResult: Individual fold in-sample / out-of-sample results
 
 Usage:
-    from tradex.walkforward import WalkForwardAnalyzer, PeriodSplitter
+    from tradix.walkforward import WalkForwardAnalyzer, PeriodSplitter
 
     wfa = WalkForwardAnalyzer(
         data=data,
@@ -30,8 +30,8 @@ Usage:
     print(result.summary())
 """
 
-from tradex.walkforward.splitter import PeriodSplitter
-from tradex.walkforward.analyzer import WalkForwardAnalyzer, WalkForwardResult, FoldResult
+from tradix.walkforward.splitter import PeriodSplitter
+from tradix.walkforward.analyzer import WalkForwardAnalyzer, WalkForwardResult, FoldResult
 
 __all__ = [
     'PeriodSplitter',

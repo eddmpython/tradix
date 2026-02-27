@@ -1,5 +1,5 @@
 """
-Tradex Strategy Leaderboard Module.
+Tradix Strategy Leaderboard Module.
 
 Ranking system for comparing multiple backtest strategies using a weighted
 composite score. Awards Korean achievement badges and provides head-to-head
@@ -18,7 +18,7 @@ Features:
     - Full leaderboard DataFrame export
 
 Usage:
-    from tradex.analytics.leaderboard import StrategyLeaderboard
+    from tradix.analytics.leaderboard import StrategyLeaderboard
 
     board = StrategyLeaderboard()
     board.addResult(result1)
@@ -34,7 +34,7 @@ from typing import List, Dict, Optional
 import pandas as pd
 import numpy as np
 
-from tradex.engine import BacktestResult
+from tradix.engine import BacktestResult
 
 
 @dataclass

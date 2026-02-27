@@ -1,5 +1,5 @@
 """
-Tradex Period Splitter Module.
+Tradix Period Splitter Module.
 
 Provides date-range splitting utilities for walk-forward analysis, supporting
 rolling window, anchored (expanding) window, K-fold, and custom period
@@ -16,7 +16,7 @@ Features:
     - ASCII fold structure visualization
 
 Usage:
-    from tradex.walkforward.splitter import PeriodSplitter
+    from tradix.walkforward.splitter import PeriodSplitter
 
     folds = PeriodSplitter.rolling(
         '2020-01-01', '2024-12-31',

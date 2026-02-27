@@ -1,9 +1,9 @@
 """
-Tradex Trade Entity - Completed round-trip trade record.
-Tradex 거래(Trade) 엔티티 - 완료된 왕복 거래 기록.
+Tradix Trade Entity - Completed round-trip trade record.
+Tradix 거래(Trade) 엔티티 - 완료된 왕복 거래 기록.
 
 This module defines the Trade dataclass for recording completed round-trip
-trades within the Tradex backtesting engine. A Trade is created when a
+trades within the Tradix backtesting engine. A Trade is created when a
 position is opened and completed when the position is closed, capturing
 entry/exit prices, P&L, commissions, and holding period metrics.
 
@@ -15,8 +15,8 @@ Features:
     - Win/loss classification for performance analysis
 
 Usage:
-    >>> from tradex.entities.trade import Trade
-    >>> from tradex.entities.order import OrderSide
+    >>> from tradix.entities.trade import Trade
+    >>> from tradix.entities.order import OrderSide
     >>> from datetime import datetime
     >>> trade = Trade(
     ...     id="t001", symbol="AAPL", side=OrderSide.BUY,
@@ -31,7 +31,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
-from tradex.entities.order import OrderSide
+from tradix.entities.order import OrderSide
 
 
 @dataclass

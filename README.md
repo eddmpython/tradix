@@ -1,9 +1,9 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=TradeX&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=Blazing-fast%20backtesting%20engine%20for%20quantitative%20trading&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=Tradix&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=Blazing-fast%20backtesting%20engine%20for%20quantitative%20trading&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
 
 <p>
-  <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
+  <a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=flat-square&color=blue" alt="PyPI"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
   <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
@@ -22,10 +22,10 @@
 
 ---
 
-Tradex is a high-performance backtesting library built from the ground up for speed and simplicity. Powered by NumPy vectorized operations, it runs **1,000 parameter optimizations in 0.02 seconds** — no Numba, no C extensions, just pure Python speed.
+Tradix is a high-performance backtesting library built from the ground up for speed and simplicity. Powered by NumPy vectorized operations, it runs **1,000 parameter optimizations in 0.02 seconds** — no Numba, no C extensions, just pure Python speed.
 
 ```python
-from tradex import backtest, goldenCross
+from tradix import backtest, goldenCross
 
 result = backtest("AAPL", goldenCross())
 print(result.summary())
@@ -33,7 +33,7 @@ print(result.summary())
 
 That's it. Two lines to a full backtest with commission, slippage, and performance metrics.
 
-## Why Tradex?
+## Why Tradix?
 
 - **Fast** — NumPy vectorized engine runs 1,000 optimizations in 0.02s, no Numba or C required
 - **Simple** — Two lines to a full backtest: `backtest("AAPL", goldenCross())`
@@ -79,7 +79,7 @@ That's it. Two lines to a full backtest with commission, slippage, and performan
 - **3 Display Styles** — Modern (TradingView cards), Bloomberg (dense 4-quadrant), Minimal (hedge fund report)
 - **12 Chart Types** — Equity curve, drawdown, candlestick+volume, return distribution, seasonality, rolling metrics, trade scatter, correlation bars, strategy DNA, monthly heatmap, trade markers, equity overlay
 - **Interactive Dashboard** — 5-view Textual app (Overview, Metrics, Trades, Charts, Compare) with keyboard navigation
-- **CLI** — `tradex backtest`, `tradex chart`, `tradex compare`, `tradex optimize`, `tradex list`
+- **CLI** — `tradix backtest`, `tradix chart`, `tradix compare`, `tradix optimize`, `tradix list`
 
 ### Korean Market
 - **Korean Market Native** — Built-in transaction tax (0.18%), brokerage fees, KRX stock mapping
@@ -100,31 +100,31 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Then install Tradex:
+Then install Tradix:
 
 ```bash
-# Create a new project and add tradex
+# Create a new project and add tradix
 uv init my-backtest && cd my-backtest
-uv add tradex-backtest
+uv add tradix
 
 # Or with all optional dependencies (scipy, plotly, statsmodels, scikit-learn)
-uv add "tradex-backtest[full]"
+uv add "tradix[full]"
 ```
 
 ### Using pip
 
 ```bash
-pip install tradex-backtest
+pip install tradix
 
 # With full features
-pip install "tradex-backtest[full]"
+pip install "tradix[full]"
 ```
 
 ### From source (development)
 
 ```bash
-git clone https://github.com/eddmpython/tradex.git
-cd tradex
+git clone https://github.com/eddmpython/tradix.git
+cd tradix
 
 # Using uv
 uv sync --dev
@@ -137,12 +137,12 @@ pip install -e ".[dev]"
 
 ## Quick Start
 
-> **Note:** Install with `pip install tradex-backtest` (PyPI package) — import as `tradex` in code.
+> **Note:** Install with `pip install tradix` (PyPI package) — import as `tradix` in code.
 
 ### 1. Two-Line Backtest
 
 ```python
-from tradex import backtest, goldenCross
+from tradix import backtest, goldenCross
 
 result = backtest("005930", goldenCross())  # Samsung Electronics
 result.show()                               # TradingView-style dashboard
@@ -168,7 +168,7 @@ Win Rate: 61.1%
 Build strategies with method chaining — zero boilerplate:
 
 ```python
-from tradex import QuickStrategy, backtest, sma, rsi, crossover, crossunder
+from tradix import QuickStrategy, backtest, sma, rsi, crossover, crossunder
 
 strategy = (
     QuickStrategy("MomentumRSI")
@@ -189,7 +189,7 @@ result.show()
 Find the best parameters in seconds:
 
 ```python
-from tradex import voptimize
+from tradix import voptimize
 
 best = voptimize(
     "005930",
@@ -209,7 +209,7 @@ print(f"Sharpe: {best['best']['metric']:.2f}")
 #### Vectorized Mode (100x Faster)
 
 ```python
-from tradex import vbacktest
+from tradix import vbacktest
 
 result = vbacktest("005930", "goldenCross", fast=10, slow=30)
 print(f"Return: {result.totalReturn:+.2f}%")
@@ -220,8 +220,8 @@ print(f"Max DD: {result.maxDrawdown:.2f}%")
 #### Class-Based Strategy (Full Control)
 
 ```python
-from tradex import Strategy, Bar, BacktestEngine
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import Strategy, Bar, BacktestEngine
+from tradix.datafeed import FinanceDataReaderFeed
 
 class DualMomentum(Strategy):
     def initialize(self):
@@ -249,8 +249,8 @@ result.show()
 #### Walk-Forward Analysis
 
 ```python
-from tradex import Strategy, Bar, WalkForwardAnalyzer, ParameterSpace
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import Strategy, Bar, WalkForwardAnalyzer, ParameterSpace
+from tradix.datafeed import FinanceDataReaderFeed
 
 def createStrategy(params):
     class MySma(Strategy):
@@ -286,7 +286,7 @@ print(f"Robustness: {result.robustnessRatio:.1%}")
 #### Multi-Asset Portfolio
 
 ```python
-from tradex import MultiAssetEngine, MultiAssetStrategy
+from tradix import MultiAssetEngine, MultiAssetStrategy
 
 class EqualWeight(MultiAssetStrategy):
     def onBars(self, bars):
@@ -305,8 +305,8 @@ result.show()
 
 ```python
 import pandas as pd
-from tradex import backtest, goldenCross
-from tradex.risk import RiskSimulator, VaRMethod
+from tradix import backtest, goldenCross
+from tradix.risk import RiskSimulator, VaRMethod
 
 result = backtest("005930", goldenCross())
 returns = pd.DataFrame({"returns": pd.Series(result.equityCurve).pct_change().dropna()})
@@ -324,7 +324,7 @@ mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 #### Korean Language API
 
 ```python
-from tradex import 백테스트, 골든크로스
+from tradix import 백테스트, 골든크로스
 
 결과 = 백테스트("삼성전자", 골든크로스())
 결과.보기()   # 한글 대시보드
@@ -462,7 +462,7 @@ Indicators support comparison operators: `sma(10) > sma(30)`, `rsi(14) < 30`
 
 ## Terminal UI
 
-Tradex includes a TradingView-inspired terminal dashboard. No browser needed.
+Tradix includes a TradingView-inspired terminal dashboard. No browser needed.
 
 ### Result Visualization
 
@@ -476,18 +476,18 @@ result.chart()   # Full dashboard: Equity + Drawdown + Returns histogram
 ### CLI Commands
 
 ```bash
-tradex backtest AAPL -s goldenCross --dashboard   # Full dashboard
-tradex backtest AAPL -s bollingerSqueeze --style bloomberg  # Bloomberg style
-tradex chart AAPL -n 60                            # Candlestick chart
-tradex compare AAPL -s goldenCross,rsiOversold     # Strategy comparison
-tradex optimize AAPL -s goldenCross                # Parameter optimization
-tradex list                                        # All 33 strategies
+tradix backtest AAPL -s goldenCross --dashboard   # Full dashboard
+tradix backtest AAPL -s bollingerSqueeze --style bloomberg  # Bloomberg style
+tradix chart AAPL -n 60                            # Candlestick chart
+tradix compare AAPL -s goldenCross,rsiOversold     # Strategy comparison
+tradix optimize AAPL -s goldenCross                # Parameter optimization
+tradix list                                        # All 33 strategies
 ```
 
 ### Individual Charts
 
 ```python
-from tradex.tui.charts import plotEquityCurve, plotCandlestick, plotDrawdown
+from tradix.tui.charts import plotEquityCurve, plotCandlestick, plotDrawdown
 
 plotEquityCurve(result, smaPeriods=[20, 60])   # Equity + SMA overlay
 plotCandlestick(df, smaPeriods=[5, 20])        # Candlestick + Volume
@@ -497,18 +497,18 @@ plotDrawdown(result)                            # Drawdown chart
 ### Interactive Dashboard (Optional)
 
 ```bash
-pip install tradex-backtest[tui]
+pip install tradix[tui]
 ```
 
 ```python
-from tradex.tui.dashboard import launchDashboard
+from tradix.tui.dashboard import launchDashboard
 launchDashboard(result)  # Full-screen Textual app (q=quit, d=theme)
 ```
 
 ## Advanced Analytics
 
 ```python
-from tradex import (
+from tradix import (
     StrategyDnaAnalyzer, BlackSwanAnalyzer, StrategyHealthAnalyzer,
     WhatIfSimulator, DrawdownSimulator, SeasonalityAnalyzer,
     CorrelationAnalyzer, TradingJournal, StrategyLeaderboard,
@@ -543,7 +543,7 @@ leaderboard.printRanking()
 ### Innovative Analytics
 
 ```python
-from tradex import (
+from tradix import (
     MonteCarloStressAnalyzer, FractalAnalyzer, RegimeDetector,
     InformationTheoryAnalyzer, PortfolioStressAnalyzer,
 )
@@ -595,7 +595,7 @@ result.show(style="minimal")               # Clean report with quality indicator
 
 ### Chart Types (12)
 ```python
-from tradex.tui.charts import (
+from tradix.tui.charts import (
     plotEquityCurve, plotDrawdown, plotCandlestick, plotReturns,
     plotSeasonality, plotMonthlyHeatmap, plotRollingMetrics,
     plotTradeScatter, plotTradeMarkers, plotCorrelationBars,
@@ -619,7 +619,7 @@ plotDashboard(result, lang="ko")               # All-in-one dashboard
 ## Architecture
 
 ```
-tradex/
+tradix/
 ├── engine.py              # Core backtest engine
 ├── multiAssetEngine.py    # Multi-asset portfolio engine
 ├── strategy/              # Strategy base + 60+ indicators + ensemble combiner
@@ -657,8 +657,8 @@ pytest
 Contributions are welcome! Feel free to open issues and pull requests.
 
 ```bash
-git clone https://github.com/eddmpython/tradex.git
-cd tradex
+git clone https://github.com/eddmpython/tradix.git
+cd tradix
 
 # Using uv (recommended)
 uv sync --dev
@@ -671,7 +671,7 @@ pytest
 
 ## Support
 
-If Tradex helps your trading research, consider supporting the project:
+If Tradix helps your trading research, consider supporting the project:
 
 <p>
   <a href="https://buymeacoffee.com/eddmpython" target="_blank">

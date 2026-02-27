@@ -1,9 +1,9 @@
 """
-Tradex Signal Event - Trading signal generation from strategy logic.
-Tradex 시그널 이벤트 - 전략 로직에서 생성된 매매 신호.
+Tradix Signal Event - Trading signal generation from strategy logic.
+Tradix 시그널 이벤트 - 전략 로직에서 생성된 매매 신호.
 
 This module defines the SignalEvent class and SignalType enumeration, used
-when a strategy generates a trading signal in the Tradex backtesting engine.
+when a strategy generates a trading signal in the Tradix backtesting engine.
 Signals carry entry/exit direction, strength for position sizing, optional
 target prices, and risk management levels (stop-loss, take-profit).
 
@@ -15,7 +15,7 @@ Features:
     - Logging-friendly reason field
 
 Usage:
-    >>> from tradex.events.signal import SignalEvent, SignalType
+    >>> from tradix.events.signal import SignalEvent, SignalType
     >>> from datetime import datetime
     >>> signal = SignalEvent(
     ...     timestamp=datetime.now(),
@@ -33,7 +33,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from tradex.events.base import Event, EventType
+from tradix.events.base import Event, EventType
 
 
 class SignalType(Enum):

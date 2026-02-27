@@ -1,5 +1,5 @@
 """
-Tradex Strategy Package - Core strategy framework for backtesting.
+Tradix Strategy Package - Core strategy framework for backtesting.
 
 Provides the abstract Strategy base class for implementing custom trading
 logic and the Indicators engine for technical analysis computation.
@@ -9,7 +9,7 @@ logic and the Indicators engine for technical analysis computation.
 기술 분석 계산을 위한 Indicators 엔진을 제공합니다.
 
 Usage:
-    >>> from tradex.strategy import Strategy, Indicators
+    >>> from tradix.strategy import Strategy, Indicators
     >>>
     >>> class MyStrategy(Strategy):
     ...     def onBar(self, bar):
@@ -17,8 +17,8 @@ Usage:
     ...             self.buy(bar.symbol)
 """
 
-from tradex.strategy.base import Strategy
-from tradex.strategy.indicators import Indicators
+from tradix.strategy.base import Strategy
+from tradix.strategy.indicators import Indicators
 
 __all__ = [
     "Strategy",

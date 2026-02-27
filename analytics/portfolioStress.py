@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Tradex Portfolio Stress Testing Module.
+Tradix Portfolio Stress Testing Module.
 
 Applies hypothetical crisis scenarios to strategy equity curves and returns,
 simulating future market stress events to evaluate portfolio resilience.
@@ -23,7 +23,7 @@ Features:
     - Survival analysis and resilience grading (A+ to F)
 
 Usage:
-    from tradex.analytics.portfolioStress import PortfolioStressAnalyzer
+    from tradix.analytics.portfolioStress import PortfolioStressAnalyzer
 
     analyzer = PortfolioStressAnalyzer()
     stressResult = analyzer.analyze(result)
@@ -36,7 +36,7 @@ from typing import Dict, Optional
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
+from tradix.engine import BacktestResult
 
 
 TRADING_DAYS_PER_YEAR = 252

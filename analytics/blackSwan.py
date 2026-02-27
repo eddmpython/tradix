@@ -19,8 +19,8 @@ Features:
     - Korean-language recommendations for score improvement
 
 Usage:
-    from tradex.analytics.blackSwan import BlackSwanAnalyzer
-    from tradex.engine import BacktestResult
+    from tradix.analytics.blackSwan import BlackSwanAnalyzer
+    from tradix.engine import BacktestResult
 
     analyzer = BlackSwanAnalyzer()
     score = analyzer.analyze(result)
@@ -36,8 +36,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats as scipyStats
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 TAIL_RISK_WEIGHT = 0.25

@@ -1,5 +1,5 @@
 """
-Tradex Fill Price Models Module.
+Tradix Fill Price Models Module.
 
 Provides fill price determination strategies for order execution simulation
 during backtesting. Each model defines how the execution price is derived
@@ -18,7 +18,7 @@ Features:
     - Limit order support across all fill models
 
 Usage:
-    >>> from tradex.broker.fill import VwapFill
+    >>> from tradix.broker.fill import VwapFill
     >>> fill_model = VwapFill()
     >>> price = fill_model.getFillPrice(order, bar)
 """
@@ -27,8 +27,8 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 import random
 
-from tradex.entities.order import Order, OrderType
-from tradex.entities.bar import Bar
+from tradix.entities.order import Order, OrderType
+from tradix.entities.bar import Bar
 
 
 class FillModel(ABC):

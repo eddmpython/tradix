@@ -1,5 +1,5 @@
 """
-Tradex Easy API Examples Module - Demonstration of all Easy API usage levels.
+Tradix Easy API Examples Module - Demonstration of all Easy API usage levels.
 
 Provides runnable example functions showcasing the Easy API at different
 skill levels: Level 1 (preset one-liners for beginners), Level 2
@@ -7,7 +7,7 @@ skill levels: Level 1 (preset one-liners for beginners), Level 2
 features like optimization and strategy comparison.
 
 Easy API 예제 모듈 - 초급부터 고급까지 Easy API의 다양한 사용법을 보여줍니다.
-실행: python -m tradex.easy.examples
+실행: python -m tradix.easy.examples
 
 Features:
     - example_level1_preset: One-liner backtesting with presets
@@ -34,7 +34,7 @@ def example_level1_preset():
     print("Level 1: 프리셋으로 1줄 백테스트")
     print("="*60)
 
-    from tradex.easy import backtest, goldenCross, rsiOversold
+    from tradix.easy import backtest, goldenCross, rsiOversold
 
     result = backtest("005930", goldenCross())
     print(result.summary())
@@ -55,7 +55,7 @@ def example_level1_korean():
     print("Level 1: 한글 API")
     print("="*60)
 
-    from tradex.easy import 백테스트, 골든크로스, RSI과매도
+    from tradix.easy import 백테스트, 골든크로스, RSI과매도
 
     결과 = 백테스트("삼성전자", 골든크로스())
     print(결과.요약())
@@ -78,7 +78,7 @@ def example_level2_builder():
     print("Level 2: 선언형 전략 빌더")
     print("="*60)
 
-    from tradex.easy import (
+    from tradix.easy import (
         backtest, QuickStrategy,
         sma, rsi, crossover, crossunder
     )
@@ -107,7 +107,7 @@ def example_level2_conditions():
     print("Level 2: 복합 조건")
     print("="*60)
 
-    from tradex.easy import (
+    from tradix.easy import (
         backtest, QuickStrategy,
         sma, rsi, price, crossover
     )
@@ -135,7 +135,7 @@ def example_level2_korean_builder():
     print("Level 2: 한글 선언형 빌더")
     print("="*60)
 
-    from tradex.easy import 백테스트, 전략, sma, crossover, crossunder
+    from tradix.easy import 백테스트, 전략, sma, crossover, crossunder
 
     내전략 = (
         전략("한글전략")
@@ -161,7 +161,7 @@ def example_level2_lambda():
     print("Level 2: 람다 함수 조건")
     print("="*60)
 
-    from tradex.easy import backtest, quickTest
+    from tradix.easy import backtest, quickTest
 
     result = quickTest(
         "삼성전자",
@@ -194,7 +194,7 @@ def example_presets_comparison():
     print("프리셋 전략 비교")
     print("="*60)
 
-    from tradex.easy import (
+    from tradix.easy import (
         backtest,
         goldenCross,
         rsiOversold,
@@ -240,7 +240,7 @@ def example_optimization():
     print("파라미터 최적화")
     print("="*60)
 
-    from tradex.easy import optimize, goldenCross
+    from tradix.easy import optimize, goldenCross
 
     result = optimize(
         "005930",
@@ -275,8 +275,8 @@ def example_comparison_old_vs_new():
 
     print("\n[기존 방식 - 54줄]")
     print("""
-from tradex import BacktestEngine, Strategy, Bar
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import BacktestEngine, Strategy, Bar
+from tradix.datafeed import FinanceDataReaderFeed
 
 class SmaCrossStrategy(Strategy):
     def initialize(self):
@@ -312,12 +312,12 @@ print(result.summary())
 
     print("\n[Easy API - 2줄]")
     print("""
-from tradex.easy import 백테스트, 골든크로스
+from tradix.easy import 백테스트, 골든크로스
 결과 = 백테스트("삼성전자", 골든크로스())
 print(결과.요약())
 """)
 
-    from tradex.easy import 백테스트, 골든크로스
+    from tradix.easy import 백테스트, 골든크로스
     결과 = 백테스트("삼성전자", 골든크로스(), 기간="3년")
     print(결과.요약())
 
@@ -325,7 +325,7 @@ print(결과.요약())
 def main():
     """Run all example functions sequentially. / 모든 예제를 순차적으로 실행합니다."""
     print("=" * 60)
-    print("Tradex Easy API 예제")
+    print("Tradix Easy API 예제")
     print("=" * 60)
 
     examples = [

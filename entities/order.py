@@ -1,9 +1,9 @@
 """
-Tradex Order Entity - Order management and execution tracking.
-Tradex 주문(Order) 엔티티 - 주문 관리 및 체결 추적.
+Tradix Order Entity - Order management and execution tracking.
+Tradix 주문(Order) 엔티티 - 주문 관리 및 체결 추적.
 
 This module defines the Order dataclass and its associated enumerations for
-representing and managing trading orders within the Tradex backtesting engine.
+representing and managing trading orders within the Tradix backtesting engine.
 It supports market, limit, stop, and stop-limit order types with full lifecycle
 tracking from creation through fill or cancellation.
 
@@ -15,7 +15,7 @@ Features:
     - Time-in-force policies: DAY, GTC, IOC
 
 Usage:
-    >>> from tradex.entities.order import Order, OrderSide, OrderType
+    >>> from tradix.entities.order import Order, OrderSide, OrderType
     >>> order = Order(
     ...     symbol="AAPL",
     ...     side=OrderSide.BUY,

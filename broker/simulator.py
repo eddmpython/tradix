@@ -1,5 +1,5 @@
 """
-Tradex Broker Simulator Module.
+Tradix Broker Simulator Module.
 
 Simulates order execution with realistic commission, slippage, and fill
 price modeling for backtesting trading strategies.
@@ -14,7 +14,7 @@ Features:
     - Transaction cost estimation before order execution
 
 Usage:
-    >>> from tradex.broker.simulator import BrokerSimulator
+    >>> from tradix.broker.simulator import BrokerSimulator
     >>> broker = BrokerSimulator.korea(mobileApp=True)
     >>> fill = broker.processOrder(order, bar)
 """
@@ -22,12 +22,12 @@ Usage:
 from dataclasses import dataclass
 from typing import Optional
 
-from tradex.entities.order import Order
-from tradex.entities.bar import Bar
-from tradex.events.fill import FillEvent
-from tradex.broker.commission import CommissionModel, KoreaStockCommission
-from tradex.broker.slippage import SlippageModel, PercentSlippage
-from tradex.broker.fill import FillModel, CloseFill
+from tradix.entities.order import Order
+from tradix.entities.bar import Bar
+from tradix.events.fill import FillEvent
+from tradix.broker.commission import CommissionModel, KoreaStockCommission
+from tradix.broker.slippage import SlippageModel, PercentSlippage
+from tradix.broker.fill import FillModel, CloseFill
 
 
 @dataclass
@@ -191,7 +191,7 @@ class BrokerSimulator:
         Returns:
             BrokerSimulator: Configured with Interactive Brokers commission.
         """
-        from tradex.broker.commission import USStockCommission
+        from tradix.broker.commission import USStockCommission
         return cls(
             commissionModel=USStockCommission.interactiveBrokers(),
             slippageModel=PercentSlippage(0.001),
@@ -211,8 +211,8 @@ class BrokerSimulator:
         Returns:
             BrokerSimulator: Zero-cost broker simulator.
         """
-        from tradex.broker.commission import NoCommission
-        from tradex.broker.slippage import NoSlippage
+        from tradix.broker.commission import NoCommission
+        from tradix.broker.slippage import NoSlippage
         return cls(
             commissionModel=NoCommission(),
             slippageModel=NoSlippage(),
@@ -232,8 +232,8 @@ class BrokerSimulator:
         Returns:
             BrokerSimulator: High-cost broker simulator.
         """
-        from tradex.broker.slippage import VolumeSlippage
-        from tradex.broker.fill import WorstFill
+        from tradix.broker.slippage import VolumeSlippage
+        from tradix.broker.fill import WorstFill
         return cls(
             commissionModel=KoreaStockCommission(brokerFee=0.0003, taxRate=0.0023),
             slippageModel=VolumeSlippage(impactFactor=0.2),

@@ -1,5 +1,5 @@
 """
-Tradex Vectorized Engine - Pure NumPy high-performance backtesting.
+Tradix Vectorized Engine - Pure NumPy high-performance backtesting.
 
 Ultra-fast backtesting engine and technical indicators implemented with
 pure NumPy vectorized operations. No Numba or C extensions required.
@@ -12,8 +12,8 @@ Performance (10-year daily data, 2,458 bars):
     - 1,000 parameter optimization: 0.02s
 
 Usage:
-    >>> from tradex.vectorized import vsma, vgoldenCross, vbacktest
-    >>> from tradex import vsma, vgoldenCross  # also available at top level
+    >>> from tradix.vectorized import vsma, vgoldenCross, vbacktest
+    >>> from tradix import vsma, vgoldenCross  # also available at top level
 
     >>> result = vbacktest("005930", "goldenCross", fast=10, slow=30)
     >>> print(f"Return: {result.totalReturn:+.2f}%")
@@ -24,7 +24,7 @@ Submodules:
     - engine: VectorizedEngine, vbacktest(), voptimize()
 """
 
-from tradex.vectorized.indicators import (
+from tradix.vectorized.indicators import (
     vsma,
     vema,
     vrsi,
@@ -36,7 +36,7 @@ from tradex.vectorized.indicators import (
     vroc,
     vmomentum,
 )
-from tradex.vectorized.signals import (
+from tradix.vectorized.signals import (
     vcrossover,
     vcrossunder,
     vcross,
@@ -47,7 +47,7 @@ from tradex.vectorized.signals import (
     vbreakoutSignal,
     vTrendFilter,
 )
-from tradex.vectorized.engine import (
+from tradix.vectorized.engine import (
     VectorizedEngine,
     VectorizedResult,
     vbacktest,

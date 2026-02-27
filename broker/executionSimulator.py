@@ -1,5 +1,5 @@
 """
-Tradex Execution Simulator Module.
+Tradix Execution Simulator Module.
 
 Simulates realistic trade execution environments including slippage,
 market impact, fill probability, and transaction cost analysis. Supports
@@ -16,7 +16,7 @@ Features:
     - Batch trade cost estimation
 
 Usage:
-    >>> from tradex.broker.executionSimulator import ExecutionSimulator, SlippageModel
+    >>> from tradix.broker.executionSimulator import ExecutionSimulator, SlippageModel
     >>> simulator = ExecutionSimulator(
     ...     slippageModel=SlippageModel.VOLATILITY_BASED,
     ...     commissionRate=0.00015,

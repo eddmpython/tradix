@@ -1,4 +1,4 @@
-"""Tradex Signal Analysis Package.
+"""Tradix Signal Analysis Package.
 
 Provides technical-indicator-based trading signal prediction, multi-symbol
 analysis, adaptive regime-aware strategy selection, time-series forecasting,
@@ -16,7 +16,7 @@ Features:
     - SignalBacktester: Signal quality verification vs. Buy&Hold / Random
 
 Usage:
-    from tradex.signals import SignalPredictor, MultiSignalAnalyzer
+    from tradix.signals import SignalPredictor, MultiSignalAnalyzer
 
     predictor = SignalPredictor(df)
     result = predictor.predict()
@@ -29,27 +29,27 @@ Usage:
     print(market.summary)
 """
 
-from tradex.signals.predictor import (
+from tradix.signals.predictor import (
     SignalPredictor,
     SignalResult,
     SignalConfig,
     SignalType,
 )
 
-from tradex.signals.analyzer import (
+from tradix.signals.analyzer import (
     MultiSignalAnalyzer,
     SignalScanner,
     SymbolSignal,
     MarketSignal,
 )
 
-from tradex.signals.forecast import (
+from tradix.signals.forecast import (
     PriceForecast,
     TrendAnalyzer,
     ForecastResult,
 )
 
-from tradex.signals.backtest import (
+from tradix.signals.backtest import (
     SignalBacktester,
     SignalBacktestResult,
     BacktestMetrics,
@@ -57,7 +57,7 @@ from tradex.signals.backtest import (
     quickEvaluate,
 )
 
-from tradex.signals.adaptive import (
+from tradix.signals.adaptive import (
     AdaptiveSignalPredictor,
     AdaptiveSignalResult,
     RegimeDetector,

@@ -1,5 +1,5 @@
 """
-Tradex FinanceDataReader Feed Module.
+Tradix FinanceDataReader Feed Module.
 
 Provides a data feed implementation backed by the FinanceDataReader
 library, supporting Korean (KRX), US, and Japanese stock markets with
@@ -17,7 +17,7 @@ Features:
     - Cache management (update, info, clear)
 
 Usage:
-    >>> from tradex.datafeed.fdr import FinanceDataReaderFeed
+    >>> from tradix.datafeed.fdr import FinanceDataReaderFeed
     >>> feed = FinanceDataReaderFeed('005930', '2020-01-01', '2024-12-31')
     >>> for bar in feed:
     ...     print(f"{bar.datetime}: {bar.close}")
@@ -27,8 +27,8 @@ from datetime import datetime, timedelta
 from typing import Optional
 import pandas as pd
 
-from tradex.datafeed.feed import DataFeed
-from tradex.datafeed.cache import PriceCache
+from tradix.datafeed.feed import DataFeed
+from tradix.datafeed.cache import PriceCache
 
 
 class FinanceDataReaderFeed(DataFeed):

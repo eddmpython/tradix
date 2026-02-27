@@ -1,5 +1,5 @@
 """
-Tradex Price Cache Module.
+Tradix Price Cache Module.
 
 Manages local Parquet-based caching of OHLCV price data to minimize
 redundant API calls. Supports per-market cache directories, automatic
@@ -17,7 +17,7 @@ Features:
     - Date range slicing on retrieval
 
 Usage:
-    >>> from tradex.datafeed.cache import PriceCache
+    >>> from tradix.datafeed.cache import PriceCache
     >>> cache = PriceCache(market='KRX', maxAgeDays=1)
     >>> df = cache.get('005930', '2020-01-01', '2024-12-31')
     >>> cache.save('005930', new_data, merge=True)
@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Optional
 import pandas as pd
 
-_CACHE_ROOT = Path.home() / '.tradex' / 'cache'
+_CACHE_ROOT = Path.home() / '.tradix' / 'cache'
 KRX_PRICE_DIR = _CACHE_ROOT / 'krx'
 US_PRICE_DIR = _CACHE_ROOT / 'us'
 BACKTEST_CACHE_DIR = _CACHE_ROOT

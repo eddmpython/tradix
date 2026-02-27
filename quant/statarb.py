@@ -1,4 +1,4 @@
-"""Tradex Statistical Arbitrage Module.
+"""Tradix Statistical Arbitrage Module.
 
 Provides cointegration-based pair trading and statistical arbitrage tools,
 including spread analysis, Z-score signal generation, and simple backtesting.
@@ -15,7 +15,7 @@ Features:
     - Regime-aware entry/exit threshold adjustment
 
 Usage:
-    from tradex.quant.statarb import StatArbAnalyzer, PairTrading
+    from tradix.quant.statarb import StatArbAnalyzer, PairTrading
 
     analyzer = StatArbAnalyzer()
     result = analyzer.testCointegration(prices_a, prices_b)

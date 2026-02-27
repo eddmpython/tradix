@@ -9,8 +9,8 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
 
-from tradex.entities import Order, OrderSide, OrderType, Position, Trade, Bar
-from tradex.strategy import Strategy, Indicators
+from tradix.entities import Order, OrderSide, OrderType, Position, Trade, Bar
+from tradix.strategy import Strategy, Indicators
 
 
 class TestBar:

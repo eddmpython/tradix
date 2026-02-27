@@ -2,8 +2,8 @@
 SmaCrossWithRiskStrategy - 손절/익절 기능이 포함된 SMA 교차 전략
 """
 
-from tradex.strategy.base import Strategy
-from tradex.entities.bar import Bar
+from tradix.strategy.base import Strategy
+from tradix.entities.bar import Bar
 
 
 class SmaCrossWithRiskStrategy(Strategy):

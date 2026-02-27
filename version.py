@@ -1,8 +1,8 @@
 """
-Tradex Version Management.
+Tradix Version Management.
 
 Provides semantic versioning, compatibility checking, feature discovery, and
-dependency management for the Tradex backtesting library. Tracks the complete
+dependency management for the Tradix backtesting library. Tracks the complete
 version history and maps each release to its introduced features.
 
 트레이덱스 버전 관리 모듈.
@@ -25,7 +25,7 @@ Version History:
     v2.0.0: Quant extensions (Factor analysis, Statistical arbitrage)
 
 Usage:
-    >>> from tradex.version import getVersion, checkVersion, VersionManager
+    >>> from tradix.version import getVersion, checkVersion, VersionManager
     >>>
     >>> print(getVersion())
     '2.0.0'
@@ -135,7 +135,7 @@ class Version:
 
 
 # 현재 버전
-CURRENT_VERSION = Version(1, 2, 0)
+CURRENT_VERSION = Version(1, 0, 0)
 
 VERSION_FEATURES: Dict[str, List[str]] = {
     "1.0.0": [
@@ -207,8 +207,8 @@ class CompatibilityCheck:
     Attributes:
         compatible (bool): True if current version meets the requirement.
             현재 버전이 요구 조건을 충족하면 True.
-        currentVersion (Version): The installed Tradex version.
-            설치된 Tradex 버전.
+        currentVersion (Version): The installed Tradix version.
+            설치된 Tradix 버전.
         requiredVersion (Version): The version required by the caller.
             호출자가 요구하는 버전.
         missingFeatures (List[str]): Features unavailable in current version.
@@ -265,15 +265,15 @@ class VersionManager:
 
     Provides methods to verify version compatibility, list available and new
     features, retrieve version history, and determine required dependencies
-    for the current Tradex installation.
+    for the current Tradix installation.
 
     버전 호환성 체크, 기능 탐색, 마이그레이션 지원을 위한 중앙 버전 관리자.
-    현재 Tradex 설치의 버전 호환성 확인, 사용 가능한 기능 및 신규 기능 조회,
+    현재 Tradix 설치의 버전 호환성 확인, 사용 가능한 기능 및 신규 기능 조회,
     버전 히스토리 검색, 필수 의존성 확인 메서드를 제공합니다.
 
     Attributes:
-        currentVersion (Version): The current installed Tradex version.
-            현재 설치된 Tradex 버전.
+        currentVersion (Version): The current installed Tradix version.
+            현재 설치된 Tradix 버전.
 
     Example:
         >>> manager = VersionManager()
@@ -292,7 +292,7 @@ class VersionManager:
     ) -> CompatibilityCheck:
         """Check compatibility between the current version and a required version. 현재 버전과 요구 버전 간 호환성 체크.
 
-        Determines whether the current Tradex version satisfies the given
+        Determines whether the current Tradix version satisfies the given
         requirement and identifies any missing features or potential issues.
 
         Args:
@@ -393,7 +393,7 @@ class VersionManager:
 
 
 def getVersion() -> str:
-    """Return the current Tradex version as a string. 현재 Tradex 버전을 문자열로 반환.
+    """Return the current Tradix version as a string. 현재 Tradix 버전을 문자열로 반환.
 
     Returns:
         Version string in 'major.minor.patch' format (e.g., '2.0.0').
@@ -403,7 +403,7 @@ def getVersion() -> str:
 
 
 def checkVersion(required: str) -> bool:
-    """Check if the current Tradex version meets a version requirement. 현재 Tradex 버전이 요구 버전을 충족하는지 확인.
+    """Check if the current Tradix version meets a version requirement. 현재 Tradix 버전이 요구 버전을 충족하는지 확인.
 
     Args:
         required: Required version string (e.g., "1.4.0").

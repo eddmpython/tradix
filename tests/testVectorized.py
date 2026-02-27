@@ -7,7 +7,7 @@ Tests for Numba-accelerated indicators and backtest engine.
 import pytest
 import numpy as np
 
-from tradex.vectorized import (
+from tradix.vectorized import (
     vsma,
     vema,
     vrsi,

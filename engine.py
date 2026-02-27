@@ -1,5 +1,5 @@
 """
-Tradex Core Backtest Engine.
+Tradix Core Backtest Engine.
 
 Event-driven backtesting engine that simulates order execution, portfolio
 management, and performance measurement for single-asset trading strategies.
@@ -16,9 +16,9 @@ Features:
     - Comprehensive performance metrics (Sharpe, drawdown, profit factor, etc.)
 
 Usage:
-    >>> from tradex import BacktestEngine
-    >>> from tradex.datafeed import FinanceDataReaderFeed
-    >>> from tradex.strategy import Strategy
+    >>> from tradix import BacktestEngine
+    >>> from tradix.datafeed import FinanceDataReaderFeed
+    >>> from tradix.strategy import Strategy
     >>>
     >>> class MyStrategy(Strategy):
     ...     def onBar(self, bar):
@@ -39,14 +39,14 @@ from datetime import datetime
 from typing import List, Optional, Dict, Any
 import pandas as pd
 
-from tradex.entities.bar import Bar
-from tradex.entities.order import Order, OrderSide, OrderStatus
-from tradex.entities.trade import Trade
-from tradex.events.market import MarketEvent
-from tradex.events.fill import FillEvent
-from tradex.datafeed.feed import DataFeed
-from tradex.strategy.base import Strategy
-from tradex.portfolio.portfolio import Portfolio
+from tradix.entities.bar import Bar
+from tradix.entities.order import Order, OrderSide, OrderStatus
+from tradix.entities.trade import Trade
+from tradix.events.market import MarketEvent
+from tradix.events.fill import FillEvent
+from tradix.datafeed.feed import DataFeed
+from tradix.strategy.base import Strategy
+from tradix.portfolio.portfolio import Portfolio
 
 
 class SimpleBroker:
@@ -256,12 +256,12 @@ class BacktestResult:
             lang: Language ('en' or 'ko'). / 언어.
             style: Display style ('modern', 'bloomberg', 'minimal'). / 출력 스타일.
         """
-        from tradex.tui.console import printResult
+        from tradix.tui.console import printResult
         printResult(self, lang=lang, style=style)
 
     def chart(self, lang: str = "en") -> None:
         """Print full dashboard with charts. 차트 포함 대시보드 출력."""
-        from tradex.tui.charts import plotDashboard
+        from tradix.tui.charts import plotDashboard
         plotDashboard(self, lang=lang)
 
     def toDict(self) -> dict:
@@ -309,9 +309,9 @@ class BacktestEngine:
             True이면 주문이 다음 바 시가에 체결됩니다.
 
     Example:
-        >>> from tradex import BacktestEngine
-        >>> from tradex.datafeed import FinanceDataReaderFeed
-        >>> from tradex.strategy import Strategy
+        >>> from tradix import BacktestEngine
+        >>> from tradix.datafeed import FinanceDataReaderFeed
+        >>> from tradix.strategy import Strategy
         >>>
         >>> class MyStrategy(Strategy):
         ...     def onBar(self, bar):

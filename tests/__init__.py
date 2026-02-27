@@ -1,3 +1,3 @@
 """
-Tradex Test Suite
+Tradix Test Suite
 """

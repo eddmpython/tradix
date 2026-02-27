@@ -1,5 +1,5 @@
 """
-Tradex Parameter Space Definition Module.
+Tradix Parameter Space Definition Module.
 
 Defines the search space for strategy parameter optimization, supporting
 integer, float, and categorical parameter types. Provides grid enumeration
@@ -17,7 +17,7 @@ Features:
     - Summary statistics and combination counting
 
 Usage:
-    from tradex.optimize.space import ParameterSpace
+    from tradix.optimize.space import ParameterSpace
 
     space = ParameterSpace()
     space.addInt('fastPeriod', 5, 20, step=1)

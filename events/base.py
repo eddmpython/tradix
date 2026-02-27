@@ -1,9 +1,9 @@
 """
-Tradex Event Base - Abstract base class for all backtesting events.
-Tradex 이벤트 베이스 - 모든 백테스팅 이벤트의 추상 기본 클래스.
+Tradix Event Base - Abstract base class for all backtesting events.
+Tradix 이벤트 베이스 - 모든 백테스팅 이벤트의 추상 기본 클래스.
 
 This module defines the Event abstract base class and EventType enumeration
-that form the foundation of the Tradex event-driven backtesting architecture.
+that form the foundation of the Tradix event-driven backtesting architecture.
 All concrete events (market, signal, order, fill) inherit from Event and
 support timestamp-based ordering for priority queue processing.
 
@@ -14,7 +14,7 @@ Features:
     - EventType enumeration for runtime event classification
 
 Usage:
-    >>> from tradex.events.base import Event, EventType
+    >>> from tradix.events.base import Event, EventType
     >>> class CustomEvent(Event):
     ...     eventType: EventType = EventType.MARKET
 """
@@ -38,8 +38,8 @@ class EventType(Enum):
 @dataclass
 class Event(ABC):
     """
-    Abstract base class for all events in the Tradex event-driven architecture.
-    Tradex 이벤트 기반 아키텍처의 모든 이벤트에 대한 추상 기본 클래스.
+    Abstract base class for all events in the Tradix event-driven architecture.
+    Tradix 이벤트 기반 아키텍처의 모든 이벤트에 대한 추상 기본 클래스.
 
     Provides a common interface and timestamp-based ordering for all event
     types in the backtesting pipeline. Inspired by LEAN-style event-driven

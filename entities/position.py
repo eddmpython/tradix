@@ -1,9 +1,9 @@
 """
-Tradex Position Entity - Portfolio position tracking and P&L calculation.
-Tradex 포지션(Position) 엔티티 - 포트폴리오 포지션 추적 및 손익 계산.
+Tradix Position Entity - Portfolio position tracking and P&L calculation.
+Tradix 포지션(Position) 엔티티 - 포트폴리오 포지션 추적 및 손익 계산.
 
 This module defines the Position dataclass for tracking open trading positions
-within the Tradex backtesting engine. It manages average cost basis, market
+within the Tradix backtesting engine. It manages average cost basis, market
 valuation, and both realized and unrealized profit/loss calculations.
 
 Features:
@@ -14,7 +14,7 @@ Features:
     - Full position closure with automatic P&L settlement
 
 Usage:
-    >>> from tradex.entities.position import Position
+    >>> from tradix.entities.position import Position
     >>> pos = Position(symbol="AAPL", quantity=100, avgPrice=150.0)
     >>> pos.updatePrice(160.0)
     >>> pos.unrealizedPnl

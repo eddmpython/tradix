@@ -1,5 +1,5 @@
 """
-Tradex Broker Package.
+Tradix Broker Package.
 
 Provides order execution simulation with pluggable commission, slippage,
 and fill price models for realistic backtesting across different markets.
@@ -13,12 +13,12 @@ Features:
     - Fill price models: close, open, VWAP, worst-case, best-case, random
 
 Usage:
-    >>> from tradex.broker import BrokerSimulator
+    >>> from tradix.broker import BrokerSimulator
     >>> broker = BrokerSimulator.korea(mobileApp=True)
     >>> fill_event = broker.processOrder(order, bar)
 """
 
-from tradex.broker.commission import (
+from tradix.broker.commission import (
     CommissionModel,
     NoCommission,
     FixedCommission,
@@ -26,21 +26,21 @@ from tradex.broker.commission import (
     KoreaStockCommission,
     USStockCommission,
 )
-from tradex.broker.slippage import (
+from tradix.broker.slippage import (
     SlippageModel,
     NoSlippage,
     FixedSlippage,
     PercentSlippage,
     VolumeSlippage,
 )
-from tradex.broker.fill import (
+from tradix.broker.fill import (
     FillModel,
     CloseFill,
     OpenFill,
     VwapFill,
     RandomFill,
 )
-from tradex.broker.simulator import BrokerSimulator
+from tradix.broker.simulator import BrokerSimulator
 
 __all__ = [
     "CommissionModel",

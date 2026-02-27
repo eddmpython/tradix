@@ -1,4 +1,4 @@
-"""Tradex Learned Patterns Module.
+"""Tradix Learned Patterns Module.
 
 Contains empirically derived strategy-regime mappings, parameter adjustments,
 and performance benchmarks from large-scale backtesting (10 stocks x 3 periods).
@@ -14,7 +14,7 @@ Features:
     - Convenience functions: getRecommendedStrategies, getAdjustedParams, getBenchmark
 
 Usage:
-    from tradex.advisor.learnedPatterns import (
+    from tradix.advisor.learnedPatterns import (
         getRecommendedStrategies, getAdjustedParams, getBenchmark
     )
 
@@ -24,7 +24,7 @@ Usage:
 """
 
 from typing import Dict, List, Tuple
-from tradex.advisor.marketClassifier import MarketRegime
+from tradix.advisor.marketClassifier import MarketRegime
 
 
 REGIME_STRATEGY_MAP: Dict[MarketRegime, List[Tuple[str, float, str]]] = {

@@ -1,9 +1,9 @@
 """
-Tradex Bar Entity - OHLCV candlestick data representation.
-Tradex 바(Bar) 엔티티 - OHLCV 캔들스틱 데이터 표현.
+Tradix Bar Entity - OHLCV candlestick data representation.
+Tradix 바(Bar) 엔티티 - OHLCV 캔들스틱 데이터 표현.
 
 This module defines the Bar dataclass, which encapsulates a single OHLCV
-(Open, High, Low, Close, Volume) candlestick bar used throughout the Tradex
+(Open, High, Low, Close, Volume) candlestick bar used throughout the Tradix
 backtesting engine for market data representation and price analysis.
 
 Features:
@@ -14,7 +14,7 @@ Features:
     - Dictionary serialization and deserialization
 
 Usage:
-    >>> from tradex.entities.bar import Bar
+    >>> from tradix.entities.bar import Bar
     >>> from datetime import datetime
     >>> bar = Bar(
     ...     symbol="AAPL",

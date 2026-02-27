@@ -1,10 +1,10 @@
-"""Tradex Signal Predictor Module.
+"""Tradix Signal Predictor Module.
 
-Technical-indicator-based trading signal predictor that leverages Tradex's 70+
+Technical-indicator-based trading signal predictor that leverages Tradix's 70+
 built-in indicators to generate, score, and synthesize buy/sell/hold signals
 through a consensus-based approach.
 
-기술 지표 기반 매매 신호 예측기 - Tradex의 70개 이상의 기술 지표를 활용하여
+기술 지표 기반 매매 신호 예측기 - Tradix의 70개 이상의 기술 지표를 활용하여
 매매 신호를 생성하고 컨센서스 방식으로 통합 분석합니다.
 
 Features:
@@ -12,10 +12,10 @@ Features:
     - Signal strength scoring (0.0 to 1.0) for each individual indicator
     - Consensus-based signal integration with configurable threshold
     - Signal history generation for lookback analysis
-    - Seamless integration with Tradex backtesting engine
+    - Seamless integration with Tradix backtesting engine
 
 Usage:
-    from tradex.signals import SignalPredictor
+    from tradix.signals import SignalPredictor
 
     predictor = SignalPredictor(df)
     result = predictor.predict()
@@ -31,7 +31,7 @@ from enum import Enum
 import pandas as pd
 import numpy as np
 
-from tradex.strategy.indicators import Indicators
+from tradix.strategy.indicators import Indicators
 
 
 class SignalType(Enum):
@@ -118,17 +118,17 @@ class SignalConfig:
 class SignalPredictor:
     """Technical-indicator-based trading signal predictor.
 
-    Leverages Tradex's Indicators class to generate signals from 7 strategy
+    Leverages Tradix's Indicators class to generate signals from 7 strategy
     categories (trend, momentum, mean-reversion, breakout, volume, volatility,
     forecast) and synthesizes them via a configurable consensus mechanism.
 
-    Tradex의 Indicators 클래스를 활용하여 7개 전략 범주의 기술 지표 기반
+    Tradix의 Indicators 클래스를 활용하여 7개 전략 범주의 기술 지표 기반
     매매 신호를 생성하고, 컨센서스 메커니즘으로 통합합니다.
 
     Attributes:
         df: OHLCV DataFrame (OHLCV 데이터).
         config: SignalConfig instance (신호 설정).
-        indicators: Tradex Indicators engine instance (지표 엔진).
+        indicators: Tradix Indicators engine instance (지표 엔진).
         AVAILABLE_STRATEGIES: List of supported strategy names (지원 전략 목록).
 
     Example:
@@ -552,7 +552,7 @@ class SignalPredictor:
         시계열 예측 신호 (참고용) - E003 실험 결과 반영하여 가중치를 낮게 유지.
         """
         try:
-            from tradex.signals.forecast import PriceForecast, TrendAnalyzer
+            from tradix.signals.forecast import PriceForecast, TrendAnalyzer
 
             closeValues = self.df['close'].values
 

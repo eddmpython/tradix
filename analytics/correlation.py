@@ -1,5 +1,5 @@
 """
-Tradex Correlation Matrix Module.
+Tradix Correlation Matrix Module.
 
 Analyzes correlation between multiple strategy backtest results, providing
 correlation matrices, rolling correlations, diversification ratios, optimal
@@ -18,7 +18,7 @@ Features:
     - K-means strategy clustering (numpy-only, no sklearn)
 
 Usage:
-    from tradex.analytics.correlation import CorrelationAnalyzer
+    from tradix.analytics.correlation import CorrelationAnalyzer
 
     analyzer = CorrelationAnalyzer()
     analyzer.addResult("SMA Cross", result1)
@@ -37,7 +37,7 @@ import pandas as pd
 import numpy as np
 from scipy import stats as scipyStats
 
-from tradex.engine import BacktestResult
+from tradix.engine import BacktestResult
 
 
 @dataclass

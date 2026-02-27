@@ -1,5 +1,5 @@
 """
-Tradex Report Chart Components Module.
+Tradix Report Chart Components Module.
 
 Provides reusable Plotly chart-building functions for backtest report
 generation. Includes equity curve, drawdown, monthly returns heatmap,
@@ -19,7 +19,7 @@ Features:
     - combinedEquityDrawdownChart: Stacked equity + drawdown subplot
 
 Usage:
-    from tradex.analytics.reportCharts import ChartBuilder, equityCurveChart
+    from tradix.analytics.reportCharts import ChartBuilder, equityCurveChart
 
     fig = equityCurveChart(equity_series, benchmark_series)
     builder = ChartBuilder()

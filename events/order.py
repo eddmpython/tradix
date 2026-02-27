@@ -1,9 +1,9 @@
 """
-Tradex Order Event - Order submission notification.
-Tradex 주문 이벤트 - 주문 제출 알림.
+Tradix Order Event - Order submission notification.
+Tradix 주문 이벤트 - 주문 제출 알림.
 
 This module defines the OrderEvent class, which is emitted when a trading
-order is created and submitted to the broker within the Tradex backtesting
+order is created and submitted to the broker within the Tradix backtesting
 engine. It wraps an Order entity and serves as the bridge between signal
 processing and order execution.
 
@@ -13,8 +13,8 @@ Features:
     - Part of the event pipeline: SignalEvent -> OrderEvent -> FillEvent
 
 Usage:
-    >>> from tradex.events.order import OrderEvent
-    >>> from tradex.entities.order import Order, OrderSide, OrderType
+    >>> from tradix.events.order import OrderEvent
+    >>> from tradix.entities.order import Order, OrderSide, OrderType
     >>> from datetime import datetime
     >>> order = Order(symbol="AAPL", side=OrderSide.BUY, orderType=OrderType.MARKET, quantity=100)
     >>> event = OrderEvent(timestamp=datetime.now(), order=order)
@@ -25,8 +25,8 @@ Usage:
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from tradex.events.base import Event, EventType
-from tradex.entities.order import Order
+from tradix.events.base import Event, EventType
+from tradix.entities.order import Order
 
 
 @dataclass

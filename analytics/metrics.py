@@ -1,5 +1,5 @@
 """
-Tradex Performance Metrics Module.
+Tradix Performance Metrics Module.
 
 Calculates comprehensive performance metrics from backtest results, including
 return metrics, risk-adjusted ratios, drawdown analysis, and trade statistics.
@@ -15,7 +15,7 @@ Features:
     - Monthly return decomposition
 
 Usage:
-    from tradex.analytics.metrics import PerformanceMetrics
+    from tradix.analytics.metrics import PerformanceMetrics
 
     metrics = PerformanceMetrics.calculate(
         trades=trades,
@@ -30,7 +30,7 @@ from typing import List, Optional
 import pandas as pd
 import numpy as np
 
-from tradex.entities.trade import Trade
+from tradix.entities.trade import Trade
 
 
 @dataclass

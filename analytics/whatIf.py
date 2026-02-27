@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Tradex What-If Simulator Module.
+Tradix What-If Simulator Module.
 
 Analyzes how changing trading conditions (commission, slippage, tax, timing,
 capital) affects backtest performance by recalculating trade-level P&L under
@@ -17,7 +17,7 @@ Features:
     - Impact quantification in both absolute and relative terms
 
 Usage:
-    from tradex.analytics.whatIf import WhatIfSimulator
+    from tradix.analytics.whatIf import WhatIfSimulator
 
     simulator = WhatIfSimulator(result)
     impact = simulator.adjustCommission(0.001)
@@ -34,8 +34,8 @@ from typing import List, Dict, Any, Optional
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 DEFAULT_COMMISSION_RATE = 0.00015

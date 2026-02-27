@@ -1,5 +1,5 @@
 """
-Tradex Strategy Parameter Optimizer Module.
+Tradix Strategy Parameter Optimizer Module.
 
 Provides grid search and random search optimization over a defined parameter
 space. Runs backtests for each parameter combination and identifies the
@@ -19,7 +19,7 @@ Features:
     - Result export to DataFrame
 
 Usage:
-    from tradex.optimize import Optimizer, ParameterSpace
+    from tradix.optimize import Optimizer, ParameterSpace
 
     space = ParameterSpace()
     space.addInt('fastPeriod', 5, 20, step=1)
@@ -45,10 +45,10 @@ import copy
 import pandas as pd
 import numpy as np
 
-from tradex.optimize.space import ParameterSpace
-from tradex.datafeed.feed import DataFeed
-from tradex.strategy.base import Strategy
-from tradex.engine import BacktestEngine, BacktestResult
+from tradix.optimize.space import ParameterSpace
+from tradix.datafeed.feed import DataFeed
+from tradix.strategy.base import Strategy
+from tradix.engine import BacktestEngine, BacktestResult
 
 
 @dataclass
@@ -249,8 +249,8 @@ def _runSingleBacktest(args: Tuple) -> Tuple[Dict[str, Any], float, Optional[Dic
     params, dataConfig, strategyFactory, metric, initialCash, brokerConfig = args
 
     try:
-        from tradex.datafeed.fdr import FinanceDataReaderFeed
-        from tradex.engine import BacktestEngine, SimpleBroker
+        from tradix.datafeed.fdr import FinanceDataReaderFeed
+        from tradix.engine import BacktestEngine, SimpleBroker
 
         data = FinanceDataReaderFeed(
             symbol=dataConfig['symbol'],

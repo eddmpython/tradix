@@ -1,5 +1,5 @@
 """
-Tradex Position Sizing Models Module.
+Tradix Position Sizing Models Module.
 
 Provides position sizing strategies that determine the number of shares
 to trade based on equity, price, risk parameters, and historical
@@ -16,7 +16,7 @@ Features:
     - Volatility-based sizer using ATR (Average True Range)
 
 Usage:
-    >>> from tradex.risk.sizing import PercentEquitySizer
+    >>> from tradix.risk.sizing import PercentEquitySizer
     >>> sizer = PercentEquitySizer(percent=0.1)
     >>> qty = sizer.calculate(equity=10_000_000, price=50000)
 """
@@ -25,7 +25,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-from tradex.entities.trade import Trade
+from tradix.entities.trade import Trade
 
 
 class PositionSizer(ABC):

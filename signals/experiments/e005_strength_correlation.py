@@ -39,7 +39,7 @@ from scipy import stats
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
-from tradex.signals import SignalPredictor
+from tradix.signals import SignalPredictor
 
 
 @dataclass

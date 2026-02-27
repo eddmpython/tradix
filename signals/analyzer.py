@@ -1,4 +1,4 @@
-"""Tradex Multi-Symbol Signal Analyzer Module.
+"""Tradix Multi-Symbol Signal Analyzer Module.
 
 Provides parallel signal analysis across multiple symbols for portfolio-level
 trading opportunity discovery, including market consensus, relative ranking,
@@ -15,7 +15,7 @@ Features:
     - Export to DataFrame for further analysis
 
 Usage:
-    from tradex.signals.analyzer import MultiSignalAnalyzer, SignalScanner
+    from tradix.signals.analyzer import MultiSignalAnalyzer, SignalScanner
 
     analyzer = MultiSignalAnalyzer()
     analyzer.addSymbol("AAPL", aapl_df)
@@ -30,7 +30,7 @@ import pandas as pd
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from tradex.signals.predictor import SignalPredictor, SignalResult, SignalConfig
+from tradix.signals.predictor import SignalPredictor, SignalResult, SignalConfig
 
 
 @dataclass

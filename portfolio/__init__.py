@@ -1,5 +1,5 @@
 """
-Tradex Portfolio Management Package.
+Tradix Portfolio Management Package.
 
 Provides portfolio state management for backtesting, including cash and
 position tracking, order processing, trade lifecycle management, and
@@ -12,14 +12,14 @@ Features:
     - Portfolio: Core cash, position, order, and trade management
 
 Usage:
-    from tradex.portfolio import Portfolio
+    from tradix.portfolio import Portfolio
 
     portfolio = Portfolio(initialCash=10_000_000)
     portfolio.processFill(fill_event)
     print(portfolio.equity)
 """
 
-from tradex.portfolio.portfolio import Portfolio
+from tradix.portfolio.portfolio import Portfolio
 
 __all__ = [
     "Portfolio",

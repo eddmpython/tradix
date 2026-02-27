@@ -9,7 +9,7 @@ Performance Benchmarks (10-year daily data):
     - 1000 parameter optimization: 0.02s
 
 Example:
-    >>> from tradex import vbacktest, voptimize
+    >>> from tradix import vbacktest, voptimize
     >>>
     >>> # One-line backtest
     >>> result = vbacktest("005930", "goldenCross", fast=10, slow=30)
@@ -129,12 +129,12 @@ class VectorizedResult:
             lang: Language ('en' or 'ko'). / 언어.
             style: Display style ('modern', 'bloomberg', 'minimal'). / 출력 스타일.
         """
-        from tradex.tui.console import printResult
+        from tradix.tui.console import printResult
         printResult(self, lang=lang, style=style)
 
     def chart(self, lang: str = "en") -> None:
         """Print full dashboard with charts. 차트 포함 대시보드 출력."""
-        from tradex.tui.charts import plotDashboard
+        from tradix.tui.charts import plotDashboard
         plotDashboard(self, lang=lang)
 
     def 요약(self) -> str:
@@ -511,10 +511,10 @@ class VectorizedEngine:
         **params
     ) -> np.ndarray:
         """전략별 신호 생성"""
-        from tradex.vectorized.signals import (
+        from tradix.vectorized.signals import (
             vgoldenCross, vrsiSignal, vmacdSignal, vbollingerSignal, vbreakoutSignal
         )
-        from tradex.vectorized.indicators import vrsi
+        from tradix.vectorized.indicators import vrsi
 
         if strategy == "goldenCross":
             fast = params.get('fast', 10)
@@ -582,7 +582,7 @@ def vbacktest(
             f"Falling back to event-driven mode.",
             stacklevel=2,
         )
-        from tradex.easy.api import backtest as _eventBacktest
+        from tradix.easy.api import backtest as _eventBacktest
         return _eventBacktest(
             symbol=symbol,
             strategy=strategy,
@@ -591,8 +591,8 @@ def vbacktest(
             mode="event",
         )
 
-    from tradex.datafeed.fdr import FinanceDataReaderFeed
-    from tradex.easy.api import _resolveSymbol, _resolvePeriod
+    from tradix.datafeed.fdr import FinanceDataReaderFeed
+    from tradix.easy.api import _resolveSymbol, _resolvePeriod
 
     ticker = _resolveSymbol(symbol)
     startDate, endDate = _resolvePeriod(period)
@@ -641,8 +641,8 @@ def voptimize(
             slow=(20, 60, 10)
         )
     """
-    from tradex.datafeed.fdr import FinanceDataReaderFeed
-    from tradex.easy.api import _resolveSymbol, _resolvePeriod
+    from tradix.datafeed.fdr import FinanceDataReaderFeed
+    from tradix.easy.api import _resolveSymbol, _resolvePeriod
     import itertools
 
     ticker = _resolveSymbol(symbol)

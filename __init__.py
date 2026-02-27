@@ -1,5 +1,5 @@
 """
-Tradex - Blazing-fast backtesting engine for quantitative trading.
+Tradix - Blazing-fast backtesting engine for quantitative trading.
 
 A comprehensive backtesting framework built from the ground up for speed
 and simplicity. Powered by NumPy vectorized operations, it runs 1,000
@@ -29,14 +29,14 @@ Features:
     - Korean language API: Full Korean function names supported
 
 Quick Start:
-    >>> from tradex import backtest, goldenCross
+    >>> from tradix import backtest, goldenCross
     >>> result = backtest("005930", goldenCross())
     >>> print(result.summary())
 
-    >>> from tradex import vbacktest
+    >>> from tradix import vbacktest
     >>> result = vbacktest("005930", "goldenCross", fast=10, slow=30)
 
-    >>> from tradex import QuickStrategy, backtest, sma, crossover, crossunder
+    >>> from tradix import QuickStrategy, backtest, sma, crossover, crossunder
     >>> strategy = (
     ...     QuickStrategy("MyStrategy")
     ...     .buyWhen(crossover(sma(10), sma(30)))
@@ -61,18 +61,18 @@ Modules:
     - advisor: Market regime classification, strategy recommendation
 """
 
-from tradex.entities import Order, OrderSide, OrderType, TimeInForce, Position, Trade, Bar
-from tradex.events import Event, MarketEvent, SignalEvent, OrderEvent, FillEvent
-from tradex.strategy import Strategy, Indicators
-from tradex.portfolio import Portfolio
-from tradex.engine import BacktestEngine, BacktestResult
-from tradex.optimize import Optimizer, ParameterSpace, OptimizeResult
-from tradex.walkforward import WalkForwardAnalyzer, WalkForwardResult, PeriodSplitter
-from tradex.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy, MultiAssetResult
-from tradex.datafeed import MultiDataFeed
-from tradex.analytics.charts import BacktestChart
-from tradex.analytics.metrics import PerformanceMetrics
-from tradex.analytics import (
+from tradix.entities import Order, OrderSide, OrderType, TimeInForce, Position, Trade, Bar
+from tradix.events import Event, MarketEvent, SignalEvent, OrderEvent, FillEvent
+from tradix.strategy import Strategy, Indicators
+from tradix.portfolio import Portfolio
+from tradix.engine import BacktestEngine, BacktestResult
+from tradix.optimize import Optimizer, ParameterSpace, OptimizeResult
+from tradix.walkforward import WalkForwardAnalyzer, WalkForwardResult, PeriodSplitter
+from tradix.multiAssetEngine import MultiAssetEngine, MultiAssetStrategy, MultiAssetResult
+from tradix.datafeed import MultiDataFeed
+from tradix.analytics.charts import BacktestChart
+from tradix.analytics.metrics import PerformanceMetrics
+from tradix.analytics import (
     StrategyDNA,
     StrategyDnaAnalyzer,
     BlackSwanScore,
@@ -103,9 +103,9 @@ from tradex.analytics import (
     PortfolioStressResult,
     PortfolioStressAnalyzer,
 )
-from tradex.advisor import StrategyAdvisor, MarketClassifier, MarketRegime
-from tradex.version import CURRENT_VERSION, getVersion, checkVersion, VersionManager
-from tradex.signals import (
+from tradix.advisor import StrategyAdvisor, MarketClassifier, MarketRegime
+from tradix.version import CURRENT_VERSION, getVersion, checkVersion, VersionManager
+from tradix.signals import (
     SignalPredictor,
     SignalResult,
     SignalConfig,
@@ -116,7 +116,7 @@ from tradex.signals import (
     MarketSignal,
 )
 
-from tradex.easy import (
+from tradix.easy import (
     backtest,
     optimize,
     quickTest,
@@ -175,7 +175,7 @@ from tradex.easy import (
     crossunder,
 )
 
-from tradex.vectorized import (
+from tradix.vectorized import (
     vsma,
     vema,
     vrsi,
@@ -197,14 +197,14 @@ from tradex.vectorized import (
     vTrendFilter,
 )
 
-from tradex.vectorized import (
+from tradix.vectorized import (
     VectorizedEngine,
     VectorizedResult,
     vbacktest,
     voptimize,
 )
 
-from tradex.tui import (
+from tradix.tui import (
     printResult,
     printComparison,
     printTrades,
@@ -226,7 +226,7 @@ from tradex.tui import (
     plotSeasonality,
 )
 
-__version__ = "1.2.0"
+__version__ = "1.0.0"
 
 __all__ = [
     # Version

@@ -1,9 +1,9 @@
 """
-Tradex Fill Event - Order execution confirmation.
-Tradex 체결 이벤트 - 주문 체결 확인.
+Tradix Fill Event - Order execution confirmation.
+Tradix 체결 이벤트 - 주문 체결 확인.
 
 This module defines the FillEvent class, which is emitted when an order is
-executed (filled) in the Tradex backtesting engine. FillEvents are the final
+executed (filled) in the Tradix backtesting engine. FillEvents are the final
 stage in the event pipeline and carry execution details including fill price,
 quantity, commission, and slippage for portfolio and position updates.
 
@@ -14,8 +14,8 @@ Features:
     - Part of the event pipeline: OrderEvent -> FillEvent -> Portfolio update
 
 Usage:
-    >>> from tradex.events.fill import FillEvent
-    >>> from tradex.entities.order import Order, OrderSide, OrderType
+    >>> from tradix.events.fill import FillEvent
+    >>> from tradix.entities.order import Order, OrderSide, OrderType
     >>> from datetime import datetime
     >>> order = Order(symbol="AAPL", side=OrderSide.BUY, orderType=OrderType.MARKET, quantity=100)
     >>> fill = FillEvent(
@@ -29,8 +29,8 @@ Usage:
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from tradex.events.base import Event, EventType
-from tradex.entities.order import Order
+from tradix.events.base import Event, EventType
+from tradix.entities.order import Order
 
 
 @dataclass
@@ -39,11 +39,11 @@ class FillEvent(Event):
     Order fill (execution) event emitted when an order is executed.
     주문이 체결되었을 때 발생하는 체결 이벤트.
 
-    The final event in the Tradex processing pipeline. Contains execution
+    The final event in the Tradix processing pipeline. Contains execution
     details including fill price, quantity, and transaction costs. Used by
     the portfolio manager to update positions and track performance.
 
-    Tradex 처리 파이프라인의 마지막 이벤트입니다. 체결 가격, 수량, 거래 비용
+    Tradix 처리 파이프라인의 마지막 이벤트입니다. 체결 가격, 수량, 거래 비용
     등의 체결 세부 정보를 포함합니다. 포트폴리오 매니저가 포지션 업데이트 및
     성과 추적에 사용합니다.
 

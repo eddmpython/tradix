@@ -1,5 +1,5 @@
 """
-Tradex Risk Simulator Module.
+Tradix Risk Simulator Module.
 
 Provides comprehensive risk analysis tools including Value at Risk,
 Conditional VaR, Monte Carlo simulation, stress testing, tail risk
@@ -17,7 +17,7 @@ Features:
     - Drawdown analysis (max drawdown, duration, Ulcer Index)
 
 Usage:
-    >>> from tradex.risk.simulator import RiskSimulator, VaRMethod
+    >>> from tradix.risk.simulator import RiskSimulator, VaRMethod
     >>> simulator = RiskSimulator()
     >>> simulator.fit(daily_returns)
     >>> var_result = simulator.calcVaR(confidence=0.95, horizon=1)

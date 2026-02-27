@@ -7,7 +7,7 @@ Tests for the simplified backtest API.
 import pytest
 import numpy as np
 
-from tradex.easy import (
+from tradix.easy import (
     QuickStrategy,
     goldenCross,
     rsiOversold,
@@ -26,7 +26,7 @@ from tradex.easy import (
     crossover,
     crossunder,
 )
-from tradex.easy.conditions import Indicator, CrossCondition, CompareCondition, macdHist, bollingerUpper, bollingerLower
+from tradix.easy.conditions import Indicator, CrossCondition, CompareCondition, macdHist, bollingerUpper, bollingerLower
 
 
 class TestPresetStrategies:
@@ -285,7 +285,7 @@ class TestKoreanApi:
 
     def testKoreanPresets(self):
         """Test Korean preset functions."""
-        from tradex.easy.korean import (
+        from tradix.easy.korean import (
             골든크로스,
             RSI과매도,
             볼린저돌파,
@@ -306,8 +306,8 @@ class TestKoreanApi:
 
     def testKoreanStrategyBuilder(self):
         """Test Korean strategy builder."""
-        from tradex.easy.korean import 전략
-        from tradex.easy.conditions import sma, crossover
+        from tradix.easy.korean import 전략
+        from tradix.easy.conditions import sma, crossover
 
         내전략 = 전략("테스트전략").buyWhen(crossover(sma(10), sma(30))).stopLoss(5)
 

@@ -1,4 +1,4 @@
-"""Tradex Strategy Advisor Module.
+"""Tradix Strategy Advisor Module.
 
 Recommends optimal trading strategies for the current market regime based on
 large-scale backtest-derived learned patterns, with optional automatic
@@ -16,7 +16,7 @@ Features:
     - Benchmark-aware performance expectation
 
 Usage:
-    from tradex.advisor import StrategyAdvisor
+    from tradix.advisor import StrategyAdvisor
 
     advisor = StrategyAdvisor()
     result = advisor.recommend(data)
@@ -31,8 +31,8 @@ from typing import Dict, List, Optional, Type, Callable, Any
 import pandas as pd
 import numpy as np
 
-from tradex.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
-from tradex.advisor.learnedPatterns import (
+from tradix.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
+from tradix.advisor.learnedPatterns import (
     REGIME_STRATEGY_MAP,
     STRATEGY_PARAM_ADJUSTMENTS,
     PERFORMANCE_BENCHMARKS,
@@ -40,9 +40,9 @@ from tradex.advisor.learnedPatterns import (
     getAdjustedParams,
     getBenchmark,
 )
-from tradex.strategy.base import Strategy
-from tradex.engine import BacktestEngine, BacktestResult
-from tradex.datafeed.feed import DataFeed
+from tradix.strategy.base import Strategy
+from tradix.engine import BacktestEngine, BacktestResult
+from tradix.datafeed.feed import DataFeed
 
 
 @dataclass
@@ -218,7 +218,7 @@ class StrategyAdvisor:
 
     def _registerDefaultStrategies(self):
         """Register the default set of built-in strategies."""
-        from tradex.examples import (
+        from tradix.examples import (
             SmaCrossStrategy,
             MacdStrategy,
             BreakoutStrategy,
@@ -487,7 +487,7 @@ class StrategyAdvisor:
             'forecast' (summary, risk, transition signals), 'futureRecommendations'
             (per-horizon strategy suggestions), 'transitionMatrix', 'regimeStats'.
         """
-        from tradex.advisor.regimeForecaster import RegimeForecaster
+        from tradix.advisor.regimeForecaster import RegimeForecaster
 
         if horizonDays is None:
             horizonDays = [5, 10, 20]

@@ -1,4 +1,4 @@
-# Tradex Examples
+# Tradix Examples
 
 Practical examples from simple to advanced usage.
 
@@ -20,7 +20,7 @@ Practical examples from simple to advanced usage.
 ### 2-Line Backtest
 
 ```python
-from tradex import backtest, goldenCross
+from tradix import backtest, goldenCross
 
 result = backtest("005930", goldenCross())
 print(result.summary())
@@ -40,7 +40,7 @@ Total Trades: 24
 ### Using Korean Stock Names
 
 ```python
-from tradex import backtest, rsiOversold
+from tradix import backtest, rsiOversold
 
 result = backtest("삼성전자", rsiOversold())
 print(f"Return: {result.totalReturn:+.2f}%")
@@ -53,7 +53,7 @@ print(f"Return: {result.totalReturn:+.2f}%")
 ### Golden Cross (SMA Crossover)
 
 ```python
-from tradex import backtest, goldenCross
+from tradix import backtest, goldenCross
 
 # Default: fast=10, slow=30
 result = backtest("005930", goldenCross())
@@ -65,7 +65,7 @@ result = backtest("005930", goldenCross(fast=5, slow=20, stopLoss=5, takeProfit=
 ### RSI Oversold
 
 ```python
-from tradex import backtest, rsiOversold
+from tradix import backtest, rsiOversold
 
 # Buy when RSI crosses above oversold, sell when crosses below overbought
 result = backtest("005930", rsiOversold(period=14, oversold=30, overbought=70))
@@ -74,7 +74,7 @@ result = backtest("005930", rsiOversold(period=14, oversold=30, overbought=70))
 ### Bollinger Breakout
 
 ```python
-from tradex import backtest, bollingerBreakout
+from tradix import backtest, bollingerBreakout
 
 # Buy on lower band bounce, sell at upper band
 result = backtest("005930", bollingerBreakout(period=20, std=2.0))
@@ -83,7 +83,7 @@ result = backtest("005930", bollingerBreakout(period=20, std=2.0))
 ### MACD Cross
 
 ```python
-from tradex import backtest, macdCross
+from tradix import backtest, macdCross
 
 result = backtest("005930", macdCross(fast=12, slow=26, signal=9))
 ```
@@ -91,7 +91,7 @@ result = backtest("005930", macdCross(fast=12, slow=26, signal=9))
 ### Trend Following
 
 ```python
-from tradex import backtest, trendFollowing
+from tradix import backtest, trendFollowing
 
 # SMA crossover filtered by ADX
 result = backtest("005930", trendFollowing(fast=10, slow=30, adxThreshold=25))
@@ -100,7 +100,7 @@ result = backtest("005930", trendFollowing(fast=10, slow=30, adxThreshold=25))
 ### Mean Reversion
 
 ```python
-from tradex import backtest, meanReversion
+from tradix import backtest, meanReversion
 
 result = backtest("005930", meanReversion(period=20, threshold=2.0))
 ```
@@ -112,7 +112,7 @@ result = backtest("005930", meanReversion(period=20, threshold=2.0))
 ### Using QuickStrategy (Declarative)
 
 ```python
-from tradex import QuickStrategy, backtest, sma, rsi, crossover, crossunder
+from tradix import QuickStrategy, backtest, sma, rsi, crossover, crossunder
 
 strategy = (
     QuickStrategy("MyStrategy")
@@ -132,7 +132,7 @@ print(result.summary())
 ### Multiple Conditions
 
 ```python
-from tradex import QuickStrategy, backtest, sma, ema, rsi, macd, crossover
+from tradix import QuickStrategy, backtest, sma, ema, rsi, macd, crossover
 
 # All conditions must be met (AND logic)
 strategy = (
@@ -150,8 +150,8 @@ result = backtest("005930", strategy, period="5년")
 ### Class-Based Strategy (Advanced)
 
 ```python
-from tradex import Strategy, Bar, BacktestEngine
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import Strategy, Bar, BacktestEngine
+from tradix.datafeed import FinanceDataReaderFeed
 
 class TripleScreenStrategy(Strategy):
     """Elder's Triple Screen Trading System"""
@@ -198,7 +198,7 @@ print(result.summary())
 ### Basic Vectorized Backtest
 
 ```python
-from tradex import vbacktest
+from tradix import vbacktest
 
 result = vbacktest("005930", "goldenCross", fast=10, slow=30)
 
@@ -211,7 +211,7 @@ print(f"Trades: {result.totalTrades}")
 ### Using Stop Loss / Take Profit
 
 ```python
-from tradex import vbacktest
+from tradix import vbacktest
 
 result = vbacktest(
     "005930",
@@ -227,7 +227,7 @@ result = vbacktest(
 
 ```python
 import numpy as np
-from tradex import vsma, vema, vrsi, vmacd, vbollinger
+from tradix import vsma, vema, vrsi, vmacd, vbollinger
 
 # Generate sample data
 close = np.random.randn(2500).cumsum() + 100
@@ -247,8 +247,8 @@ print(f"MACD: {macd_line[-1]:.4f}")
 ### Custom Signal Generation
 
 ```python
-from tradex import VectorizedEngine
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import VectorizedEngine
+from tradix.datafeed import FinanceDataReaderFeed
 import numpy as np
 
 # Load data
@@ -281,7 +281,7 @@ print(result.summary())
 ### Grid Search
 
 ```python
-from tradex import voptimize
+from tradix import voptimize
 
 # Test all combinations (45 * 40 = 1,800 combinations)
 best = voptimize(
@@ -304,7 +304,7 @@ for i, r in enumerate(best['top5'], 1):
 ### Multi-Metric Optimization
 
 ```python
-from tradex import voptimize
+from tradix import voptimize
 
 # Optimize for different metrics
 metrics = ["sharpeRatio", "totalReturn", "winRate", "calmarRatio"]
@@ -324,7 +324,7 @@ for metric in metrics:
 ### Robustness Check
 
 ```python
-from tradex import voptimize
+from tradix import voptimize
 
 # Optimize on multiple symbols
 symbols = ["005930", "000660", "035420"]
@@ -355,9 +355,9 @@ print(f"Most robust: fast={fast_votes.most_common(1)[0][0]}, "
 Prevent overfitting with rolling out-of-sample testing.
 
 ```python
-from tradex import WalkForwardAnalyzer, ParameterSpace
-from tradex.datafeed import FinanceDataReaderFeed
-from tradex.easy import goldenCross
+from tradix import WalkForwardAnalyzer, ParameterSpace
+from tradix.datafeed import FinanceDataReaderFeed
+from tradix.easy import goldenCross
 
 def createStrategy(params):
     return goldenCross(fast=params['fast'], slow=params['slow'])
@@ -402,8 +402,8 @@ for period in result.periods:
 ### VaR and CVaR
 
 ```python
-from tradex import vbacktest
-from tradex.risk import RiskSimulator, VaRMethod
+from tradix import vbacktest
+from tradix.risk import RiskSimulator, VaRMethod
 import numpy as np
 
 # Run backtest
@@ -434,7 +434,7 @@ print(f"Monte Carlo VaR: {var_mc.var:.2%}")
 ### Monte Carlo Simulation
 
 ```python
-from tradex.risk import RiskSimulator
+from tradix.risk import RiskSimulator
 import numpy as np
 
 # Historical returns
@@ -459,8 +459,8 @@ print(f"Probability of Loss: {mc.probLoss:.1%}")
 ### Position Sizing
 
 ```python
-from tradex import Strategy, Bar
-from tradex.risk import PercentEquitySizer, KellySizer
+from tradix import Strategy, Bar
+from tradix.risk import PercentEquitySizer, KellySizer
 
 class SizedStrategy(Strategy):
     def initialize(self):
@@ -487,7 +487,7 @@ class SizedStrategy(Strategy):
 ### Basic Multi-Asset
 
 ```python
-from tradex import MultiAssetEngine, MultiAssetStrategy
+from tradix import MultiAssetEngine, MultiAssetStrategy
 
 class EqualWeightStrategy(MultiAssetStrategy):
     """Equal weight rebalancing"""
@@ -509,7 +509,7 @@ print(result.summary())
 ### Momentum Portfolio
 
 ```python
-from tradex import MultiAssetEngine, MultiAssetStrategy
+from tradix import MultiAssetEngine, MultiAssetStrategy
 import numpy as np
 
 class MomentumPortfolio(MultiAssetStrategy):
@@ -559,12 +559,12 @@ Production-ready trading strategy with:
 - Walk-forward validation
 """
 
-from tradex import (
+from tradix import (
     vbacktest, voptimize, WalkForwardAnalyzer, ParameterSpace,
     QuickStrategy, backtest, sma, ema, rsi, atr, crossover, crossunder
 )
-from tradex.datafeed import FinanceDataReaderFeed
-from tradex.risk import RiskSimulator, VaRMethod
+from tradix.datafeed import FinanceDataReaderFeed
+from tradix.risk import RiskSimulator, VaRMethod
 import numpy as np
 
 # 1. Define strategy

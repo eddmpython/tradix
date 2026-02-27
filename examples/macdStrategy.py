@@ -2,8 +2,8 @@
 MacdStrategy - MACD 기반 전략
 """
 
-from tradex.strategy.base import Strategy
-from tradex.entities.bar import Bar
+from tradix.strategy.base import Strategy
+from tradix.entities.bar import Bar
 
 
 class MacdStrategy(Strategy):

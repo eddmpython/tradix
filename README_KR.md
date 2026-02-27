@@ -1,9 +1,9 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=TradeX&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=%ED%80%80%ED%8A%B8%20%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%B4%88%EA%B3%A0%EC%86%8D%20%EB%B0%B1%ED%85%8C%EC%8A%A4%ED%8C%85%20%EC%97%94%EC%A7%84&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=Tradix&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=%ED%80%80%ED%8A%B8%20%ED%8A%B8%EB%A0%88%EC%9D%B4%EB%94%A9%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%B4%88%EA%B3%A0%EC%86%8D%20%EB%B0%B1%ED%85%8C%EC%8A%A4%ED%8C%85%20%EC%97%94%EC%A7%84&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
 
 <p>
-  <a href="https://pypi.org/project/tradex-backtest/"><img src="https://img.shields.io/pypi/v/tradex-backtest?style=flat-square&color=blue" alt="PyPI"></a>
+  <a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=flat-square&color=blue" alt="PyPI"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
   <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
@@ -22,10 +22,10 @@
 
 ---
 
-Tradex는 속도와 간결함을 위해 밑바닥부터 설계된 고성능 백테스팅 라이브러리입니다. NumPy 벡터화 연산 기반으로, **1,000개 파라미터 최적화를 0.02초**에 처리합니다. Numba도, C 확장도 없이 순수 Python으로.
+Tradix는 속도와 간결함을 위해 밑바닥부터 설계된 고성능 백테스팅 라이브러리입니다. NumPy 벡터화 연산 기반으로, **1,000개 파라미터 최적화를 0.02초**에 처리합니다. Numba도, C 확장도 없이 순수 Python으로.
 
 ```python
-from tradex import 백테스트, 골든크로스
+from tradix import 백테스트, 골든크로스
 
 결과 = 백테스트("삼성전자", 골든크로스())
 print(결과.요약())
@@ -33,7 +33,7 @@ print(결과.요약())
 
 2줄이면 충분합니다. 수수료, 슬리피지, 성과 지표까지 전부 포함.
 
-## 왜 Tradex인가?
+## 왜 Tradix인가?
 
 | 라이브러리 | 문제점 |
 |-----------|--------|
@@ -43,7 +43,7 @@ print(결과.요약())
 | **LEAN** | C# 기반, Docker 필요, 학습 곡선 높음 |
 | **bt** | 포지션 사이징 없음, 거래비용 미반영 |
 
-Tradex는 이 모든 기능을 **무료, MIT 라이선스**로 제공합니다. 한국 주식 시장에 특화된 설계는 덤입니다.
+Tradix는 이 모든 기능을 **무료, MIT 라이선스**로 제공합니다. 한국 주식 시장에 특화된 설계는 덤입니다.
 
 ## 주요 기능
 
@@ -74,31 +74,31 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Tradex 설치:
+Tradix 설치:
 
 ```bash
-# 새 프로젝트 생성 후 tradex 추가
+# 새 프로젝트 생성 후 tradix 추가
 uv init my-backtest && cd my-backtest
-uv add tradex-backtest
+uv add tradix
 
 # 전체 기능 포함 (scipy, plotly, statsmodels, scikit-learn)
-uv add "tradex-backtest[full]"
+uv add "tradix[full]"
 ```
 
 ### pip 사용
 
 ```bash
-pip install tradex-backtest
+pip install tradix
 
 # 전체 기능 포함
-pip install "tradex-backtest[full]"
+pip install "tradix[full]"
 ```
 
 ### 소스에서 설치 (개발용)
 
 ```bash
-git clone https://github.com/eddmpython/tradex.git
-cd tradex
+git clone https://github.com/eddmpython/tradix.git
+cd tradix
 
 # uv 사용
 uv sync --dev
@@ -116,7 +116,7 @@ pip install -e ".[dev]"
 프리셋 전략으로 가장 간단하게 백테스트 실행:
 
 ```python
-from tradex import 백테스트, 골든크로스
+from tradix import 백테스트, 골든크로스
 
 결과 = 백테스트("삼성전자", 골든크로스())
 print(결과.요약())
@@ -139,7 +139,7 @@ print(결과.요약())
 영어 API도 동일하게 동작합니다:
 
 ```python
-from tradex import backtest, goldenCross
+from tradix import backtest, goldenCross
 
 result = backtest("005930", goldenCross())
 print(result.summary())
@@ -150,7 +150,7 @@ print(result.summary())
 전체 가격 히스토리를 한 번에 계산:
 
 ```python
-from tradex import vbacktest
+from tradix import vbacktest
 
 result = vbacktest("005930", "goldenCross", fast=10, slow=30)
 print(f"수익률: {result.totalReturn:+.2f}%")
@@ -163,7 +163,7 @@ print(f"최대낙폭: {result.maxDrawdown:.2f}%")
 보일러플레이트 없이 메서드 체이닝으로 전략 구성:
 
 ```python
-from tradex import QuickStrategy, backtest, sma, rsi, crossover, crossunder
+from tradix import QuickStrategy, backtest, sma, rsi, crossover, crossunder
 
 strategy = (
     QuickStrategy("모멘텀RSI")
@@ -184,8 +184,8 @@ print(result.summary())
 최대 유연성을 위한 전략 클래스 직접 작성:
 
 ```python
-from tradex import Strategy, Bar, BacktestEngine
-from tradex.datafeed import FinanceDataReaderFeed
+from tradix import Strategy, Bar, BacktestEngine
+from tradix.datafeed import FinanceDataReaderFeed
 
 class 듀얼모멘텀(Strategy):
     def initialize(self):
@@ -215,7 +215,7 @@ print(result.summary())
 몇 초 만에 최적 파라미터 탐색:
 
 ```python
-from tradex import voptimize
+from tradix import voptimize
 
 best = voptimize(
     "005930",
@@ -234,7 +234,7 @@ print(f"샤프: {best['best']['metric']:.2f}")
 표본 외 검증으로 과적합 방지:
 
 ```python
-from tradex import WalkForwardAnalyzer, ParameterSpace
+from tradix import WalkForwardAnalyzer, ParameterSpace
 
 space = ParameterSpace()
 space.addInt("fast", 5, 20, step=5)
@@ -255,7 +255,7 @@ print(f"견고성: {result.robustnessRatio:.1%}")
 ### 7. 멀티 자산 포트폴리오
 
 ```python
-from tradex import MultiAssetEngine, MultiAssetStrategy
+from tradix import MultiAssetEngine, MultiAssetStrategy
 
 class 균등배분(MultiAssetStrategy):
     def onBars(self, bars):
@@ -273,7 +273,7 @@ print(result.summary())
 ### 8. 리스크 시뮬레이션
 
 ```python
-from tradex.risk import RiskSimulator, VaRMethod
+from tradix.risk import RiskSimulator, VaRMethod
 
 simulator = RiskSimulator()
 simulator.fit(returns)
@@ -360,7 +360,7 @@ mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 ## 아키텍처
 
 ```
-tradex/
+tradix/
 ├── engine.py              # 핵심 백테스트 엔진
 ├── multiAssetEngine.py    # 멀티 자산 포트폴리오 엔진
 ├── strategy/              # 전략 베이스 + 50+ 지표 + 앙상블 결합기
@@ -396,8 +396,8 @@ pytest
 기여는 언제나 환영합니다! Issue와 Pull Request를 자유롭게 올려주세요.
 
 ```bash
-git clone https://github.com/eddmpython/tradex.git
-cd tradex
+git clone https://github.com/eddmpython/tradix.git
+cd tradix
 
 # uv 사용 (권장)
 uv sync --dev
@@ -410,7 +410,7 @@ pytest
 
 ## 후원하기
 
-Tradex가 트레이딩 리서치에 도움이 되셨다면, 프로젝트를 후원해 주세요:
+Tradix가 트레이딩 리서치에 도움이 되셨다면, 프로젝트를 후원해 주세요:
 
 <p>
   <a href="https://buymeacoffee.com/eddmpython" target="_blank">

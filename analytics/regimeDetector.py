@@ -20,8 +20,8 @@ Features:
     - Bilingual summary (Korean / English)
 
 Usage:
-    from tradex.analytics.regimeDetector import RegimeDetector
-    from tradex.engine import BacktestResult
+    from tradix.analytics.regimeDetector import RegimeDetector
+    from tradix.engine import BacktestResult
 
     detector = RegimeDetector()
     analysis = detector.analyze(result, nRegimes=3)
@@ -36,8 +36,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import multivariate_normal
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 REGIME_LABELS = {

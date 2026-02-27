@@ -1,5 +1,5 @@
 """
-Tradex Slippage Models Module.
+Tradix Slippage Models Module.
 
 Provides slippage simulation models to account for the difference between
 expected and actual fill prices during backtesting.
@@ -15,7 +15,7 @@ Features:
     - Zero-slippage model for frictionless testing
 
 Usage:
-    >>> from tradex.broker.slippage import PercentSlippage
+    >>> from tradix.broker.slippage import PercentSlippage
     >>> slippage_model = PercentSlippage(rate=0.001)
     >>> adjusted_price = slippage_model.apply(price=50000.0, order=order, bar=bar)
 """
@@ -24,8 +24,8 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 import random
 
-from tradex.entities.order import Order, OrderSide
-from tradex.entities.bar import Bar
+from tradix.entities.order import Order, OrderSide
+from tradix.entities.bar import Bar
 
 
 class SlippageModel(ABC):

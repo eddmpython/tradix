@@ -1,5 +1,5 @@
 """
-Tradex Walk-Forward Analyzer Module.
+Tradix Walk-Forward Analyzer Module.
 
 Implements walk-forward analysis for robust strategy validation. Splits
 historical data into sequential in-sample (optimization) and out-of-sample
@@ -19,7 +19,7 @@ Features:
     - Overfitting detection and interpretation
 
 Usage:
-    from tradex.walkforward import WalkForwardAnalyzer
+    from tradix.walkforward import WalkForwardAnalyzer
 
     wfa = WalkForwardAnalyzer(
         data=data_feed,
@@ -39,13 +39,13 @@ import time
 import numpy as np
 import pandas as pd
 
-from tradex.walkforward.splitter import PeriodSplitter
-from tradex.optimize.space import ParameterSpace
-from tradex.optimize.optimizer import Optimizer
-from tradex.datafeed.feed import DataFeed
-from tradex.datafeed.fdr import FinanceDataReaderFeed
-from tradex.strategy.base import Strategy
-from tradex.engine import BacktestEngine, BacktestResult
+from tradix.walkforward.splitter import PeriodSplitter
+from tradix.optimize.space import ParameterSpace
+from tradix.optimize.optimizer import Optimizer
+from tradix.datafeed.feed import DataFeed
+from tradix.datafeed.fdr import FinanceDataReaderFeed
+from tradix.strategy.base import Strategy
+from tradix.engine import BacktestEngine, BacktestResult
 
 
 @dataclass

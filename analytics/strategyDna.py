@@ -1,6 +1,6 @@
 """
-Tradex Strategy DNA Module - 12-dimensional strategy fingerprinting.
-Tradex 전략 DNA 모듈 - 12차원 전략 지문(fingerprint) 분석.
+Tradix Strategy DNA Module - 12-dimensional strategy fingerprinting.
+Tradix 전략 DNA 모듈 - 12차원 전략 지문(fingerprint) 분석.
 
 Extracts a unique 12-dimensional vector fingerprint from any backtest result,
 enabling quantitative strategy comparison, classification, and similarity
@@ -33,7 +33,7 @@ Features:
     - Nearest-neighbor search across strategy populations
 
 Usage:
-    from tradex.analytics.strategyDna import StrategyDnaAnalyzer
+    from tradix.analytics.strategyDna import StrategyDnaAnalyzer
 
     analyzer = StrategyDnaAnalyzer()
     dna = analyzer.analyze(backtestResult)
@@ -46,8 +46,8 @@ from typing import List, Tuple, Dict, Any
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 DIMENSION_NAMES = [

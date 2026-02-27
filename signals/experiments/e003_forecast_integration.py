@@ -39,8 +39,8 @@ from dataclasses import dataclass
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
-from tradex.signals import SignalPredictor
-from tradex.signals.backtest import SignalBacktester, quickEvaluate
+from tradix.signals import SignalPredictor
+from tradix.signals.backtest import SignalBacktester, quickEvaluate
 
 
 @dataclass

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Tradex Information Theory Signal Analysis Module.
-Tradex 정보이론 시그널 분석 모듈.
+Tradix Information Theory Signal Analysis Module.
+Tradix 정보이론 시그널 분석 모듈.
 
 Measures signal quality using Shannon Entropy, Mutual Information, and
 Transfer Entropy. Quantifies the non-linear information content between
@@ -21,7 +21,7 @@ Features:
     - Freedman-Diaconis rule for optimal histogram binning
 
 Usage:
-    from tradex.analytics.informationTheory import InformationTheoryAnalyzer
+    from tradix.analytics.informationTheory import InformationTheoryAnalyzer
 
     analyzer = InformationTheoryAnalyzer()
     result = analyzer.analyze(backtestResult)
@@ -34,7 +34,7 @@ from typing import Dict, List, Optional
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
+from tradix.engine import BacktestResult
 
 
 QUALITY_THRESHOLDS = {

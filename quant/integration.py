@@ -1,10 +1,10 @@
-"""Tradex Regime-Factor Integration Module.
+"""Tradix Regime-Factor Integration Module.
 
-Bridges Tradex's learned patterns and regime forecasting with quantitative
+Bridges Tradix's learned patterns and regime forecasting with quantitative
 factor analysis, enabling regime-conditional factor exposure optimization
 and adaptive rebalancing.
 
-레짐-팩터 통합 모듈 - Tradex의 학습된 패턴과 레짐 예측을 팩터 분석과 연결하여,
+레짐-팩터 통합 모듈 - Tradix의 학습된 패턴과 레짐 예측을 팩터 분석과 연결하여,
 레짐별 팩터 효과를 분석하고 적응형 팩터 전략을 제공합니다.
 
 Features:
@@ -12,10 +12,10 @@ Features:
     - Optimal factor exposure recommendation by market regime
     - Regime-transition-based rebalancing suggestions
     - Adaptive factor strategy with built-in backtesting
-    - Integration with Tradex's REGIME_STRATEGY_MAP for synergy
+    - Integration with Tradix's REGIME_STRATEGY_MAP for synergy
 
 Usage:
-    from tradex.quant.integration import RegimeFactorIntegration
+    from tradix.quant.integration import RegimeFactorIntegration
 
     integration = RegimeFactorIntegration()
     integration.fit(price_data, factor_returns)
@@ -29,10 +29,10 @@ from enum import Enum
 import pandas as pd
 import numpy as np
 
-from tradex.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
-from tradex.advisor.regimeForecaster import RegimeForecaster, RegimeForecast
-from tradex.advisor.learnedPatterns import REGIME_STRATEGY_MAP
-from tradex.quant.factor import FactorAnalyzer, FactorResult, Factor
+from tradix.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
+from tradix.advisor.regimeForecaster import RegimeForecaster, RegimeForecast
+from tradix.advisor.learnedPatterns import REGIME_STRATEGY_MAP
+from tradix.quant.factor import FactorAnalyzer, FactorResult, Factor
 
 
 @dataclass
@@ -104,13 +104,13 @@ class AdaptiveFactorResult:
 
 
 class RegimeFactorIntegration:
-    """Integrates Tradex regime forecasting with quantitative factor analysis.
+    """Integrates Tradix regime forecasting with quantitative factor analysis.
 
     Learns per-regime factor effectiveness from historical data, recommends
     optimal factor exposures for the current or predicted regime, and suggests
     rebalancing actions when regime transitions are forecasted.
 
-    Tradex의 학습된 패턴과 레짐 예측을 팩터 분석과 연결하여,
+    Tradix의 학습된 패턴과 레짐 예측을 팩터 분석과 연결하여,
     레짐별 최적 팩터 노출을 제안하고 리밸런싱을 안내합니다.
 
     Attributes:

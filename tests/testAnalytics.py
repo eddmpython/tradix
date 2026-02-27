@@ -10,9 +10,9 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
-from tradex.entities.order import OrderSide
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
+from tradix.entities.order import OrderSide
 
 
 def _makeTrade(entryPrice, exitPrice, quantity=100, daysHeld=5, idx=0):
@@ -76,7 +76,7 @@ class TestMonteCarloStress:
     """Test MonteCarloStressAnalyzer."""
 
     def testBasicAnalysis(self):
-        from tradex.analytics.monteCarloStress import MonteCarloStressAnalyzer
+        from tradix.analytics.monteCarloStress import MonteCarloStressAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = MonteCarloStressAnalyzer()
         mc = analyzer.analyze(result, paths=100)
@@ -89,7 +89,7 @@ class TestMonteCarloStress:
         assert mc.worstCase <= mc.medianReturn <= mc.bestCase
 
     def testConfidenceBands(self):
-        from tradex.analytics.monteCarloStress import MonteCarloStressAnalyzer
+        from tradix.analytics.monteCarloStress import MonteCarloStressAnalyzer
         result = _makeResult(nTrades=30)
         analyzer = MonteCarloStressAnalyzer()
         mc = analyzer.analyze(result, paths=500)
@@ -98,7 +98,7 @@ class TestMonteCarloStress:
             assert level in mc.confidenceBands
 
     def testFewTrades(self):
-        from tradex.analytics.monteCarloStress import MonteCarloStressAnalyzer
+        from tradix.analytics.monteCarloStress import MonteCarloStressAnalyzer
         result = _makeResult(nTrades=3)
         analyzer = MonteCarloStressAnalyzer()
         mc = analyzer.analyze(result, paths=100)
@@ -106,7 +106,7 @@ class TestMonteCarloStress:
         assert mc.paths == 100
 
     def testSummary(self):
-        from tradex.analytics.monteCarloStress import MonteCarloStressAnalyzer
+        from tradix.analytics.monteCarloStress import MonteCarloStressAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = MonteCarloStressAnalyzer()
         mc = analyzer.analyze(result, paths=100)
@@ -121,7 +121,7 @@ class TestFractalAnalysis:
     """Test FractalAnalyzer."""
 
     def testBasicAnalysis(self):
-        from tradex.analytics.fractalAnalysis import FractalAnalyzer
+        from tradix.analytics.fractalAnalysis import FractalAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = FractalAnalyzer()
         fractal = analyzer.analyze(result)
@@ -132,7 +132,7 @@ class TestFractalAnalysis:
         assert 0.0 <= fractal.confidence <= 1.0
 
     def testStrategyFit(self):
-        from tradex.analytics.fractalAnalysis import FractalAnalyzer
+        from tradix.analytics.fractalAnalysis import FractalAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = FractalAnalyzer()
         fractal = analyzer.analyze(result)
@@ -143,7 +143,7 @@ class TestFractalAnalysis:
             assert 0 <= score <= 100
 
     def testHurstByPeriod(self):
-        from tradex.analytics.fractalAnalysis import FractalAnalyzer
+        from tradix.analytics.fractalAnalysis import FractalAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = FractalAnalyzer()
         fractal = analyzer.analyze(result)
@@ -151,7 +151,7 @@ class TestFractalAnalysis:
         assert isinstance(fractal.hurstByPeriod, dict)
 
     def testSummary(self):
-        from tradex.analytics.fractalAnalysis import FractalAnalyzer
+        from tradix.analytics.fractalAnalysis import FractalAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = FractalAnalyzer()
         fractal = analyzer.analyze(result)
@@ -164,7 +164,7 @@ class TestRegimeDetector:
     """Test RegimeDetector."""
 
     def testBasicAnalysis(self):
-        from tradex.analytics.regimeDetector import RegimeDetector
+        from tradix.analytics.regimeDetector import RegimeDetector
         result = _makeResult(nTrades=20)
         analyzer = RegimeDetector()
         regime = analyzer.analyze(result, nRegimes=3)
@@ -175,7 +175,7 @@ class TestRegimeDetector:
         assert isinstance(regime.regimeDistribution, dict)
 
     def testRegimeReturns(self):
-        from tradex.analytics.regimeDetector import RegimeDetector
+        from tradix.analytics.regimeDetector import RegimeDetector
         result = _makeResult(nTrades=20)
         analyzer = RegimeDetector()
         regime = analyzer.analyze(result)
@@ -184,7 +184,7 @@ class TestRegimeDetector:
         assert isinstance(regime.regimeSharpe, dict)
 
     def testTransitionMatrix(self):
-        from tradex.analytics.regimeDetector import RegimeDetector
+        from tradix.analytics.regimeDetector import RegimeDetector
         result = _makeResult(nTrades=20)
         analyzer = RegimeDetector()
         regime = analyzer.analyze(result)
@@ -194,7 +194,7 @@ class TestRegimeDetector:
             assert abs(total - 1.0) < 0.01 or total == 0
 
     def testSummary(self):
-        from tradex.analytics.regimeDetector import RegimeDetector
+        from tradix.analytics.regimeDetector import RegimeDetector
         result = _makeResult(nTrades=20)
         analyzer = RegimeDetector()
         regime = analyzer.analyze(result)
@@ -207,7 +207,7 @@ class TestInformationTheory:
     """Test InformationTheoryAnalyzer."""
 
     def testBasicAnalysis(self):
-        from tradex.analytics.informationTheory import InformationTheoryAnalyzer
+        from tradix.analytics.informationTheory import InformationTheoryAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = InformationTheoryAnalyzer()
         info = analyzer.analyze(result)
@@ -219,7 +219,7 @@ class TestInformationTheory:
         assert 0.0 <= info.redundancy <= 1.0
 
     def testSignalQuality(self):
-        from tradex.analytics.informationTheory import InformationTheoryAnalyzer
+        from tradix.analytics.informationTheory import InformationTheoryAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = InformationTheoryAnalyzer()
         info = analyzer.analyze(result)
@@ -227,7 +227,7 @@ class TestInformationTheory:
         assert info.signalQuality in ("excellent", "good", "moderate", "poor", "noise")
 
     def testSummary(self):
-        from tradex.analytics.informationTheory import InformationTheoryAnalyzer
+        from tradix.analytics.informationTheory import InformationTheoryAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = InformationTheoryAnalyzer()
         info = analyzer.analyze(result)
@@ -240,7 +240,7 @@ class TestPortfolioStress:
     """Test PortfolioStressAnalyzer."""
 
     def testBasicAnalysis(self):
-        from tradex.analytics.portfolioStress import PortfolioStressAnalyzer
+        from tradix.analytics.portfolioStress import PortfolioStressAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = PortfolioStressAnalyzer()
         stress = analyzer.analyze(result)
@@ -251,7 +251,7 @@ class TestPortfolioStress:
         assert stress.overallGrade in ("A+", "A", "B", "C", "D", "F")
 
     def testScenarioNames(self):
-        from tradex.analytics.portfolioStress import PortfolioStressAnalyzer
+        from tradix.analytics.portfolioStress import PortfolioStressAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = PortfolioStressAnalyzer()
         stress = analyzer.analyze(result)
@@ -264,7 +264,7 @@ class TestPortfolioStress:
             assert name in stress.scenarios
 
     def testRecoveryTimes(self):
-        from tradex.analytics.portfolioStress import PortfolioStressAnalyzer
+        from tradix.analytics.portfolioStress import PortfolioStressAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = PortfolioStressAnalyzer()
         stress = analyzer.analyze(result)
@@ -274,7 +274,7 @@ class TestPortfolioStress:
             assert days >= 0
 
     def testSummary(self):
-        from tradex.analytics.portfolioStress import PortfolioStressAnalyzer
+        from tradix.analytics.portfolioStress import PortfolioStressAnalyzer
         result = _makeResult(nTrades=20)
         analyzer = PortfolioStressAnalyzer()
         stress = analyzer.analyze(result)

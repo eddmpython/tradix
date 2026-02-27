@@ -1,7 +1,7 @@
 """
-Tradex Easy API Package - Simple, accessible backtesting for everyone.
+Tradix Easy API Package - Simple, accessible backtesting for everyone.
 
-Provides a unified entry point for Tradex's simplified backtesting API
+Provides a unified entry point for Tradix's simplified backtesting API
 with three skill levels: Level 1 (one-liner presets for beginners),
 Level 2 (declarative strategy builder for intermediate users), and
 Level 3 (full Strategy subclassing for advanced users). Supports both
@@ -21,24 +21,24 @@ Features:
 
 Usage:
     >>> # Level 1: One-liner preset backtest
-    >>> from tradex.easy import backtest, goldenCross
+    >>> from tradix.easy import backtest, goldenCross
     >>> result = backtest("005930", goldenCross())
     >>> print(result.totalReturn)
     >>>
     >>> # Level 1: Korean API
-    >>> from tradex.easy import 백테스트, 골든크로스
+    >>> from tradix.easy import 백테스트, 골든크로스
     >>> 결과 = 백테스트("삼성전자", 골든크로스())
     >>> print(결과.수익률)
     >>>
     >>> # Level 2: Declarative strategy builder
-    >>> from tradex.easy import backtest, QuickStrategy, sma, crossover
+    >>> from tradix.easy import backtest, QuickStrategy, sma, crossover
     >>> strategy = QuickStrategy("My Strategy").buyWhen(crossover(sma(10), sma(30))).stopLoss(5)
     >>> result = backtest("005930", strategy)
 """
 
-from tradex.easy.api import backtest, optimize, quickTest
-from tradex.easy.quick import QuickStrategy
-from tradex.easy.presets import (
+from tradix.easy.api import backtest, optimize, quickTest
+from tradix.easy.quick import QuickStrategy
+from tradix.easy.presets import (
     goldenCross,
     rsiOversold,
     bollingerBreakout,
@@ -73,7 +73,7 @@ from tradex.easy.presets import (
     buyAndHold,
     dollarCostAverage,
 )
-from tradex.easy.korean import (
+from tradix.easy.korean import (
     백테스트, 최적화, 빠른테스트, 전략,
     골든크로스, RSI과매도, 볼린저돌파, MACD크로스,
     돌파전략, 평균회귀, 추세추종, EMA크로스,
@@ -84,7 +84,7 @@ from tradex.easy.korean import (
     MACD_RSI콤보, 추세모멘텀, 볼린저RSI, 갭트레이딩,
     피라미딩, 스윙트레이딩, 스캘핑모멘텀, 바이앤홀드, 적립식투자,
 )
-from tradex.easy.conditions import (
+from tradix.easy.conditions import (
     sma,
     ema,
     rsi,

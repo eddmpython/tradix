@@ -21,8 +21,8 @@ Features:
     - Full diagnostic report with detailed metric breakdowns
 
 Usage:
-    from tradex.analytics.strategyHealth import StrategyHealthAnalyzer
-    from tradex.engine import BacktestResult
+    from tradix.analytics.strategyHealth import StrategyHealthAnalyzer
+    from tradix.engine import BacktestResult
 
     analyzer = StrategyHealthAnalyzer()
     score = analyzer.analyze(result)
@@ -38,8 +38,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats as scipyStats
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 OVERFITTING_WEIGHT = 0.25

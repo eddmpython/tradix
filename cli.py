@@ -1,17 +1,17 @@
 """
-Tradex CLI - Terminal command-line interface.
+Tradix CLI - Terminal command-line interface.
 
-Provides `tradex` command with subcommands for backtesting, optimization,
+Provides `tradix` command with subcommands for backtesting, optimization,
 and chart visualization directly from the terminal.
 
 Usage:
-    tradex backtest AAPL --strategy goldenCross
-    tradex backtest 삼성전자 --strategy rsiOversold --period 5년
-    tradex optimize AAPL --strategy goldenCross --fast 5-20 --slow 20-60
-    tradex chart AAPL --period 1년
-    tradex compare AAPL --strategies goldenCross,rsiOversold,macdCross
+    tradix backtest AAPL --strategy goldenCross
+    tradix backtest 삼성전자 --strategy rsiOversold --period 5년
+    tradix optimize AAPL --strategy goldenCross --fast 5-20 --slow 20-60
+    tradix chart AAPL --period 1년
+    tradix compare AAPL --strategies goldenCross,rsiOversold,macdCross
 
-Tradex CLI - 터미널 명령줄 인터페이스.
+Tradix CLI - 터미널 명령줄 인터페이스.
 """
 
 from typing import Optional, List
@@ -19,7 +19,7 @@ import typer
 from rich.console import Console
 
 app = typer.Typer(
-    name="tradex",
+    name="tradix",
     help="Blazing-fast backtesting engine for quantitative trading.",
     no_args_is_help=True,
     rich_markup_mode="rich",
@@ -97,7 +97,7 @@ STRATEGY_MAP = {
 
 
 def _getPreset(name: str):
-    from tradex.easy.presets import (
+    from tradix.easy.presets import (
         goldenCross, rsiOversold, bollingerBreakout,
         macdCross, breakout, meanReversion, trendFollowing,
         emaCross, tripleScreen, dualMomentum,
@@ -150,7 +150,7 @@ def _getPreset(name: str):
     if fn is None:
         console.print(f"[red]Unknown strategy: {name}[/red]")
         console.print(f"[dim]Available: {', '.join(sorted(presets.keys()))}[/dim]")
-        console.print("[dim]Run 'tradex list' to see all strategies.[/dim]")
+        console.print("[dim]Run 'tradix list' to see all strategies.[/dim]")
         raise typer.Exit(1)
     return fn
 
@@ -170,14 +170,14 @@ def backtest(
 
     \b
     Examples:
-        tradex backtest AAPL
-        tradex backtest 삼성전자 -s goldenCross -p 5년 --chart
-        tradex backtest AAPL -s rsiOversold --dashboard
-        tradex backtest AAPL -s bollingerSqueeze --style bloomberg
+        tradix backtest AAPL
+        tradix backtest 삼성전자 -s goldenCross -p 5년 --chart
+        tradix backtest AAPL -s rsiOversold --dashboard
+        tradix backtest AAPL -s bollingerSqueeze --style bloomberg
     """
-    from tradex.easy import backtest as _backtest
-    from tradex.tui.console import printResult
-    from tradex.tui.charts import plotEquityCurve, plotDashboard
+    from tradix.easy import backtest as _backtest
+    from tradix.tui.console import printResult
+    from tradix.tui.charts import plotEquityCurve, plotDashboard
 
     preset_fn = _getPreset(strategy)
     strat = preset_fn()
@@ -206,12 +206,12 @@ def optimize(
 
     \b
     Examples:
-        tradex optimize AAPL -s goldenCross
-        tradex optimize 삼성전자 -s macdCross -m totalReturn
+        tradix optimize AAPL -s goldenCross
+        tradix optimize 삼성전자 -s macdCross -m totalReturn
     """
-    from tradex.easy import optimize as _optimize
-    from tradex.tui.console import printResult, printComparison
-    from tradex.tui.progress import optimizeProgress
+    from tradix.easy import optimize as _optimize
+    from tradix.tui.console import printResult, printComparison
+    from tradix.tui.progress import optimizeProgress
     from rich.table import Table
     from rich import box
 
@@ -256,12 +256,12 @@ def chart_cmd(
 
     \b
     Examples:
-        tradex chart AAPL
-        tradex chart 삼성전자 -p 6개월 -n 60
+        tradix chart AAPL
+        tradix chart 삼성전자 -p 6개월 -n 60
     """
-    from tradex.easy.api import _resolveSymbol, _resolvePeriod
-    from tradex.datafeed.fdr import FinanceDataReaderFeed
-    from tradex.tui.charts import plotCandlestick
+    from tradix.easy.api import _resolveSymbol, _resolvePeriod
+    from tradix.datafeed.fdr import FinanceDataReaderFeed
+    from tradix.tui.charts import plotCandlestick
 
     ticker = _resolveSymbol(symbol)
     start, end = _resolvePeriod(period)
@@ -293,11 +293,11 @@ def compare(
 
     \b
     Examples:
-        tradex compare AAPL
-        tradex compare 삼성전자 -s goldenCross,rsiOversold,macdCross -l ko
+        tradix compare AAPL
+        tradix compare 삼성전자 -s goldenCross,rsiOversold,macdCross -l ko
     """
-    from tradex.easy import backtest as _backtest
-    from tradex.tui.console import printComparison
+    from tradix.easy import backtest as _backtest
+    from tradix.tui.console import printComparison
 
     strat_names = [s.strip() for s in strategies.split(",")]
     results = []
@@ -320,9 +320,9 @@ def compare(
 
 @app.command()
 def version():
-    """Show Tradex version."""
-    from tradex.version import CURRENT_VERSION
-    console.print(f"[bold cyan]Tradex[/bold cyan] v{CURRENT_VERSION}")
+    """Show Tradix version."""
+    from tradix.version import CURRENT_VERSION
+    console.print(f"[bold cyan]Tradix[/bold cyan] v{CURRENT_VERSION}")
 
 
 @app.command(name="list")

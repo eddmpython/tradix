@@ -2,18 +2,18 @@
 Textual-based interactive TUI dashboard for backtest results.
 
 5-screen interactive dashboard with Overview, Metrics, Trades, Charts, Compare.
-Requires `tradex[tui]` extras: textual, textual-plotext.
+Requires `tradix[tui]` extras: textual, textual-plotext.
 
 Textual 기반 대화형 TUI 대시보드 (5개 화면).
 개요, 지표, 거래, 차트, 비교 뷰를 제공합니다.
-`tradex[tui]` 설치 시 사용 가능.
+`tradix[tui]` 설치 시 사용 가능.
 """
 
 from typing import Any, Dict, List, Optional
 
 
 LABELS_EN = {
-    "header": "TRADEX",
+    "header": "TRADIX",
     "overview": "Overview",
     "metrics": "Metrics",
     "trades": "Trades",
@@ -81,14 +81,14 @@ LABELS_EN = {
     "days": "days",
     "noCompare": "No comparison data. Pass compareResults to launchDashboard().",
     "installMsg": "Textual not installed. Install with:",
-    "installCmd": "pip install tradex-backtest[tui]",
+    "installCmd": "pip install tradix-backtest[tui]",
     "quit": "Quit",
     "theme": "Theme",
     "help": "Help",
 }
 
 LABELS_KO = {
-    "header": "TRADEX",
+    "header": "TRADIX",
     "overview": "개요",
     "metrics": "지표",
     "trades": "거래",
@@ -156,7 +156,7 @@ LABELS_KO = {
     "days": "일",
     "noCompare": "비교 데이터 없음. launchDashboard()에 compareResults를 전달하세요.",
     "installMsg": "Textual 미설치. 설치 명령:",
-    "installCmd": "pip install tradex-backtest[tui]",
+    "installCmd": "pip install tradix-backtest[tui]",
     "quit": "종료",
     "theme": "테마",
     "help": "도움말",
@@ -589,9 +589,9 @@ def launchDashboard(
                     )
                 p.hline(100, color="gray")
 
-    class TradexDashboard(App):
-        """Tradex interactive backtest dashboard.
-        Tradex 대화형 백테스트 대시보드."""
+    class TradixDashboard(App):
+        """Tradix interactive backtest dashboard.
+        Tradix 대화형 백테스트 대시보드."""
 
         CSS = """
         Screen {
@@ -780,7 +780,7 @@ def launchDashboard(
         }
         """
 
-        TITLE = "Tradex Dashboard"
+        TITLE = "Tradix Dashboard"
 
         BINDINGS = [
             Binding("1", "switch_view('overview')", "Overview", show=True),
@@ -929,7 +929,7 @@ def launchDashboard(
             else:
                 with Horizontal(id="overview-main"):
                     yield Static(
-                        "textual-plotext not installed.\npip install tradex-backtest[tui]",
+                        "textual-plotext not installed.\npip install tradix-backtest[tui]",
                         classes="no-plotext-msg",
                     )
                     yield self._buildStatsSidebar()
@@ -1092,7 +1092,7 @@ def launchDashboard(
                 yield EquityMarkersChartWidget(r, id="equity-markers-chart")
             else:
                 yield Static(
-                    "textual-plotext not installed.\npip install tradex-backtest[tui]",
+                    "textual-plotext not installed.\npip install tradix-backtest[tui]",
                     classes="no-plotext-msg",
                 )
 
@@ -1107,7 +1107,7 @@ def launchDashboard(
                 yield EquityOverlayWidget(allResults, id="equity-overlay-chart")
             else:
                 yield Static(
-                    "textual-plotext not installed.\npip install tradex-backtest[tui]",
+                    "textual-plotext not installed.\npip install tradix-backtest[tui]",
                     classes="no-plotext-msg",
                 )
 
@@ -1364,5 +1364,5 @@ def launchDashboard(
             detailPanel.add_class("visible")
             self._detailVisible = True
 
-    dashboard = TradexDashboard()
+    dashboard = TradixDashboard()
     dashboard.run()

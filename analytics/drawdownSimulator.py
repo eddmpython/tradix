@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Tradex Drawdown Simulator Module.
+Tradix Drawdown Simulator Module.
 
 Simulates and analyzes historical drawdown scenarios from backtest results,
 providing comprehensive drawdown metrics including magnitude, duration,
@@ -18,7 +18,7 @@ Features:
     - Pain Index, Ulcer Index, and Calmar Ratio calculation
 
 Usage:
-    from tradex.analytics.drawdownSimulator import DrawdownSimulator
+    from tradix.analytics.drawdownSimulator import DrawdownSimulator
 
     simulator = DrawdownSimulator(result)
     analysis = simulator.analyze()
@@ -31,8 +31,8 @@ from typing import List, Dict, Any, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 TRADING_DAYS_PER_YEAR = 252
 

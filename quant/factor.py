@@ -1,4 +1,4 @@
-"""Tradex Factor Analysis Module.
+"""Tradix Factor Analysis Module.
 
 Provides factor exposure analysis and multi-factor modeling for equity returns,
 following the Fama-French style approach with regime-aware factor adjustment.
@@ -15,7 +15,7 @@ Features:
     - Learned-pattern-based factor weight tuning
 
 Usage:
-    from tradex.quant.factor import FactorAnalyzer, FactorModel
+    from tradix.quant.factor import FactorAnalyzer, FactorModel
 
     analyzer = FactorAnalyzer()
     analyzer.setFactors(factor_returns_df)

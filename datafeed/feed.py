@@ -1,8 +1,8 @@
 """
-Tradex Data Feed Base Module.
+Tradix Data Feed Base Module.
 
 Provides the abstract base class for all data feed implementations in
-Tradex. Defines the common interface for loading, iterating, and
+Tradix. Defines the common interface for loading, iterating, and
 accessing OHLCV bar data from various data sources.
 
 데이터 피드 추상 기반 모듈 - 모든 데이터 소스의 공통 인터페이스를
@@ -16,7 +16,7 @@ Features:
     - Progress tracking and bar count properties
 
 Usage:
-    >>> from tradex.datafeed.fdr import FinanceDataReaderFeed
+    >>> from tradix.datafeed.fdr import FinanceDataReaderFeed
     >>> feed = FinanceDataReaderFeed('005930', '2020-01-01', '2024-12-31')
     >>> for bar in feed:
     ...     print(bar.close)
@@ -27,7 +27,7 @@ from typing import Iterator, Optional, List
 import pandas as pd
 import numpy as np
 
-from tradex.entities.bar import Bar
+from tradix.entities.bar import Bar
 
 
 class DataFeed(ABC):

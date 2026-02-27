@@ -1123,7 +1123,7 @@ def plotDashboard(result: Any, lang: str = "en") -> None:
         result: Backtest result object. 백테스트 결과 객체.
         lang: Language ("en" or "ko"). 언어.
     """
-    from tradex.tui.console import printResult
+    from tradix.tui.console import printResult
 
     ko = lang == "ko"
     r = _unwrap(result)

@@ -1,10 +1,10 @@
-"""Tradex Price Forecast Module.
+"""Tradix Price Forecast Module.
 
 Standalone time-series forecasting engine for price direction prediction,
 built with zero external dependencies beyond numpy and pandas.
 
 주가 예측 모듈 - numpy와 pandas만으로 구현된 시계열 예측 엔진으로,
-Tradex 신호 예측에 특화된 기능을 제공합니다.
+Tradix 신호 예측에 특화된 기능을 제공합니다.
 
 Features:
     - Simple Exponential Smoothing (SES) with grid-search alpha optimization
@@ -17,7 +17,7 @@ Features:
     - Multi-method trend analysis (linear, MA, momentum, ADX-style)
 
 Usage:
-    from tradex.signals.forecast import PriceForecast, TrendAnalyzer
+    from tradix.signals.forecast import PriceForecast, TrendAnalyzer
 
     forecast = PriceForecast(close_prices)
     result = forecast.predict(steps=5)

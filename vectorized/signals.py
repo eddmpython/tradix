@@ -16,7 +16,7 @@ Available Signals:
     - vTrendFilter: ADX-based trend filter for existing signals
 
 Usage:
-    >>> from tradex.vectorized.signals import vgoldenCross, vrsiSignal
+    >>> from tradix.vectorized.signals import vgoldenCross, vrsiSignal
     >>> signals = vgoldenCross(close, fast=10, slow=30)
     >>> buy_dates = np.where(signals == 1)[0]
 """
@@ -25,7 +25,7 @@ from __future__ import annotations
 import numpy as np
 from numpy.typing import NDArray
 
-from tradex.vectorized.indicators import vsma, vmacd, vbollinger
+from tradix.vectorized.indicators import vsma, vmacd, vbollinger
 
 
 def vcrossover(

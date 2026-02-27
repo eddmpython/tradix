@@ -1,4 +1,4 @@
-"""Tradex Advisor Package.
+"""Tradix Advisor Package.
 
 Provides market regime classification, strategy recommendation, regime
 forecasting, and empirically learned pattern mappings for intelligent
@@ -15,7 +15,7 @@ Features:
     - Convenience functions: getRecommendedStrategies, getAdjustedParams, getBenchmark
 
 Usage:
-    from tradex.advisor import MarketClassifier, StrategyAdvisor, RegimeForecaster
+    from tradix.advisor import MarketClassifier, StrategyAdvisor, RegimeForecaster
 
     classifier = MarketClassifier()
     analysis = classifier.analyze(df)
@@ -25,14 +25,14 @@ Usage:
     print(result.topStrategy.name)
 """
 
-from tradex.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
-from tradex.advisor.strategyAdvisor import (
+from tradix.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
+from tradix.advisor.strategyAdvisor import (
     StrategyAdvisor,
     StrategyProfile,
     StrategyRecommendation,
     AdvisorResult,
 )
-from tradex.advisor.learnedPatterns import (
+from tradix.advisor.learnedPatterns import (
     REGIME_STRATEGY_MAP,
     STRATEGY_PARAM_ADJUSTMENTS,
     PERFORMANCE_BENCHMARKS,
@@ -41,7 +41,7 @@ from tradex.advisor.learnedPatterns import (
     getAdjustedParams,
     getBenchmark,
 )
-from tradex.advisor.regimeForecaster import (
+from tradix.advisor.regimeForecaster import (
     RegimeForecaster,
     RegimeForecast,
     RegimeTransition,

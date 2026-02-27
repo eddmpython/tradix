@@ -1,4 +1,4 @@
-"""Tradex Adaptive Signal Predictor Module.
+"""Tradix Adaptive Signal Predictor Module.
 
 Automatically detects the current market regime and selects the optimal
 trading strategy based on empirical experiment results (E004, E007).
@@ -16,7 +16,7 @@ Features:
     - Quick one-call prediction via quickAdaptivePredict()
 
 Usage:
-    from tradex.signals.adaptive import AdaptiveSignalPredictor
+    from tradix.signals.adaptive import AdaptiveSignalPredictor
 
     predictor = AdaptiveSignalPredictor(df)
     result = predictor.predict()
@@ -29,7 +29,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 from enum import Enum
 
-from tradex.signals.predictor import SignalPredictor, SignalResult, SignalConfig
+from tradix.signals.predictor import SignalPredictor, SignalResult, SignalConfig
 
 
 class MarketRegime(Enum):

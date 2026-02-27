@@ -1,4 +1,4 @@
-"""Tradex Regime Forecaster Module.
+"""Tradix Regime Forecaster Module.
 
 Learns regime transition patterns from historical data using Markov Chain modeling,
 detects transition leading signals, and forecasts future market regimes with
@@ -15,7 +15,7 @@ Features:
     - Risk level assessment based on regime and transition signals
 
 Usage:
-    from tradex.advisor.regimeForecaster import RegimeForecaster
+    from tradix.advisor.regimeForecaster import RegimeForecaster
 
     forecaster = RegimeForecaster()
     forecaster.fit(df)
@@ -29,7 +29,7 @@ from enum import Enum
 import pandas as pd
 import numpy as np
 
-from tradex.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
+from tradix.advisor.marketClassifier import MarketClassifier, MarketRegime, MarketAnalysis
 
 
 @dataclass

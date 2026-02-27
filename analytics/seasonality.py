@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Tradex Seasonality Analyzer Module.
+Tradix Seasonality Analyzer Module.
 
 Discovers and quantifies seasonal patterns in strategy performance, including
 monthly, weekday, and quarterly return patterns, with statistical significance
@@ -19,7 +19,7 @@ Features:
     - Best/worst period identification
 
 Usage:
-    from tradex.analytics.seasonality import SeasonalityAnalyzer
+    from tradix.analytics.seasonality import SeasonalityAnalyzer
 
     analyzer = SeasonalityAnalyzer(result)
     monthly = analyzer.monthlyPattern()
@@ -35,8 +35,8 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 MONTH_NAMES = {
     1: '1월', 2: '2월', 3: '3월', 4: '4월',

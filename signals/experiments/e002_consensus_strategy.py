@@ -57,7 +57,7 @@ from dataclasses import dataclass
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
-from tradex.signals import SignalPredictor, SignalConfig
+from tradix.signals import SignalPredictor, SignalConfig
 
 
 @dataclass

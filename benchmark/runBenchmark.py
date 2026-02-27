@@ -23,7 +23,7 @@ def benchmark():
     print("=" * 60)
 
     try:
-        from tradex import v1
+        from tradix import v1
         hasV1 = True
         print("v1 (Numba): 로드 완료")
     except ImportError as e:
@@ -31,7 +31,7 @@ def benchmark():
         print(f"v1 (Numba): 로드 실패 - {e}")
 
     try:
-        from tradex import v2
+        from tradix import v2
         hasV2 = True
         print("v2 (NumPy): 로드 완료")
     except ImportError as e:

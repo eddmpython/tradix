@@ -1,5 +1,5 @@
 """
-Tradex Preset Strategies Module - Ready-to-use one-liner strategy presets.
+Tradix Preset Strategies Module - Ready-to-use one-liner strategy presets.
 
 Provides factory functions that return pre-configured QuickStrategy instances
 for popular trading strategies. Each preset accepts optional parameters for
@@ -44,14 +44,14 @@ Features:
     - dollarCostAverage: Dollar Cost Averaging (DCA) strategy
 
 Usage:
-    >>> from tradex.easy import backtest, goldenCross, rsiOversold
+    >>> from tradix.easy import backtest, goldenCross, rsiOversold
     >>>
     >>> result = backtest("005930", goldenCross())
     >>> result = backtest("삼성전자", rsiOversold(period=14, oversold=30))
 """
 
-from tradex.easy.quick import QuickStrategy
-from tradex.easy.conditions import (
+from tradix.easy.quick import QuickStrategy
+from tradix.easy.conditions import (
     sma,
     ema,
     rsi,

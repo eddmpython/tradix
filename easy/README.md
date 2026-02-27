@@ -1,4 +1,4 @@
-# Tradex Easy API
+# Tradix Easy API
 
 **겁나 쉬운 백테스팅** - TradingView보다 쉽게
 
@@ -7,7 +7,7 @@
 ### Level 1: 프리셋 (코딩 0줄)
 
 ```python
-from tradex.easy import 백테스트, 골든크로스
+from tradix.easy import 백테스트, 골든크로스
 
 결과 = 백테스트("삼성전자", 골든크로스())
 print(결과.수익률)
@@ -16,7 +16,7 @@ print(결과.수익률)
 ### Level 2: 선언형 빌더 (3-5줄)
 
 ```python
-from tradex.easy import 백테스트, 전략, sma, crossover
+from tradix.easy import 백테스트, 전략, sma, crossover
 
 내전략 = 전략().매수조건(crossover(sma(10), sma(30))).손절(5)
 결과 = 백테스트("삼성전자", 내전략)
@@ -25,7 +25,7 @@ from tradex.easy import 백테스트, 전략, sma, crossover
 ### Level 3: 기존 방식 (고급)
 
 ```python
-from tradex import BacktestEngine, Strategy
+from tradix import BacktestEngine, Strategy
 # ... 기존 클래스 상속 방식
 ```
 
@@ -48,7 +48,7 @@ from tradex import BacktestEngine, Strategy
 ## 조건 빌더
 
 ```python
-from tradex.easy import sma, ema, rsi, macd, price, crossover, crossunder
+from tradix.easy import sma, ema, rsi, macd, price, crossover, crossunder
 
 # 지표
 sma(20)           # 20일 단순이동평균
@@ -75,7 +75,7 @@ crossunder(sma(10), sma(30))  # 데드크로스
 ## 한글 API
 
 ```python
-from tradex.easy import 백테스트, 최적화, 전략, 골든크로스
+from tradix.easy import 백테스트, 최적화, 전략, 골든크로스
 
 # 백테스트
 결과 = 백테스트(
@@ -153,7 +153,7 @@ print(결과.요약())      # 전체 요약
 ## 파라미터 최적화
 
 ```python
-from tradex.easy import optimize, goldenCross
+from tradix.easy import optimize, goldenCross
 
 best = optimize(
     "삼성전자",
@@ -171,7 +171,7 @@ print(f"수익률: {best['best']['result'].수익률}%")
 ## 빠른 아이디어 테스트
 
 ```python
-from tradex.easy import quickTest
+from tradix.easy import quickTest
 
 result = quickTest(
     "삼성전자",

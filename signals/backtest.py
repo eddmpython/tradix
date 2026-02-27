@@ -1,4 +1,4 @@
-"""Tradex Signal Backtest Verification Module.
+"""Tradix Signal Backtest Verification Module.
 
 Validates signal quality by backtesting SignalPredictor signals and comparing
 performance against Buy-and-Hold and Random benchmarks.
@@ -15,7 +15,7 @@ Features:
     - Quick one-call evaluation via quickEvaluate()
 
 Usage:
-    from tradex.signals.backtest import SignalBacktester, quickEvaluate
+    from tradix.signals.backtest import SignalBacktester, quickEvaluate
 
     backtester = SignalBacktester(df)
     result = backtester.evaluate(predictor)
@@ -224,7 +224,7 @@ class SignalBacktester:
         for i in range(minIdx, len(self.df) - holdingDays):
             subDf = self.df.iloc[:i+1].copy()
 
-            from tradex.signals import SignalPredictor, SignalConfig
+            from tradix.signals import SignalPredictor, SignalConfig
             tempPredictor = SignalPredictor(subDf, predictor.config)
             result = tempPredictor.predict(strategies=strategies, consensusThreshold=threshold)
 
@@ -491,7 +491,7 @@ def quickEvaluate(
     Returns:
         SignalBacktestResult with full benchmark comparison.
     """
-    from tradex.signals import SignalPredictor
+    from tradix.signals import SignalPredictor
 
     predictor = SignalPredictor(df)
     backtester = SignalBacktester(df)

@@ -1,5 +1,5 @@
 """
-Tradex Commission Models Module.
+Tradix Commission Models Module.
 
 Provides commission calculation models for simulating brokerage fees
 during backtesting. Includes presets for Korean and US stock markets.
@@ -14,7 +14,7 @@ Features:
     - Zero-commission model for frictionless testing
 
 Usage:
-    >>> from tradex.broker.commission import KoreaStockCommission
+    >>> from tradix.broker.commission import KoreaStockCommission
     >>> commission_model = KoreaStockCommission.mobileApp()
     >>> fee = commission_model.calculate(order, fill_price=50000.0)
 """
@@ -22,7 +22,7 @@ Usage:
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-from tradex.entities.order import Order, OrderSide
+from tradix.entities.order import Order, OrderSide
 
 
 class CommissionModel(ABC):

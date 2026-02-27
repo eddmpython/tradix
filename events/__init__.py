@@ -1,8 +1,8 @@
 """
-Tradex Events Package - Event-driven architecture for the backtesting engine.
-Tradex 이벤트 패키지 - 백테스팅 엔진의 이벤트 기반 아키텍처.
+Tradix Events Package - Event-driven architecture for the backtesting engine.
+Tradix 이벤트 패키지 - 백테스팅 엔진의 이벤트 기반 아키텍처.
 
-This package implements the event system that drives the Tradex backtesting
+This package implements the event system that drives the Tradix backtesting
 engine. Events flow through the system in a well-defined pipeline:
 MarketEvent -> SignalEvent -> OrderEvent -> FillEvent.
 
@@ -14,14 +14,14 @@ Features:
     - FillEvent: Order execution confirmation with cost details
 
 Usage:
-    >>> from tradex.events import MarketEvent, SignalEvent, OrderEvent, FillEvent
+    >>> from tradix.events import MarketEvent, SignalEvent, OrderEvent, FillEvent
 """
 
-from tradex.events.base import Event, EventType
-from tradex.events.market import MarketEvent
-from tradex.events.signal import SignalEvent, SignalType
-from tradex.events.order import OrderEvent
-from tradex.events.fill import FillEvent
+from tradix.events.base import Event, EventType
+from tradix.events.market import MarketEvent
+from tradix.events.signal import SignalEvent, SignalType
+from tradix.events.order import OrderEvent
+from tradix.events.fill import FillEvent
 
 __all__ = [
     "Event",

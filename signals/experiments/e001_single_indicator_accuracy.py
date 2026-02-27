@@ -54,7 +54,7 @@ from dataclasses import dataclass
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 
-from tradex.strategy.indicators import Indicators
+from tradix.strategy.indicators import Indicators
 
 
 @dataclass

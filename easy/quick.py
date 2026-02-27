@@ -1,5 +1,5 @@
 """
-Tradex QuickStrategy Module - Declarative strategy builder with method chaining.
+Tradix QuickStrategy Module - Declarative strategy builder with method chaining.
 
 Build complete trading strategies without subclassing by chaining declarative
 condition methods. Supports indicator-based conditions, lambda functions,
@@ -18,8 +18,8 @@ Features:
     - Korean aliases: 매수조건, 매도조건, 손절, 익절, 추적손절
 
 Usage:
-    >>> from tradex.easy.quick import QuickStrategy
-    >>> from tradex.easy.conditions import sma, rsi, crossover, crossunder
+    >>> from tradix.easy.quick import QuickStrategy
+    >>> from tradix.easy.conditions import sma, rsi, crossover, crossunder
     >>>
     >>> strategy = (
     ...     QuickStrategy("MyStrategy")
@@ -34,14 +34,14 @@ from __future__ import annotations
 
 from typing import Callable, List, Optional, Union
 
-from tradex.easy.conditions import (
+from tradix.easy.conditions import (
     Condition,
     ConditionEvaluator,
     CrossCondition,
     Indicator,
 )
-from tradex.entities.bar import Bar
-from tradex.strategy.base import Strategy
+from tradix.entities.bar import Bar
+from tradix.strategy.base import Strategy
 
 
 class QuickStrategy(Strategy):

@@ -1,5 +1,5 @@
 """
-Tradex Strategy Combiner Module - Ensemble strategy composition.
+Tradix Strategy Combiner Module - Ensemble strategy composition.
 
 Combines multiple trading strategies into an ensemble for more robust
 performance. Supports various weighting schemes and dynamic rebalancing
@@ -16,7 +16,7 @@ Features:
     - Dynamic Rebalancing: Periodic weight recalculation
 
 Usage:
-    >>> from tradex.strategy.combiner import StrategyCombiner, CombineMethod
+    >>> from tradix.strategy.combiner import StrategyCombiner, CombineMethod
     >>>
     >>> combiner = StrategyCombiner()
     >>> combiner.addStrategy('SMA', SmaCrossStrategy())
@@ -32,10 +32,10 @@ from enum import Enum
 import pandas as pd
 import numpy as np
 
-from tradex.strategy.base import Strategy
-from tradex.engine import BacktestEngine, BacktestResult
-from tradex.datafeed.feed import DataFeed
-from tradex.advisor.marketClassifier import MarketClassifier, MarketRegime
+from tradix.strategy.base import Strategy
+from tradix.engine import BacktestEngine, BacktestResult
+from tradix.datafeed.feed import DataFeed
+from tradix.advisor.marketClassifier import MarketClassifier, MarketRegime
 
 
 class CombineMethod(Enum):

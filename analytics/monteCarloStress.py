@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Tradex Monte Carlo Stress Testing Module.
+Tradix Monte Carlo Stress Testing Module.
 
 Bootstrap resampling of trade returns to generate thousands of simulated
 equity paths, then compute confidence bands, ruin probability, and
@@ -19,7 +19,7 @@ Features:
     - Bilingual summary report (Korean / English)
 
 Usage:
-    from tradex.analytics.monteCarloStress import MonteCarloStressAnalyzer
+    from tradix.analytics.monteCarloStress import MonteCarloStressAnalyzer
 
     analyzer = MonteCarloStressAnalyzer()
     stressResult = analyzer.analyze(result, paths=10000, ruinThreshold=0.5)
@@ -33,8 +33,8 @@ from typing import List, Dict, Any, Optional
 import numpy as np
 import pandas as pd
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 TRADING_DAYS_PER_YEAR = 252

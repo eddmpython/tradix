@@ -1,5 +1,5 @@
 """
-Tradex Easy API Module - One-liner backtest and optimization functions.
+Tradix Easy API Module - One-liner backtest and optimization functions.
 
 Provides simplified entry points for backtesting and parameter optimization.
 Supports Korean stock names, Korean currency notation, Korean period strings,
@@ -17,7 +17,7 @@ Features:
     - Auto mode selection (vectorized vs. event-driven)
 
 Usage:
-    >>> from tradex.easy import backtest, optimize, goldenCross
+    >>> from tradix.easy import backtest, optimize, goldenCross
     >>>
     >>> result = backtest("005930", goldenCross())
     >>> print(result.totalReturn)
@@ -31,10 +31,10 @@ from typing import Union, Optional, Dict, Any, Callable, List, Tuple
 from datetime import datetime, timedelta
 import re
 
-from tradex.engine import BacktestEngine, BacktestResult, SimpleBroker, SimpleSizer
-from tradex.datafeed.fdr import FinanceDataReaderFeed
-from tradex.strategy.base import Strategy
-from tradex.easy.quick import QuickStrategy
+from tradix.engine import BacktestEngine, BacktestResult, SimpleBroker, SimpleSizer
+from tradix.datafeed.fdr import FinanceDataReaderFeed
+from tradix.strategy.base import Strategy
+from tradix.easy.quick import QuickStrategy
 
 
 KOREAN_TICKERS = {
@@ -194,12 +194,12 @@ class EasyResult:
             lang: Language ('en' or 'ko'). / 언어.
             style: Display style ('modern', 'bloomberg', 'minimal'). / 출력 스타일.
         """
-        from tradex.tui.console import printResult
+        from tradix.tui.console import printResult
         printResult(self, lang=lang, style=style)
 
     def chart(self, lang: str = "en") -> None:
         """Print full dashboard with charts. 차트 포함 대시보드 출력."""
-        from tradex.tui.charts import plotDashboard
+        from tradix.tui.charts import plotDashboard
         plotDashboard(self, lang=lang)
 
     def 보기(self) -> None:
@@ -325,7 +325,7 @@ def backtest(
             useVectorized = True
 
     if useVectorized:
-        from tradex.vectorized import vbacktest, VectorizedResult
+        from tradix.vectorized import vbacktest, VectorizedResult
 
         strategyName = strategy if isinstance(strategy, str) else "goldenCross"
 

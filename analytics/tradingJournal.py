@@ -1,5 +1,5 @@
 """
-Tradex Trading Journal Module.
+Tradix Trading Journal Module.
 
 Automatic trading diary with per-trade analytics, including MFE/MAE
 (Maximum Favorable/Adverse Excursion), R-multiple grading, auto-generated
@@ -18,7 +18,7 @@ Features:
     - DataFrame export for further analysis
 
 Usage:
-    from tradex.analytics.tradingJournal import TradingJournal
+    from tradix.analytics.tradingJournal import TradingJournal
 
     journal = TradingJournal(result)
     entries = journal.generate()
@@ -32,8 +32,8 @@ from collections import defaultdict
 import pandas as pd
 import numpy as np
 
-from tradex.engine import BacktestResult
-from tradex.entities.trade import Trade
+from tradix.engine import BacktestResult
+from tradix.entities.trade import Trade
 
 
 @dataclass

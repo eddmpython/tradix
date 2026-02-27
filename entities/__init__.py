@@ -1,9 +1,9 @@
 """
-Tradex Entities Package - Core data objects for the backtesting engine.
-Tradex 엔티티 패키지 - 백테스팅 엔진의 핵심 데이터 객체.
+Tradix Entities Package - Core data objects for the backtesting engine.
+Tradix 엔티티 패키지 - 백테스팅 엔진의 핵심 데이터 객체.
 
 This package provides the fundamental data structures used throughout the
-Tradex backtesting framework, including market data bars, trading orders,
+Tradix backtesting framework, including market data bars, trading orders,
 portfolio positions, and completed trade records.
 
 Features:
@@ -13,13 +13,13 @@ Features:
     - Trade: Completed round-trip trade records with performance metrics
 
 Usage:
-    >>> from tradex.entities import Bar, Order, OrderSide, OrderType, Position, Trade
+    >>> from tradix.entities import Bar, Order, OrderSide, OrderType, Position, Trade
 """
 
-from tradex.entities.order import Order, OrderSide, OrderType, TimeInForce
-from tradex.entities.position import Position
-from tradex.entities.trade import Trade
-from tradex.entities.bar import Bar
+from tradix.entities.order import Order, OrderSide, OrderType, TimeInForce
+from tradix.entities.position import Position
+from tradix.entities.trade import Trade
+from tradix.entities.bar import Bar
 
 __all__ = [
     "Order",

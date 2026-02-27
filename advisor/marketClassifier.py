@@ -1,4 +1,4 @@
-"""Tradex Market Classifier Module.
+"""Tradix Market Classifier Module.
 
 Classifies current market conditions into one of six regimes (strong uptrend,
 uptrend, sideways, downtrend, strong downtrend, high volatility) using
@@ -16,7 +16,7 @@ Features:
     - Historical regime analysis with sliding windows
 
 Usage:
-    from tradex.advisor.marketClassifier import MarketClassifier
+    from tradix.advisor.marketClassifier import MarketClassifier
 
     classifier = MarketClassifier()
     analysis = classifier.analyze(df)

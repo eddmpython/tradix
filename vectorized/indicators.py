@@ -19,7 +19,7 @@ Available Indicators:
 
 Usage:
     >>> import numpy as np
-    >>> from tradex.vectorized.indicators import vsma, vrsi, vmacd
+    >>> from tradix.vectorized.indicators import vsma, vrsi, vmacd
     >>> close = np.array([100, 102, 101, 103, 105, 104, 106])
     >>> sma = vsma(close, period=3)
     >>> rsi = vrsi(close, period=14)

@@ -1,5 +1,5 @@
 """
-Tradex Analytics Package - Comprehensive backtest performance analysis.
+Tradix Analytics Package - Comprehensive backtest performance analysis.
 
 Provides a full suite of analysis tools for backtest results, including
 quantitative metrics, HTML tearsheet generation, strategy DNA fingerprinting,
@@ -31,30 +31,30 @@ Features:
     - PortfolioStressAnalyzer: Hypothetical crisis scenario simulation (WORLD-FIRST)
 
 Usage:
-    from tradex.analytics import PerformanceMetrics, Tearsheet
-    from tradex.analytics import StrategyDnaAnalyzer, BlackSwanAnalyzer
-    from tradex.analytics import StrategyHealthAnalyzer, WhatIfSimulator
-    from tradex.analytics import DrawdownSimulator, SeasonalityAnalyzer
-    from tradex.analytics import CorrelationAnalyzer, TradingJournal
-    from tradex.analytics import StrategyLeaderboard
+    from tradix.analytics import PerformanceMetrics, Tearsheet
+    from tradix.analytics import StrategyDnaAnalyzer, BlackSwanAnalyzer
+    from tradix.analytics import StrategyHealthAnalyzer, WhatIfSimulator
+    from tradix.analytics import DrawdownSimulator, SeasonalityAnalyzer
+    from tradix.analytics import CorrelationAnalyzer, TradingJournal
+    from tradix.analytics import StrategyLeaderboard
 """
 
-from tradex.analytics.metrics import PerformanceMetrics
-from tradex.analytics.tearsheet import Tearsheet
-from tradex.analytics.strategyDna import StrategyDNA, StrategyDnaAnalyzer
-from tradex.analytics.blackSwan import BlackSwanScore, BlackSwanAnalyzer
-from tradex.analytics.strategyHealth import StrategyHealthScore, StrategyHealthAnalyzer
-from tradex.analytics.whatIf import WhatIfResult, WhatIfSimulator
-from tradex.analytics.drawdownSimulator import DrawdownScenario, DrawdownSimulator
-from tradex.analytics.seasonality import SeasonalPattern, SeasonalityAnalyzer
-from tradex.analytics.correlation import CorrelationResult, CorrelationAnalyzer
-from tradex.analytics.tradingJournal import JournalEntry, TradingJournal
-from tradex.analytics.leaderboard import LeaderboardEntry, StrategyLeaderboard
-from tradex.analytics.monteCarloStress import MonteCarloStressResult, MonteCarloStressAnalyzer
-from tradex.analytics.fractalAnalysis import FractalAnalysisResult, FractalAnalyzer
-from tradex.analytics.regimeDetector import RegimeAnalysisResult, RegimeDetector
-from tradex.analytics.informationTheory import InformationTheoryResult, InformationTheoryAnalyzer
-from tradex.analytics.portfolioStress import StressScenario, PortfolioStressResult, PortfolioStressAnalyzer
+from tradix.analytics.metrics import PerformanceMetrics
+from tradix.analytics.tearsheet import Tearsheet
+from tradix.analytics.strategyDna import StrategyDNA, StrategyDnaAnalyzer
+from tradix.analytics.blackSwan import BlackSwanScore, BlackSwanAnalyzer
+from tradix.analytics.strategyHealth import StrategyHealthScore, StrategyHealthAnalyzer
+from tradix.analytics.whatIf import WhatIfResult, WhatIfSimulator
+from tradix.analytics.drawdownSimulator import DrawdownScenario, DrawdownSimulator
+from tradix.analytics.seasonality import SeasonalPattern, SeasonalityAnalyzer
+from tradix.analytics.correlation import CorrelationResult, CorrelationAnalyzer
+from tradix.analytics.tradingJournal import JournalEntry, TradingJournal
+from tradix.analytics.leaderboard import LeaderboardEntry, StrategyLeaderboard
+from tradix.analytics.monteCarloStress import MonteCarloStressResult, MonteCarloStressAnalyzer
+from tradix.analytics.fractalAnalysis import FractalAnalysisResult, FractalAnalyzer
+from tradix.analytics.regimeDetector import RegimeAnalysisResult, RegimeDetector
+from tradix.analytics.informationTheory import InformationTheoryResult, InformationTheoryAnalyzer
+from tradix.analytics.portfolioStress import StressScenario, PortfolioStressResult, PortfolioStressAnalyzer
 
 __all__ = [
     "PerformanceMetrics",

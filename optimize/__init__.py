@@ -1,5 +1,5 @@
 """
-Tradex Parameter Optimization Package.
+Tradix Parameter Optimization Package.
 
 Provides strategy parameter optimization tools including grid search,
 random search, and flexible parameter space definitions with integer, float,
@@ -15,7 +15,7 @@ Features:
     - OptimizeResult: Analyze and export optimization outcomes
 
 Usage:
-    from tradex.optimize import Optimizer, ParameterSpace
+    from tradix.optimize import Optimizer, ParameterSpace
 
     space = ParameterSpace()
     space.addInt('fastPeriod', 5, 20, step=1)
@@ -32,8 +32,8 @@ Usage:
     print(result.summary())
 """
 
-from tradex.optimize.space import Parameter, ParameterSpace
-from tradex.optimize.optimizer import Optimizer, OptimizeResult
+from tradix.optimize.space import Parameter, ParameterSpace
+from tradix.optimize.optimizer import Optimizer, OptimizeResult
 
 __all__ = [
     'Parameter',
