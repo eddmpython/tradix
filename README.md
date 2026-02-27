@@ -38,6 +38,10 @@
 
 <br>
 
+Tradix is a high-performance backtesting engine built for quantitative traders and researchers. Powered by pure NumPy vectorization, it runs 1,000 parameter optimizations in under a second. No boilerplate, no configuration files, no data pipeline setup — just install and backtest.
+
+The library ships with 33 battle-tested strategies, 60+ technical indicators, and a built-in data feed that auto-downloads from global exchanges including KRX (Korea Exchange). Whether you're prototyping a Golden Cross on Samsung Electronics or stress-testing a multi-factor portfolio against Black Swan scenarios, Tradix handles the entire pipeline: data → signals → execution → analytics → visualization.
+
 > **Two lines.** `backtest` · `show` — that's the entire workflow.
 
 ```python
@@ -63,7 +67,7 @@ result.show()
 result.show(style="bloomberg")
 ```
 
-> `backtest()` auto-downloads data via FinanceDataReader, runs the strategy with commission and slippage, and returns a full result object.
+`backtest()` auto-downloads price data via FinanceDataReader, applies the strategy with realistic commission and slippage modeling, and returns a comprehensive result object. Pass any ticker symbol — US stocks, Korean stocks, ETFs, indices, and crypto are all supported out of the box.
 
 ```
 === Backtest Result ===
@@ -81,6 +85,8 @@ Win Rate: 61.1%
 <br>
 
 ## ◈ Why Tradix?
+
+Most backtesting frameworks require hundreds of lines of boilerplate — data loaders, strategy classes, broker configs, result parsers. Tradix eliminates all of that. Here's how it compares:
 
 <table>
 <tr><td>
@@ -101,12 +107,18 @@ Win Rate: 61.1%
 </td></tr>
 </table>
 
+> **Three pillars.** `numpy` · `pandas` · `scipy` — that's the entire foundation. No C extensions, no binary dependencies, no compilation step.
+
 <br>
 
 ## ◈ Features
 
 <details open>
 <summary><b>Core Engine</b></summary>
+
+<br>
+
+The heart of Tradix is a dual-engine architecture: an event-driven engine for complex strategies with bar-by-bar logic, and a vectorized engine for lightning-fast batch operations. Both engines share the same indicator library and produce identical results.
 
 | Feature | Description |
 |:--------|:------------|
@@ -123,6 +135,10 @@ Win Rate: 61.1%
 
 <details>
 <summary><b>Advanced Analytics</b></summary>
+
+<br>
+
+Go beyond simple returns. Tradix provides institutional-grade analytics that dissect every aspect of your strategy — from 12-dimensional DNA fingerprinting to Black Swan resilience scoring. Understand not just *how much* your strategy made, but *why* it works and *when* it might fail.
 
 | Feature | Description |
 |:--------|:------------|
@@ -141,6 +157,10 @@ Win Rate: 61.1%
 <details>
 <summary><b>Innovative Analytics</b></summary>
 
+<br>
+
+Tradix pushes the boundary of what a backtesting library can do. Monte Carlo simulations with 10,000 paths estimate your ruin probability. Fractal analysis reveals whether your market is trending or mean-reverting. Regime detection identifies hidden market states so you can adapt your strategy dynamically.
+
 | Feature | Description |
 |:--------|:------------|
 | **Monte Carlo** | 10K-path bootstrap with ruin probability and confidence bands |
@@ -154,6 +174,10 @@ Win Rate: 61.1%
 <details>
 <summary><b>Terminal UI — TradingView-Inspired</b></summary>
 
+<br>
+
+No browser needed. Tradix renders professional trading dashboards directly in your terminal using Rich and Plotext. Choose from three display styles inspired by TradingView, Bloomberg Terminal, and hedge fund reports. The interactive Textual dashboard provides a full 5-view experience with keyboard navigation.
+
 | Feature | Description |
 |:--------|:------------|
 | **3 Display Styles** | Modern (TradingView), Bloomberg (dense 4-quadrant), Minimal (hedge fund) |
@@ -165,6 +189,10 @@ Win Rate: 61.1%
 
 <details>
 <summary><b>Korean Market</b></summary>
+
+<br>
+
+Tradix is the first backtesting engine built with native Korean market support. Transaction tax (0.18%), brokerage fees, and KRX stock name mapping are all built-in. You can even write your entire strategy in Korean — function names, variable names, and output are all available in 한국어.
 
 | Feature | Description |
 |:--------|:------------|
@@ -185,15 +213,16 @@ Win Rate: 61.1%
 uv init my-backtest && cd my-backtest
 uv add tradix
 
-uv add "tradix[full]"
+uv add "tradix[full]"       # + Plotly, statsmodels, scikit-learn
+uv add "tradix[tui]"        # + Textual interactive dashboard
 ```
 
 ### Using pip
 
 ```bash
-pip install tradix
-
-pip install "tradix[full]"
+pip install tradix            # Core (NumPy + Pandas + Rich)
+pip install "tradix[full]"    # + Plotly, statsmodels, scikit-learn
+pip install "tradix[tui]"     # + Textual interactive dashboard
 ```
 
 ### From source
@@ -202,13 +231,16 @@ pip install "tradix[full]"
 git clone https://github.com/eddmpython/tradix.git
 cd tradix
 uv sync --dev
+uv run pytest
 ```
 
-**Requirements:** Python 3.9+, NumPy, Pandas
+**Requirements:** Python 3.9+ · NumPy · Pandas · Rich · Plotext · Typer
 
 <br>
 
 ## ◈ Usage
+
+Tradix offers multiple levels of abstraction. Start with the 2-line easy API, graduate to the declarative strategy builder for custom logic, or drop down to the full event-driven engine when you need bar-by-bar control.
 
 ### Declarative Strategy Builder
 
@@ -231,6 +263,8 @@ result.show()
 
 ### Parameter Optimization
 
+Find optimal strategy parameters by sweeping across a parameter grid. Tradix runs all combinations using the vectorized engine — 1,000 combinations finish in under a second.
+
 ```python
 from tradix import voptimize
 
@@ -248,6 +282,8 @@ print(f"Sharpe: {best['best']['metric']:.2f}")
 
 ### Vectorized Mode (100x Faster)
 
+Skip the event loop entirely. The vectorized engine processes the entire price history as NumPy arrays, delivering results in microseconds.
+
 ```python
 from tradix import vbacktest
 
@@ -257,7 +293,9 @@ print(f"Sharpe: {result.sharpeRatio:.2f}")
 print(f"Max DD: {result.maxDrawdown:.2f}%")
 ```
 
-### Korean API
+### Korean API (한국어 API)
+
+Every function, every strategy, every output — available in native Korean. No wrappers, no translation layers. First-class Korean market citizen.
 
 ```python
 from tradix import 백테스트, 골든크로스
@@ -380,6 +418,8 @@ mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 
 ## ◈ Strategies
 
+33 production-ready strategies organized by trading style. Each strategy is a callable that returns a configured strategy object — no subclassing, no boilerplate. Pass parameters to customize, or use the defaults.
+
 <details open>
 <summary><b>Trend Following (9)</b></summary>
 
@@ -457,6 +497,8 @@ mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 
 ## ◈ Indicators
 
+60+ technical indicators implemented in pure NumPy. Each indicator is available as both a standalone function and a strategy-builder condition. All calculations are vectorized — even complex indicators like Ichimoku Cloud run in microseconds.
+
 | Category | Indicators |
 |:---------|:-----------|
 | **Moving Averages** | `sma` `ema` `wma` `hma` `tema` `dema` `vwma` `alma` |
@@ -471,7 +513,7 @@ mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 
 ## ◈ Performance
 
-Benchmarked on 10 years of daily data (2,458 bars):
+Tradix is built for speed. The vectorized engine processes entire price histories as contiguous NumPy arrays, eliminating Python loop overhead. Benchmarked on 10 years of daily data (2,458 bars):
 
 | Operation | Time |
 |:----------|:-----|
@@ -484,6 +526,8 @@ Benchmarked on 10 years of daily data (2,458 bars):
 <br>
 
 ## ◈ Terminal UI
+
+Professional trading dashboards rendered directly in your terminal. No browser, no GUI toolkit, no Jupyter dependency. Tradix uses Rich for styled tables and panels, Plotext for ASCII charts, and optionally Textual for a full interactive experience.
 
 ### Display Styles
 
@@ -534,6 +578,8 @@ launchDashboard(result)
 <br>
 
 ## ◈ Advanced Analytics
+
+Tradix includes a full suite of institutional-grade analytics. Each analyzer takes a backtest result and returns a structured report with scores, metrics, and actionable insights.
 
 ```python
 from tradix import (
@@ -624,6 +670,8 @@ Indicators support comparison operators: `sma(10) > sma(30)`, `rsi(14) < 30`
 
 ## ◈ Architecture
 
+Tradix follows a modular architecture. Each subsystem is independently importable, so you can use just the indicators, just the risk engine, or the full pipeline.
+
 ```
 tradix/
 ├── engine.py              # Core backtest engine
@@ -652,6 +700,8 @@ tradix/
 
 ## ◈ Contributing
 
+Contributions are welcome. Fork the repo, create a feature branch, and submit a pull request.
+
 ```bash
 git clone https://github.com/eddmpython/tradix.git
 cd tradix
@@ -675,7 +725,7 @@ If Tradix helps your trading research, consider supporting the project:
 
 ## ◈ License
 
-MIT License. Use it freely in personal and commercial projects.
+[MIT](LICENSE) — Use freely in personal and commercial projects.
 
 <div align="center">
 
