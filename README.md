@@ -2,28 +2,27 @@
 
 <br>
 
-```
-  ████████╗██████╗  █████╗ ██████╗ ██╗██╗  ██╗
-  ╚══██╔══╝██╔══██╗██╔══██╗██╔══██╗██║╚██╗██╔╝
-     ██║   ██████╔╝███████║██║  ██║██║ ╚███╔╝
-     ██║   ██╔══██╗██╔══██║██║  ██║██║ ██╔██╗
-     ██║   ██║  ██║██║  ██║██████╔╝██║██╔╝ ██╗
-     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/hero.svg">
+  <source media="(prefers-color-scheme: light)" srcset=".github/assets/hero.svg">
+  <img alt="Tradix — Backtest the Market" src=".github/assets/hero.svg" width="100%">
+</picture>
+
+<br>
 
 <h3>Blazing-Fast Vectorized Backtesting Engine</h3>
 
 <p>
-<img src="https://img.shields.io/badge/33-Strategies-00d4aa?style=for-the-badge&labelColor=0a0a0a" alt="Strategies">
-<img src="https://img.shields.io/badge/60+-Indicators-00b4d8?style=for-the-badge&labelColor=0a0a0a" alt="Indicators">
-<img src="https://img.shields.io/badge/2-Lines%20to%20Backtest-0096c7?style=for-the-badge&labelColor=0a0a0a" alt="Two Lines">
+<img src="https://img.shields.io/badge/33-Strategies-00d4aa?style=for-the-badge&labelColor=0f172a" alt="Strategies">
+<img src="https://img.shields.io/badge/60+-Indicators-00b4d8?style=for-the-badge&labelColor=0f172a" alt="Indicators">
+<img src="https://img.shields.io/badge/2-Lines%20to%20Backtest-0096c7?style=for-the-badge&labelColor=0f172a" alt="Two Lines">
 </p>
 
 <p>
-<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=for-the-badge&color=00d4aa&labelColor=0a0a0a&logo=pypi&logoColor=white" alt="PyPI"></a>
-<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/pyversions/tradix?style=for-the-badge&labelColor=0a0a0a&logo=python&logoColor=white" alt="Python"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-00d4aa?style=for-the-badge&labelColor=0a0a0a" alt="License"></a>
-<img src="https://img.shields.io/badge/Tests-87%20passed-00d4aa?style=for-the-badge&labelColor=0a0a0a&logo=pytest&logoColor=white" alt="Tests">
+<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=for-the-badge&color=00d4aa&labelColor=0f172a&logo=pypi&logoColor=white" alt="PyPI"></a>
+<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/pyversions/tradix?style=for-the-badge&labelColor=0f172a&logo=python&logoColor=white" alt="Python"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-00d4aa?style=for-the-badge&labelColor=0f172a" alt="License"></a>
+<img src="https://img.shields.io/badge/Tests-87%20passed-00d4aa?style=for-the-badge&labelColor=0f172a&logo=pytest&logoColor=white" alt="Tests">
 </p>
 
 <br>
