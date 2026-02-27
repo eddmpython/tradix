@@ -11,11 +11,13 @@ Features:
     - Commission models: Korea stock, US stock, fixed, percentage, zero
     - Slippage models: percent, volume-based, spread, fixed, random, zero
     - Fill price models: close, open, VWAP, worst-case, best-case, random
+    - Advanced orders: OCO, Bracket, Trailing Stop
 
 Usage:
-    >>> from tradix.broker import BrokerSimulator
+    >>> from tradix.broker import BrokerSimulator, BracketOrder, TrailingStopOrder
     >>> broker = BrokerSimulator.korea(mobileApp=True)
-    >>> fill_event = broker.processOrder(order, bar)
+    >>> bracket = BracketOrder.create('005930', 10, 70000, 68000, 74000)
+    >>> trailing = TrailingStopOrder('005930', 10, trailingPercent=3.0)
 """
 
 from tradix.broker.commission import (
@@ -41,6 +43,7 @@ from tradix.broker.fill import (
     RandomFill,
 )
 from tradix.broker.simulator import BrokerSimulator
+from tradix.broker.advancedOrders import OcoOrder, BracketOrder, TrailingStopOrder
 
 __all__ = [
     "CommissionModel",
@@ -60,4 +63,7 @@ __all__ = [
     "VwapFill",
     "RandomFill",
     "BrokerSimulator",
+    "OcoOrder",
+    "BracketOrder",
+    "TrailingStopOrder",
 ]

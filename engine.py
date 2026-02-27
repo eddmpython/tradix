@@ -225,6 +225,7 @@ class BacktestResult:
     winRate: float
     trades: List[Trade] = field(default_factory=list)
     equityCurve: pd.Series = field(default_factory=pd.Series)
+    ohlcData: Optional[pd.DataFrame] = field(default=None, repr=False)
     metrics: Dict[str, Any] = field(default_factory=dict)
 
     def summary(self) -> str:
@@ -535,6 +536,7 @@ class BacktestEngine:
             winRate=stats['winRate'],
             trades=trades,
             equityCurve=equitySeries,
+            ohlcData=self.data.toDataFrame(),
             metrics=metrics
         )
 

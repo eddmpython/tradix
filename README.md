@@ -130,6 +130,24 @@ The heart of Tradix is a dual-engine architecture: an event-driven engine for co
 | **Optimization** | Grid search and random search with any metric |
 | **Multi-Asset** | Backtest across multiple symbols with rebalancing |
 | **Realistic Simulation** | Commission, slippage, fill logic, position sizing |
+| **OCO / Bracket / Trailing Stop** | Advanced order types for automated stop-loss and take-profit management |
+
+</details>
+
+<details>
+<summary><b>Multi-Source Data Feeds</b></summary>
+
+<br>
+
+Connect to global markets without writing a single data loader. Tradix ships with three data feed backends — FinanceDataReader for Korean/US/JP equities, Yahoo Finance for global ETFs and indices, and CCXT for 100+ cryptocurrency exchanges. All feeds share the same interface and include Parquet caching for offline replay.
+
+| Feature | Description |
+|:--------|:------------|
+| **FinanceDataReader** | KRX, US, JP stocks with auto-caching |
+| **Yahoo Finance** | Global equities, ETFs, indices, crypto pairs via yfinance |
+| **CCXT (100+ Exchanges)** | Binance, Bybit, Upbit, Coinbase — 1m to 1w candles with auto-pagination |
+| **Parquet Cache** | Offline-first with configurable expiration |
+| **Unified Interface** | All feeds implement the same DataFeed API |
 
 </details>
 
@@ -181,7 +199,9 @@ No browser needed. Tradix renders professional trading dashboards directly in yo
 | Feature | Description |
 |:--------|:------------|
 | **3 Display Styles** | Modern (TradingView), Bloomberg (dense 4-quadrant), Minimal (hedge fund) |
-| **12 Chart Types** | Equity, drawdown, candlestick, returns, seasonality, heatmap, DNA, and more |
+| **14 Chart Types** | Equity, drawdown, candlestick, returns, seasonality, heatmap, DNA, rolling metrics, and more |
+| **Plotly Candlestick** | Interactive OHLCV chart with volume, SMA/EMA overlays, and trade markers |
+| **Rolling Metrics** | Time-varying Sharpe, Sortino, and volatility visualization |
 | **Interactive Dashboard** | 5-view Textual app with keyboard navigation |
 | **CLI** | `tradix backtest`, `tradix chart`, `tradix compare`, `tradix optimize`, `tradix list` |
 
@@ -214,6 +234,8 @@ uv init my-backtest && cd my-backtest
 uv add tradix
 
 uv add "tradix[full]"       # + Plotly, statsmodels, scikit-learn
+uv add "tradix[yahoo]"      # + Yahoo Finance global data
+uv add "tradix[crypto]"     # + CCXT 100+ crypto exchanges
 uv add "tradix[tui]"        # + Textual interactive dashboard
 ```
 
@@ -222,6 +244,8 @@ uv add "tradix[tui]"        # + Textual interactive dashboard
 ```bash
 pip install tradix            # Core (NumPy + Pandas + Rich)
 pip install "tradix[full]"    # + Plotly, statsmodels, scikit-learn
+pip install "tradix[yahoo]"   # + Yahoo Finance global data
+pip install "tradix[crypto]"  # + CCXT 100+ crypto exchanges
 pip install "tradix[tui]"     # + Textual interactive dashboard
 ```
 

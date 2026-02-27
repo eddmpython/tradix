@@ -46,6 +46,7 @@ class OrderType(Enum):
     LIMIT = "limit"
     STOP = "stop"
     STOP_LIMIT = "stopLimit"
+    TRAILING_STOP = "trailingStop"
 
 
 class TimeInForce(Enum):
@@ -117,6 +118,8 @@ class Order:
     quantity: float
     price: Optional[float] = None
     stopPrice: Optional[float] = None
+    trailingPercent: Optional[float] = None
+    parentId: Optional[str] = None
     timeInForce: TimeInForce = TimeInForce.DAY
 
     id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
