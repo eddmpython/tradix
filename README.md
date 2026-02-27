@@ -2,154 +2,60 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&text=Tradix&fontSize=80&fontColor=58a6ff&animation=fadeIn&fontAlignY=35&desc=Blazing-fast%20backtesting%20engine%20for%20quantitative%20trading&descSize=18&descColor=8b949e&descAlignY=55" width="100%"/>
 
-<p>
-  <a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=flat-square&color=blue" alt="PyPI"></a>
-  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python 3.9+"></a>
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License"></a>
-  <a href="https://buymeacoffee.com/eddmpython"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
-</p>
+<br>
 
-<p>
-  <a href="#installation">Installation</a> &middot;
-  <a href="#quick-start">Quick Start</a> &middot;
-  <a href="#features">Features</a> &middot;
-  <a href="#terminal-ui">Terminal UI</a> &middot;
-  <a href="#api-reference">API Reference</a> &middot;
-  <a href="README_KR.md">한국어</a>
-</p>
+<img src="https://img.shields.io/badge/33-Strategies-58a6ff?style=for-the-badge&labelColor=0d1117" alt="Strategies">
+<img src="https://img.shields.io/badge/60+-Indicators-79c0ff?style=for-the-badge&labelColor=0d1117" alt="Indicators">
+<img src="https://img.shields.io/badge/2-Lines%20to%20Backtest-a5d6ff?style=for-the-badge&labelColor=0d1117" alt="Two Lines">
+
+<br>
+
+<a href="https://pypi.org/project/tradix/"><img src="https://img.shields.io/pypi/v/tradix?style=for-the-badge&color=58a6ff&labelColor=0d1117&logo=pypi&logoColor=white" alt="PyPI"></a>
+<a href="https://www.python.org/downloads/"><img src="https://img.shields.io/pypi/pyversions/tradix?style=for-the-badge&labelColor=0d1117&logo=python&logoColor=white" alt="Python"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-3fb950?style=for-the-badge&labelColor=0d1117" alt="License"></a>
+<img src="https://img.shields.io/badge/Tests-87%20passed-3fb950?style=for-the-badge&labelColor=0d1117&logo=pytest&logoColor=white" alt="Tests">
+
+<br><br>
+
+<a href="#-quick-start">Quick Start</a> ·
+<a href="#-why-tradix">Why Tradix?</a> ·
+<a href="#-features">Features</a> ·
+<a href="#-installation">Installation</a> ·
+<a href="#-api-reference">API Reference</a> ·
+<a href="README_KR.md">한국어</a>
+
+<br><br>
 
 </div>
 
----
-
-Tradix is a high-performance backtesting library built from the ground up for speed and simplicity. Powered by NumPy vectorized operations, it runs **1,000 parameter optimizations in 0.02 seconds** — no Numba, no C extensions, just pure Python speed.
+> **Two lines.** `backtest` · `show` — that's the entire workflow.
+> One function call. Auto data download, commission, slippage, and a TradingView-style dashboard.
 
 ```python
 from tradix import backtest, goldenCross
 
 result = backtest("AAPL", goldenCross())
-print(result.summary())
+result.show()
 ```
 
-That's it. Two lines to a full backtest with commission, slippage, and performance metrics.
+<br>
 
-## Why Tradix?
-
-- **Fast** — NumPy vectorized engine runs 1,000 optimizations in 0.02s, no Numba or C required
-- **Simple** — Two lines to a full backtest: `backtest("AAPL", goldenCross())`
-- **Complete** — 33 preset strategies, 60+ indicators, walk-forward, multi-asset, risk analytics
-- **Realistic** — Commission, slippage, fill simulation, Korean market tax (0.18%) built in
-- **Free forever** — MIT license, no paid tiers, no feature gates
-
-## Features
-
-### Core Engine
-- **Vectorized Engine** — NumPy-powered core, 100x faster than event-driven loops
-- **60+ Technical Indicators** — SMA, EMA, RSI, MACD, Bollinger, ATR, Ichimoku, Supertrend, Stochastic RSI, KDJ, and more
-- **33 Preset Strategies** — Trend, momentum, oscillator, volatility, multi-indicator, buy & hold, DCA
-- **Declarative Strategy Builder** — Build strategies with method chaining, no subclassing needed
-- **Walk-Forward Analysis** — Built-in overfitting prevention with time-series cross-validation
-- **Parameter Optimization** — Grid search and random search with any metric
-- **Multi-Asset Portfolios** — Backtest across multiple symbols with rebalancing
-- **Realistic Simulation** — Commission models, slippage, fill logic, position sizing
-
-### Advanced Analytics
-- **Strategy DNA** — 12-dimensional strategy fingerprinting (trend sensitivity, mean reversion, volatility preference, etc.)
-- **Black Swan Defense** — Extreme event resilience scoring (0-100) with crisis period breakdown
-- **Strategy Health Score** — Overfitting risk, parameter stability, performance consistency diagnostics
-- **What-If Simulator** — Commission, slippage, capital, and timing sensitivity analysis
-- **Drawdown Simulator** — Historical worst-case drawdown scenario generation
-- **Seasonality Analyzer** — Monthly, weekday, and quarterly pattern discovery
-- **Correlation Matrix** — Multi-strategy correlation analysis and clustering
-- **Trading Journal** — Automatic trade diary with MFE/MAE analytics
-- **Strategy Leaderboard** — Multi-strategy ranking with composite scoring and badge system
-
-### Innovative Analytics
-- **Monte Carlo Stress Test** — 10,000-path bootstrap simulation with ruin probability, confidence bands, Sharpe/MDD distributions
-- **Fractal Analysis** — Hurst Exponent and fractal dimension for market character classification (trending/random/mean-reverting)
-- **Regime Detector** — GMM-based probabilistic regime detection with transition matrix and per-regime performance decomposition
-- **Information Theory** — Shannon entropy, mutual information, and transfer entropy for signal quality measurement
-- **Portfolio Stress Test** — 6 hypothetical crisis scenarios (market crash, volatility spike, rate shock, liquidity crisis, flash crash, correlation breakdown)
-
-### Risk & Quant
-- **Risk Analytics** — VaR, CVaR, Monte Carlo simulation, Sharpe, Sortino, Calmar
-- **Factor Analysis** — Multi-factor models, statistical arbitrage, pair trading
-
-### Terminal UI (TradingView-inspired)
-- **3 Display Styles** — Modern (TradingView cards), Bloomberg (dense 4-quadrant), Minimal (hedge fund report)
-- **12 Chart Types** — Equity curve, drawdown, candlestick+volume, return distribution, seasonality, rolling metrics, trade scatter, correlation bars, strategy DNA, monthly heatmap, trade markers, equity overlay
-- **Interactive Dashboard** — 5-view Textual app (Overview, Metrics, Trades, Charts, Compare) with keyboard navigation
-- **CLI** — `tradix backtest`, `tradix chart`, `tradix compare`, `tradix optimize`, `tradix list`
-
-### Korean Market
-- **Korean Market Native** — Built-in transaction tax (0.18%), brokerage fees, KRX stock mapping
-- **Korean Language API** — Full Korean function names: `백테스트("삼성전자", 골든크로스())`
-
-## Installation
-
-### Using uv (Recommended)
-
-[uv](https://docs.astral.sh/uv/) is the fastest Python package manager. If you don't have it yet:
-
-```bash
-# Install uv
-# macOS / Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Windows (PowerShell)
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-Then install Tradix:
-
-```bash
-# Create a new project and add tradix
-uv init my-backtest && cd my-backtest
-uv add tradix
-
-# Or with all optional dependencies (scipy, plotly, statsmodels, scikit-learn)
-uv add "tradix[full]"
-```
-
-### Using pip
+## ◈ Quick Start
 
 ```bash
 pip install tradix
-
-# With full features
-pip install "tradix[full]"
 ```
-
-### From source (development)
-
-```bash
-git clone https://github.com/eddmpython/tradix.git
-cd tradix
-
-# Using uv
-uv sync --dev
-
-# Using pip
-pip install -e ".[dev]"
-```
-
-**Requirements:** Python 3.9+, NumPy, Pandas
-
-## Quick Start
-
-> **Note:** Install with `pip install tradix` (PyPI package) — import as `tradix` in code.
-
-### 1. Two-Line Backtest
 
 ```python
 from tradix import backtest, goldenCross
 
-result = backtest("005930", goldenCross())  # Samsung Electronics
-result.show()                               # TradingView-style dashboard
-result.show(style="bloomberg")              # Bloomberg terminal style
+result = backtest("005930", goldenCross())
+result.show()
+result.show(style="bloomberg")
 ```
 
-Output:
+> `backtest()` auto-downloads data via FinanceDataReader, runs the strategy with commission and slippage, and returns a full result object.
+
 ```
 === Backtest Result ===
 Strategy: GoldenCross
@@ -163,9 +69,139 @@ Trades:  18
 Win Rate: 61.1%
 ```
 
-### 2. Declarative Strategy Builder
+<br>
 
-Build strategies with method chaining — zero boilerplate:
+## ◈ Why Tradix?
+
+<table>
+<tr><td>
+
+| Dimension | Tradix | Backtrader | Zipline | bt |
+|:--|:--:|:--:|:--:|:--:|
+| **Zero-config backtest** | ✅ | ❌ | ❌ | ❌ |
+| **2-line API** | ✅ | ❌ | ❌ | ❌ |
+| **Vectorized engine** | ✅ | ❌ | ❌ | ✅ |
+| **1K optimizations < 1s** | ✅ | ❌ | ❌ | ❌ |
+| **Built-in data feed** | ✅ | ❌ | ❌ | ❌ |
+| **33 preset strategies** | ✅ | ❌ | ❌ | ❌ |
+| **Terminal dashboard** | ✅ | ❌ | ❌ | ❌ |
+| **Korean market native** | ✅ | ❌ | ❌ | ❌ |
+| **Walk-forward analysis** | ✅ | ❌ | ❌ | ❌ |
+| **Strategy DNA analysis** | ✅ | ❌ | ❌ | ❌ |
+
+</td></tr>
+</table>
+
+<br>
+
+## ◈ Features
+
+<details open>
+<summary><b>Core Engine</b></summary>
+
+| Feature | Description |
+|:--------|:------------|
+| **Vectorized Engine** | NumPy-powered core, 100x faster than event-driven loops |
+| **60+ Indicators** | SMA, EMA, RSI, MACD, Bollinger, ATR, Ichimoku, Supertrend, StochRSI, KDJ, and more |
+| **33 Preset Strategies** | Trend, momentum, oscillator, volatility, multi-indicator, buy & hold, DCA |
+| **Strategy Builder** | Declarative method chaining — no subclassing needed |
+| **Walk-Forward** | Built-in overfitting prevention with time-series cross-validation |
+| **Optimization** | Grid search and random search with any metric |
+| **Multi-Asset** | Backtest across multiple symbols with rebalancing |
+| **Realistic Simulation** | Commission, slippage, fill logic, position sizing |
+
+</details>
+
+<details>
+<summary><b>Advanced Analytics</b></summary>
+
+| Feature | Description |
+|:--------|:------------|
+| **Strategy DNA** | 12-dimensional strategy fingerprinting |
+| **Black Swan Defense** | Extreme event resilience scoring (0-100) |
+| **Health Score** | Overfitting risk, parameter stability diagnostics |
+| **What-If Simulator** | Commission, slippage, capital sensitivity analysis |
+| **Drawdown Simulator** | Historical worst-case scenario generation |
+| **Seasonality Analyzer** | Monthly, weekday, quarterly pattern discovery |
+| **Correlation Matrix** | Multi-strategy correlation and clustering |
+| **Trading Journal** | Auto trade diary with MFE/MAE analytics |
+| **Strategy Leaderboard** | Multi-strategy ranking with badge system |
+
+</details>
+
+<details>
+<summary><b>Innovative Analytics</b></summary>
+
+| Feature | Description |
+|:--------|:------------|
+| **Monte Carlo** | 10K-path bootstrap with ruin probability and confidence bands |
+| **Fractal Analysis** | Hurst exponent for market character classification |
+| **Regime Detector** | GMM-based probabilistic regime detection with transition matrix |
+| **Information Theory** | Shannon entropy, mutual information for signal quality |
+| **Portfolio Stress** | 6 crisis scenarios (crash, volatility spike, rate shock, etc.) |
+
+</details>
+
+<details>
+<summary><b>Terminal UI — TradingView-Inspired</b></summary>
+
+| Feature | Description |
+|:--------|:------------|
+| **3 Display Styles** | Modern (TradingView), Bloomberg (dense 4-quadrant), Minimal (hedge fund) |
+| **12 Chart Types** | Equity, drawdown, candlestick, returns, seasonality, heatmap, DNA, and more |
+| **Interactive Dashboard** | 5-view Textual app with keyboard navigation |
+| **CLI** | `tradix backtest`, `tradix chart`, `tradix compare`, `tradix optimize`, `tradix list` |
+
+</details>
+
+<details>
+<summary><b>Korean Market</b></summary>
+
+| Feature | Description |
+|:--------|:------------|
+| **Native Support** | Built-in transaction tax (0.18%), brokerage fees, KRX stock mapping |
+| **Korean API** | Full Korean function names: `백테스트("삼성전자", 골든크로스())` |
+
+</details>
+
+<br>
+
+## ◈ Installation
+
+### Using uv (Recommended)
+
+[uv](https://docs.astral.sh/uv/) is the fastest Python package manager.
+
+```bash
+uv init my-backtest && cd my-backtest
+uv add tradix
+
+uv add "tradix[full]"
+```
+
+### Using pip
+
+```bash
+pip install tradix
+
+pip install "tradix[full]"
+```
+
+### From source
+
+```bash
+git clone https://github.com/eddmpython/tradix.git
+cd tradix
+uv sync --dev
+```
+
+**Requirements:** Python 3.9+, NumPy, Pandas
+
+<br>
+
+## ◈ Usage
+
+### Declarative Strategy Builder
 
 ```python
 from tradix import QuickStrategy, backtest, sma, rsi, crossover, crossunder
@@ -184,9 +220,7 @@ result = backtest("AAPL", strategy)
 result.show()
 ```
 
-### 3. Parameter Optimization
-
-Find the best parameters in seconds:
+### Parameter Optimization
 
 ```python
 from tradix import voptimize
@@ -194,7 +228,7 @@ from tradix import voptimize
 best = voptimize(
     "005930",
     "goldenCross",
-    fast=(5, 20, 5),     # (start, end, step)
+    fast=(5, 20, 5),
     slow=(20, 60, 10),
     metric="sharpeRatio"
 )
@@ -203,10 +237,7 @@ print(f"Best: fast={best['best']['params']['fast']}, slow={best['best']['params'
 print(f"Sharpe: {best['best']['metric']:.2f}")
 ```
 
-<details>
-<summary><strong>More Examples</strong> — Vectorized mode, class-based strategy, walk-forward, multi-asset, risk, Korean API</summary>
-
-#### Vectorized Mode (100x Faster)
+### Vectorized Mode (100x Faster)
 
 ```python
 from tradix import vbacktest
@@ -217,7 +248,20 @@ print(f"Sharpe: {result.sharpeRatio:.2f}")
 print(f"Max DD: {result.maxDrawdown:.2f}%")
 ```
 
-#### Class-Based Strategy (Full Control)
+### Korean API
+
+```python
+from tradix import 백테스트, 골든크로스
+
+결과 = 백테스트("삼성전자", 골든크로스())
+결과.보기()
+결과.차트()
+```
+
+<details>
+<summary><b>More Examples</b> — Class-based strategy, walk-forward, multi-asset, risk</summary>
+
+### Class-Based Strategy
 
 ```python
 from tradix import Strategy, Bar, BacktestEngine
@@ -246,7 +290,7 @@ result = engine.run()
 result.show()
 ```
 
-#### Walk-Forward Analysis
+### Walk-Forward Analysis
 
 ```python
 from tradix import Strategy, Bar, WalkForwardAnalyzer, ParameterSpace
@@ -283,7 +327,7 @@ result = wfa.run()
 print(f"Robustness: {result.robustnessRatio:.1%}")
 ```
 
-#### Multi-Asset Portfolio
+### Multi-Asset Portfolio
 
 ```python
 from tradix import MultiAssetEngine, MultiAssetStrategy
@@ -291,9 +335,9 @@ from tradix import MultiAssetEngine, MultiAssetStrategy
 class EqualWeight(MultiAssetStrategy):
     def onBars(self, bars):
         self.rebalance({
-            "005930": 0.4,  # Samsung
-            "000660": 0.3,  # SK Hynix
-            "035420": 0.3,  # Naver
+            "005930": 0.4,
+            "000660": 0.3,
+            "035420": 0.3,
         })
 
 engine = MultiAssetEngine(strategy=EqualWeight())
@@ -301,7 +345,7 @@ result = engine.run()
 result.show()
 ```
 
-#### Risk Simulation
+### Risk Simulation
 
 ```python
 import pandas as pd
@@ -321,81 +365,91 @@ print(f"CVaR: {cvar95:.2%}")
 mc = simulator.monteCarloSimulation(horizon=252, nSim=10000)
 ```
 
-#### Korean Language API
+</details>
 
-```python
-from tradix import 백테스트, 골든크로스
+<br>
 
-결과 = 백테스트("삼성전자", 골든크로스())
-결과.보기()   # 한글 대시보드
-결과.차트()   # 한글 차트
-```
+## ◈ Strategies
+
+<details open>
+<summary><b>Trend Following (9)</b></summary>
+
+| Strategy | Description |
+|:---------|:------------|
+| **`goldenCross()`** | SMA crossover (fast/slow) |
+| **`emaCross()`** | EMA crossover |
+| **`tripleEma()`** | Triple EMA crossover |
+| **`trendFollowing()`** | ADX-filtered trend following with trailing stop |
+| **`superTrend()`** | Supertrend indicator reversal |
+| **`ichimokuCloud()`** | Ichimoku cloud breakout |
+| **`parabolicSar()`** | Parabolic SAR reversal |
+| **`donchianBreakout()`** | Donchian channel breakout |
+| **`breakout()`** | Channel breakout (Turtle Trading) |
 
 </details>
 
 <details>
-<summary><strong>Preset Strategies (33)</strong> — Trend, momentum, volatility, multi-indicator, special</summary>
+<summary><b>Momentum & Oscillator (8)</b></summary>
 
-### Trend Following
 | Strategy | Description |
-|----------|-------------|
-| `goldenCross()` | SMA crossover (fast/slow) |
-| `emaCross()` | EMA crossover |
-| `tripleEma()` | Triple EMA crossover |
-| `trendFollowing()` | ADX-filtered trend following with trailing stop |
-| `superTrend()` | Supertrend indicator reversal |
-| `ichimokuCloud()` | Ichimoku cloud breakout |
-| `parabolicSar()` | Parabolic SAR reversal |
-| `donchianBreakout()` | Donchian channel breakout |
-| `breakout()` | Channel breakout (Turtle Trading) |
-
-### Momentum & Oscillator
-| Strategy | Description |
-|----------|-------------|
-| `rsiOversold()` | RSI reversal (oversold/overbought) |
-| `macdCross()` | MACD histogram crossover |
-| `stochasticCross()` | Stochastic K/D crossover |
-| `williamsReversal()` | Williams %R reversal |
-| `cciBreakout()` | CCI overbought/oversold breakout |
-| `rsiDivergence()` | RSI divergence detection |
-| `momentumCross()` | Momentum zero-line crossover |
-| `rocBreakout()` | Rate of Change breakout |
-
-### Volatility
-| Strategy | Description |
-|----------|-------------|
-| `bollingerBreakout()` | Bollinger band breakout |
-| `bollingerSqueeze()` | Bollinger squeeze expansion |
-| `keltnerChannel()` | Keltner channel breakout |
-| `volatilityBreakout()` | ATR-based volatility breakout |
-| `meanReversion()` | Bollinger mean reversion |
-
-### Multi-Indicator & Combo
-| Strategy | Description |
-|----------|-------------|
-| `tripleScreen()` | Elder's triple screen system |
-| `dualMomentum()` | Absolute + relative momentum |
-| `macdRsiCombo()` | MACD + RSI combined signal |
-| `trendMomentum()` | Trend + momentum filter |
-| `bollingerRsi()` | Bollinger + RSI combined |
-
-### Special
-| Strategy | Description |
-|----------|-------------|
-| `gapTrading()` | Gap up/down trading |
-| `pyramiding()` | Pyramiding position building |
-| `swingTrading()` | Swing high/low trading |
-| `scalpingMomentum()` | Short-term momentum scalping |
-| `buyAndHold()` | Passive buy and hold |
-| `dollarCostAverage()` | Dollar cost averaging |
+|:---------|:------------|
+| **`rsiOversold()`** | RSI reversal (oversold/overbought) |
+| **`macdCross()`** | MACD histogram crossover |
+| **`stochasticCross()`** | Stochastic K/D crossover |
+| **`williamsReversal()`** | Williams %R reversal |
+| **`cciBreakout()`** | CCI overbought/oversold breakout |
+| **`rsiDivergence()`** | RSI divergence detection |
+| **`momentumCross()`** | Momentum zero-line crossover |
+| **`rocBreakout()`** | Rate of Change breakout |
 
 </details>
 
 <details>
-<summary><strong>Indicators (60+)</strong> — Moving averages, momentum, volatility, volume, trend, price</summary>
+<summary><b>Volatility (5)</b></summary>
+
+| Strategy | Description |
+|:---------|:------------|
+| **`bollingerBreakout()`** | Bollinger band breakout |
+| **`bollingerSqueeze()`** | Bollinger squeeze expansion |
+| **`keltnerChannel()`** | Keltner channel breakout |
+| **`volatilityBreakout()`** | ATR-based volatility breakout |
+| **`meanReversion()`** | Bollinger mean reversion |
+
+</details>
+
+<details>
+<summary><b>Multi-Indicator (5)</b></summary>
+
+| Strategy | Description |
+|:---------|:------------|
+| **`tripleScreen()`** | Elder's triple screen system |
+| **`dualMomentum()`** | Absolute + relative momentum |
+| **`macdRsiCombo()`** | MACD + RSI combined signal |
+| **`trendMomentum()`** | Trend + momentum filter |
+| **`bollingerRsi()`** | Bollinger + RSI combined |
+
+</details>
+
+<details>
+<summary><b>Special (6)</b></summary>
+
+| Strategy | Description |
+|:---------|:------------|
+| **`gapTrading()`** | Gap up/down trading |
+| **`pyramiding()`** | Pyramiding position building |
+| **`swingTrading()`** | Swing high/low trading |
+| **`scalpingMomentum()`** | Short-term momentum scalping |
+| **`buyAndHold()`** | Passive buy and hold |
+| **`dollarCostAverage()`** | Dollar cost averaging |
+
+</details>
+
+<br>
+
+## ◈ Indicators
 
 | Category | Indicators |
-|----------|-----------|
+|:---------|:-----------|
 | **Moving Averages** | `sma` `ema` `wma` `hma` `tema` `dema` `vwma` `alma` |
 | **Momentum** | `rsi` `macd` `stochastic` `roc` `momentum` `cci` `williamsR` `cmo` `stochasticRsi` `kdj` `awesomeOscillator` `ultimateOscillator` |
 | **Volatility** | `atr` `bollinger` `keltner` `donchian` `bollingerPercentB` `bollingerWidth` |
@@ -404,97 +458,60 @@ from tradix import 백테스트, 골든크로스
 | **Price** | `pivotPoints` `fibonacciRetracement` `zigzag` `elderRay` `twap` |
 | **Other** | `ulcer` `percentChange` `highest` `lowest` |
 
-</details>
+<br>
 
-## Performance
+## ◈ Performance
 
 Benchmarked on 10 years of daily data (2,458 bars):
 
 | Operation | Time |
-|-----------|------|
-| SMA calculation | **0.006ms** |
-| RSI calculation | **0.009ms** |
-| MACD calculation | **0.040ms** |
-| Full backtest (single) | **0.132ms** |
-| 1,000 param optimization | **0.02s** |
+|:----------|:-----|
+| **SMA calculation** | 0.006ms |
+| **RSI calculation** | 0.009ms |
+| **MACD calculation** | 0.040ms |
+| **Full backtest (single)** | 0.132ms |
+| **1,000 param optimization** | 0.02s |
 
-<details>
-<summary><strong>API Reference</strong> — Core functions, strategy builder, condition builders</summary>
+<br>
 
-### Core
+## ◈ Terminal UI
 
-| Class/Function | Description |
-|---------------|-------------|
-| `backtest(symbol, strategy)` | Run a backtest with a preset or custom strategy |
-| `vbacktest(symbol, strategy, **params)` | Run a vectorized backtest |
-| `voptimize(symbol, strategy, **ranges)` | Grid search parameter optimization |
-| `BacktestEngine(data, strategy)` | Event-driven backtest engine |
-| `VectorizedEngine(initialCash)` | Vectorized backtest engine |
-| `QuickStrategy(name)` | Declarative strategy builder |
-
-### Strategy Builder Methods
-
-| Method | Description |
-|--------|-------------|
-| `.buyWhen(condition)` | Add buy condition |
-| `.sellWhen(condition)` | Add sell condition |
-| `.stopLoss(pct)` | Set stop loss percentage |
-| `.takeProfit(pct)` | Set take profit percentage |
-| `.trailingStop(pct)` | Set trailing stop percentage |
-
-### Condition Builders
-
-| Function | Returns |
-|----------|---------|
-| `sma(period)` | SMA indicator |
-| `ema(period)` | EMA indicator |
-| `rsi(period)` | RSI indicator |
-| `macd(fast, slow, signal)` | MACD indicator |
-| `bollinger(period, std)` | Bollinger Bands |
-| `atr(period)` | ATR indicator |
-| `price()` | Current price |
-| `crossover(fast, slow)` | Crossover condition |
-| `crossunder(fast, slow)` | Crossunder condition |
-
-Indicators support comparison operators: `sma(10) > sma(30)`, `rsi(14) < 30`
-
-</details>
-
-## Terminal UI
-
-Tradix includes a TradingView-inspired terminal dashboard. No browser needed.
-
-### Result Visualization
+### Display Styles
 
 ```python
-result = backtest("AAPL", goldenCross())
-
-result.show()    # Rich metric cards (Return, Sharpe, MDD, Win Rate, Trades)
-result.chart()   # Full dashboard: Equity + Drawdown + Returns histogram
+result.show()                     # Modern — TradingView metric cards
+result.show(style="bloomberg")    # Bloomberg — dense 4-quadrant layout
+result.show(style="minimal")      # Minimal — clean hedge fund report
 ```
 
-### CLI Commands
+### CLI
 
 ```bash
-tradix backtest AAPL -s goldenCross --dashboard   # Full dashboard
-tradix backtest AAPL -s bollingerSqueeze --style bloomberg  # Bloomberg style
-tradix chart AAPL -n 60                            # Candlestick chart
-tradix compare AAPL -s goldenCross,rsiOversold     # Strategy comparison
-tradix optimize AAPL -s goldenCross                # Parameter optimization
-tradix list                                        # All 33 strategies
+tradix backtest AAPL -s goldenCross --dashboard
+tradix backtest AAPL -s bollingerSqueeze --style bloomberg
+tradix chart AAPL -n 60
+tradix compare AAPL -s goldenCross,rsiOversold
+tradix optimize AAPL -s goldenCross
+tradix list
 ```
 
-### Individual Charts
+### Charts (12 Types)
 
 ```python
-from tradix.tui.charts import plotEquityCurve, plotCandlestick, plotDrawdown
+from tradix.tui.charts import (
+    plotEquityCurve, plotDrawdown, plotCandlestick, plotReturns,
+    plotSeasonality, plotMonthlyHeatmap, plotRollingMetrics,
+    plotTradeScatter, plotTradeMarkers, plotCorrelationBars,
+    plotStrategyDna, plotDashboard,
+)
 
-plotEquityCurve(result, smaPeriods=[20, 60])   # Equity + SMA overlay
-plotCandlestick(df, smaPeriods=[5, 20])        # Candlestick + Volume
-plotDrawdown(result)                            # Drawdown chart
+plotEquityCurve(result, smaPeriods=[20, 60])
+plotDrawdown(result)
+plotCandlestick(df, smaPeriods=[5, 20])
+plotDashboard(result, lang="ko")
 ```
 
-### Interactive Dashboard (Optional)
+### Interactive Dashboard
 
 ```bash
 pip install tradix[tui]
@@ -502,10 +519,12 @@ pip install tradix[tui]
 
 ```python
 from tradix.tui.dashboard import launchDashboard
-launchDashboard(result)  # Full-screen Textual app (q=quit, d=theme)
+launchDashboard(result)
 ```
 
-## Advanced Analytics
+<br>
+
+## ◈ Advanced Analytics
 
 ```python
 from tradix import (
@@ -524,23 +543,7 @@ printHealthScore(health)
 
 blackSwan = BlackSwanAnalyzer().analyze(result)
 printBlackSwanScore(blackSwan)
-
-whatIf = WhatIfSimulator().analyze(result)
-
-drawdown = DrawdownSimulator().simulate(result)
-
-seasonality = SeasonalityAnalyzer().analyze(result)
-
-journal = TradingJournal()
-journal.record(result)
-
-leaderboard = StrategyLeaderboard()
-leaderboard.addResult("goldenCross", result)
-leaderboard.addResult("rsiOversold", result2)
-leaderboard.printRanking()
 ```
-
-### Innovative Analytics
 
 ```python
 from tradix import (
@@ -548,128 +551,108 @@ from tradix import (
     InformationTheoryAnalyzer, PortfolioStressAnalyzer,
 )
 
-result = backtest("005930", goldenCross())
-
-# Monte Carlo: 10K path stress test
 mc = MonteCarloStressAnalyzer().analyze(result, paths=10000)
 print(f"Ruin probability: {mc.ruinProbability:.2%}")
-print(f"99% confidence band: {mc.confidenceBands['99%']}")
 
-# Fractal: market character classification
 fractal = FractalAnalyzer().analyze(result)
 print(f"Hurst: {fractal.hurstExponent:.3f} → {fractal.marketCharacter}")
 
-# Regime: probabilistic market state detection
 regime = RegimeDetector().analyze(result)
 print(f"Current regime: {regime.currentRegime}")
-print(f"Transition matrix: {regime.transitionMatrix}")
-
-# Information Theory: signal quality measurement
-info = InformationTheoryAnalyzer().analyze(result)
-print(f"Signal quality: {info.signalQuality}")
-print(f"Mutual information: {info.mutualInformation:.4f} bits")
-
-# Portfolio Stress: crisis scenario simulation
-stress = PortfolioStressAnalyzer().analyze(result)
-print(f"Overall grade: {stress.overallGrade}")
-print(f"Survival rate: {stress.survivalRate:.0%}")
 ```
 
-## Terminal UI Styles
+<br>
 
-### Modern (TradingView)
-```python
-result.show()                              # Default: metric cards + detail table
-result.show(style="modern")                # Same as above
-```
+## ◈ API Reference
 
-### Bloomberg (Dense)
-```python
-result.show(style="bloomberg")             # 4-quadrant layout + monthly heatmap
-```
+<details>
+<summary><b>Core Functions</b></summary>
 
-### Minimal (Hedge Fund)
-```python
-result.show(style="minimal")               # Clean report with quality indicators
-```
+| Function | Description |
+|:---------|:------------|
+| **`backtest(symbol, strategy)`** | Run a backtest with a preset or custom strategy |
+| **`vbacktest(symbol, strategy, **params)`** | Run a vectorized backtest |
+| **`voptimize(symbol, strategy, **ranges)`** | Grid search parameter optimization |
+| **`BacktestEngine(data, strategy)`** | Event-driven backtest engine |
+| **`VectorizedEngine(initialCash)`** | Vectorized backtest engine |
+| **`QuickStrategy(name)`** | Declarative strategy builder |
 
-### Chart Types (12)
-```python
-from tradix.tui.charts import (
-    plotEquityCurve, plotDrawdown, plotCandlestick, plotReturns,
-    plotSeasonality, plotMonthlyHeatmap, plotRollingMetrics,
-    plotTradeScatter, plotTradeMarkers, plotCorrelationBars,
-    plotStrategyDna, plotDashboard,
-)
+</details>
 
-plotEquityCurve(result, smaPeriods=[20, 60])  # Equity + SMA + trade markers
-plotDrawdown(result)                           # Drawdown with MDD annotation
-plotCandlestick(df, smaPeriods=[5, 20])        # OHLCV candlestick + volume subplot
-plotReturns(result)                            # Return distribution (skew/kurtosis)
-plotSeasonality(result)                        # Monthly seasonality bars
-plotMonthlyHeatmap(result)                     # Year x Month heatmap
-plotRollingMetrics(result)                     # Rolling Sharpe + volatility
-plotTradeScatter(result)                       # Holding days vs return scatter
-plotTradeMarkers(result)                       # Equity + buy/sell markers
-plotCorrelationBars(names, matrix)             # Strategy correlation horizontal bars
-plotStrategyDna(dna)                           # 12-dimension DNA horizontal bars
-plotDashboard(result, lang="ko")               # All-in-one dashboard
-```
+<details>
+<summary><b>Strategy Builder Methods</b></summary>
 
-## Architecture
+| Method | Description |
+|:-------|:------------|
+| **`.buyWhen(condition)`** | Add buy condition |
+| **`.sellWhen(condition)`** | Add sell condition |
+| **`.stopLoss(pct)`** | Set stop loss percentage |
+| **`.takeProfit(pct)`** | Set take profit percentage |
+| **`.trailingStop(pct)`** | Set trailing stop percentage |
+
+</details>
+
+<details>
+<summary><b>Condition Builders</b></summary>
+
+| Function | Returns |
+|:---------|:--------|
+| **`sma(period)`** | SMA indicator |
+| **`ema(period)`** | EMA indicator |
+| **`rsi(period)`** | RSI indicator |
+| **`macd(fast, slow, signal)`** | MACD indicator |
+| **`bollinger(period, std)`** | Bollinger Bands |
+| **`atr(period)`** | ATR indicator |
+| **`price()`** | Current price |
+| **`crossover(fast, slow)`** | Crossover condition |
+| **`crossunder(fast, slow)`** | Crossunder condition |
+
+Indicators support comparison operators: `sma(10) > sma(30)`, `rsi(14) < 30`
+
+</details>
+
+<br>
+
+## ◈ Architecture
 
 ```
 tradix/
 ├── engine.py              # Core backtest engine
 ├── multiAssetEngine.py    # Multi-asset portfolio engine
-├── strategy/              # Strategy base + 60+ indicators + ensemble combiner
+├── strategy/              # Strategy base + 60+ indicators + ensemble
 ├── easy/                  # 2-line API, presets, Korean API
 ├── vectorized/            # Vectorized engine + indicators (Pure NumPy)
 ├── datafeed/              # Data feeds (FinanceDataReader + Parquet cache)
-├── broker/                # Commission, slippage, fill, execution simulation
+├── broker/                # Commission, slippage, fill simulation
 ├── risk/                  # Position sizing, VaR, Monte Carlo
 ├── optimize/              # Grid / random search optimizer
 ├── walkforward/           # Walk-forward analysis
-├── analytics/             # Strategy DNA, Black Swan, Health Score, What-If, Seasonality, etc.
+├── analytics/             # Strategy DNA, Black Swan, Health Score, etc.
 ├── portfolio/             # Portfolio tracking + optimization
 ├── quant/                 # Factor analysis, statistical arbitrage
 ├── signals/               # Signal prediction + adaptive signals
 ├── advisor/               # Market regime + strategy recommendation
 ├── entities/              # Bar, Order, Position, Trade
-├── events/                # Event system (Market, Signal, Order, Fill)
-├── tui/                   # Terminal UI (Rich + Plotext + Textual), 3 styles, 12 chart types
-├── cli.py                 # Typer CLI (backtest, optimize, chart, compare, list)
-└── tests/                 # Unit + integration tests (87 tests)
+├── events/                # Event system
+├── tui/                   # Terminal UI (Rich + Plotext + Textual)
+├── cli.py                 # Typer CLI
+└── tests/                 # 87 tests
 ```
 
-## Running Tests
+<br>
 
-```bash
-# Using uv
-uv run pytest
-
-# Using pip
-pytest
-```
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues and pull requests.
+## ◈ Contributing
 
 ```bash
 git clone https://github.com/eddmpython/tradix.git
 cd tradix
-
-# Using uv (recommended)
 uv sync --dev
 uv run pytest
-
-# Using pip
-pip install -e ".[dev]"
-pytest
 ```
 
-## Support
+<br>
+
+## ◈ Support
 
 If Tradix helps your trading research, consider supporting the project:
 
@@ -679,8 +662,18 @@ If Tradix helps your trading research, consider supporting the project:
   </a>
 </p>
 
-Your support keeps this project free and actively maintained. Every coffee fuels a new feature.
+<br>
 
-## License
+## ◈ License
 
 MIT License. Use it freely in personal and commercial projects.
+
+<div align="center">
+
+<br>
+
+*Trade smarter. Backtest faster.*
+
+<br>
+
+</div>
