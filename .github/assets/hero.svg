@@ -43,9 +43,9 @@
     </filter>
   </defs>
 
-  <rect width="900" height="400" fill="url(#bg)"/>
-  <rect width="900" height="400" fill="url(#glow1)"/>
-  <rect width="900" height="400" fill="url(#glow2)"/>
+  <rect width="900" height="400" rx="16" ry="16" fill="url(#bg)"/>
+  <rect width="900" height="400" rx="16" ry="16" fill="url(#glow1)"/>
+  <rect width="900" height="400" rx="16" ry="16" fill="url(#glow2)"/>
 
   <line x1="100" y1="180" x2="800" y2="180" stroke="#1e293b" stroke-width="0.5" opacity="0.3"/>
   <line x1="100" y1="220" x2="800" y2="220" stroke="#1e293b" stroke-width="0.5" opacity="0.3"/>
