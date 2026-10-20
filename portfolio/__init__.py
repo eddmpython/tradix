@@ -20,7 +20,9 @@ Usage:
 """
 
 from tradix.portfolio.portfolio import Portfolio
+from tradix.portfolio.tradeLedger import TradeLedger
 
 __all__ = [
     "Portfolio",
+    "TradeLedger",
 ]

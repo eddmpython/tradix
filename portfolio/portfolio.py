@@ -26,15 +26,14 @@ Usage:
     print(f"Return: {portfolio.totalReturn:+.2f}%")
 """
 
-from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Dict, List, Optional
-import uuid
 
 from tradix.entities.order import Order, OrderSide, OrderStatus
 from tradix.entities.position import Position
 from tradix.entities.trade import Trade
 from tradix.events.fill import FillEvent
+from tradix.portfolio.tradeLedger import TradeLedger
 
 
 class Portfolio:
@@ -72,8 +71,7 @@ class Portfolio:
         self.initialCash = initialCash
         self._cash = initialCash
         self._positions: Dict[str, Position] = {}
-        self._trades: List[Trade] = []
-        self._openTrades: Dict[str, Trade] = {}
+        self._tradeLedger = TradeLedger()
         self._pendingOrders: List[Order] = []
         self._filledOrders: List[Order] = []
         self._equityHistory: List[tuple] = []
@@ -116,7 +114,7 @@ class Portfolio:
     @property
     def realizedPnl(self) -> float:
         """Return total realized PnL from closed trades (실현 손익)."""
-        return sum(t.pnl for t in self._trades if t.isClosed)
+        return sum(t.pnl for t in self.trades)
 
     @property
     def totalPnl(self) -> float:
@@ -133,12 +131,12 @@ class Portfolio:
     @property
     def trades(self) -> List[Trade]:
         """Return a list of closed (completed) trades (완료된 거래 목록)."""
-        return [t for t in self._trades if t.isClosed]
+        return self._tradeLedger.closedTrades
 
     @property
     def openTrades(self) -> List[Trade]:
         """Return a list of currently open trades (진행 중인 거래 목록)."""
-        return list(self._openTrades.values())
+        return self._tradeLedger.openTrades
 
     @property
     def pendingOrders(self) -> List[Order]:
@@ -330,19 +328,7 @@ class Portfolio:
                 openedAt=fill.timestamp
             )
 
-            trade = Trade(
-                id=str(uuid.uuid4())[:8],
-                symbol=symbol,
-                side=OrderSide.BUY,
-                entryDate=fill.timestamp,
-                entryPrice=fill.fillPrice,
-                quantity=fill.fillQuantity,
-                commission=fill.commission,
-                slippage=fill.slippage,
-                entryOrderId=fill.orderId
-            )
-            self._trades.append(trade)
-            self._openTrades[symbol] = trade
+        self._tradeLedger.recordEntry(fill)
 
     def _processSellFill(self, fill: FillEvent):
         """
@@ -354,27 +340,34 @@ class Portfolio:
             fill: FillEvent for a sell order.
         """
         symbol = fill.symbol
-        proceeds = fill.fillPrice * fill.fillQuantity - fill.commission - fill.slippage
+        if symbol not in self._positions:
+            return
+
+        position = self._positions[symbol]
+        sellQuantity = min(fill.fillQuantity, position.quantity)
+        if sellQuantity <= 0:
+            return
+
+        commissionRatio = sellQuantity / fill.fillQuantity if fill.fillQuantity > 0 else 0.0
+        adjustedCommission = fill.commission * commissionRatio
+        adjustedSlippage = fill.slippage * commissionRatio
+        proceeds = fill.fillPrice * sellQuantity - adjustedCommission - adjustedSlippage
 
         self._cash += proceeds
+        position.reduceQuantity(sellQuantity, fill.fillPrice)
 
-        if symbol in self._positions:
-            position = self._positions[symbol]
-            position.reduceQuantity(fill.fillQuantity, fill.fillPrice)
+        adjustedFill = FillEvent(
+            timestamp=fill.timestamp,
+            order=fill.order,
+            fillPrice=fill.fillPrice,
+            fillQuantity=sellQuantity,
+            commission=adjustedCommission,
+            slippage=adjustedSlippage,
+        )
+        self._tradeLedger.recordExit(adjustedFill)
 
-            if position.quantity <= 0:
-                del self._positions[symbol]
-
-                if symbol in self._openTrades:
-                    trade = self._openTrades[symbol]
-                    trade.close(
-                        exitDate=fill.timestamp,
-                        exitPrice=fill.fillPrice,
-                        commission=fill.commission,
-                        slippage=fill.slippage,
-                        orderId=fill.orderId
-                    )
-                    del self._openTrades[symbol]
+        if position.quantity <= 0:
+            del self._positions[symbol]
 
     def recordEquity(self, timestamp: datetime):
         """
@@ -444,8 +437,7 @@ class Portfolio:
         """
         self._cash = self.initialCash
         self._positions.clear()
-        self._trades.clear()
-        self._openTrades.clear()
+        self._tradeLedger.reset()
         self._pendingOrders.clear()
         self._filledOrders.clear()
         self._equityHistory.clear()

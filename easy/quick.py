@@ -41,6 +41,8 @@ from tradix.easy.conditions import (
     Indicator,
 )
 from tradix.entities.bar import Bar
+from tradix.entities.order import OrderSide
+from tradix.events.fill import FillEvent
 from tradix.strategy.base import Strategy
 
 
@@ -194,6 +196,22 @@ class QuickStrategy(Strategy):
             if self._checkBuyConditions(bar):
                 self._enterPosition(bar)
 
+    def onOrderFill(self, fill: FillEvent):
+        """Synchronize risk state with the actual fill price."""
+        if fill.side == OrderSide.BUY:
+            position = self.getPosition(fill.symbol)
+            self._entryPrice = position.avgPrice if position else fill.fillPrice
+            self._highestPrice = max(self._highestPrice, fill.fillPrice)
+            return
+
+        if not self.hasPosition(fill.symbol):
+            self._entryPrice = 0.0
+            self._highestPrice = 0.0
+        else:
+            position = self.getPosition(fill.symbol)
+            self._entryPrice = position.avgPrice if position else 0.0
+            self._highestPrice = max(self._highestPrice, fill.fillPrice)
+
     def _checkBuyConditions(self, bar: Bar) -> bool:
         """Evaluate all buy conditions (OR logic). / 모든 매수 조건 평가 (OR 논리)."""
         if not self._buyConditions:
@@ -253,14 +271,10 @@ class QuickStrategy(Strategy):
     def _enterPosition(self, bar: Bar):
         """Enter a new long position. / 신규 매수 포지션 진입."""
         self.buy(bar.symbol)
-        self._entryPrice = bar.close
-        self._highestPrice = bar.high
 
     def _exitPosition(self, bar: Bar, reason: str = ""):
         """Close the current position and reset tracking state. / 포지션 청산 및 추적 상태 초기화."""
         self.closePosition(bar.symbol)
-        self._entryPrice = 0.0
-        self._highestPrice = 0.0
 
     def clone(self) -> 'QuickStrategy':
         """Create a deep copy of this strategy for optimization. / 최적화를 위한 전략 복제."""

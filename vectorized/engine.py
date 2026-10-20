@@ -589,6 +589,9 @@ def vbacktest(
             period=period,
             initialCash=initialCash,
             mode="event",
+            stopLoss=stopLoss,
+            takeProfit=takeProfit,
+            **strategyParams,
         )
 
     from tradix.datafeed.fdr import FinanceDataReaderFeed
@@ -673,7 +676,8 @@ def voptimize(
 
     bestResult = None
     bestParams = None
-    bestMetric = float('-inf')
+    bestScore = float('-inf')
+    bestMetricValue = None
 
     results = []
 
@@ -687,8 +691,9 @@ def voptimize(
 
             compareValue = metricValue if metric != 'maxDrawdown' else -abs(metricValue)
 
-            if compareValue > bestMetric:
-                bestMetric = compareValue
+            if compareValue > bestScore:
+                bestScore = compareValue
+                bestMetricValue = metricValue
                 bestResult = result
                 bestParams = params
 
@@ -711,7 +716,7 @@ def voptimize(
     return {
         'best': {
             'params': bestParams,
-            'metric': bestMetric,
+            'metric': bestMetricValue,
             'result': bestResult
         },
         'all': results[:10]

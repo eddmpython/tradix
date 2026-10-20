@@ -27,7 +27,7 @@ from tradix.entities.bar import Bar
 from tradix.events.fill import FillEvent
 from tradix.broker.commission import CommissionModel, KoreaStockCommission
 from tradix.broker.slippage import SlippageModel, PercentSlippage
-from tradix.broker.fill import FillModel, CloseFill
+from tradix.broker.fill import FillModel, CloseFill, OpenFill
 
 
 @dataclass
@@ -89,7 +89,33 @@ class BrokerSimulator:
                 commission, and slippage details. Returns zero-filled
                 event if fill price is non-positive.
         """
-        basePrice = self.fillModel.getFillPrice(order, bar)
+        return self._processWithFillModel(order, bar, self.fillModel)
+
+    def processOrderAtOpen(self, order: Order, bar: Bar) -> FillEvent:
+        """
+        Process an order using the bar's opening price.
+
+        BacktestEngine fills queued market orders on the next bar's open to
+        prevent look-ahead bias. This method gives BrokerSimulator the same
+        contract as the legacy SimpleBroker used by the engine.
+
+        Args:
+            order (Order): The order to execute. 실행할 주문.
+            bar (Bar): Current bar data for price reference. 현재 바 데이터.
+
+        Returns:
+            FillEvent: Fill generated from the bar's open price.
+        """
+        return self._processWithFillModel(order, bar, OpenFill())
+
+    def _processWithFillModel(
+        self,
+        order: Order,
+        bar: Bar,
+        fillModel: FillModel,
+    ) -> FillEvent:
+        """Generate a fill event using the supplied fill model."""
+        basePrice = fillModel.getFillPrice(order, bar)
 
         if basePrice <= 0:
             return FillEvent(

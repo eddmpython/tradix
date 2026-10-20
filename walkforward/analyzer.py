@@ -316,8 +316,13 @@ class WalkForwardResult:
             paramCounts[key] = paramCounts.get(key, 0) + 1
 
         mostCommon = max(paramCounts.items(), key=lambda x: x[1])
+        mostCommonKey = mostCommon[0]
 
-        return self.folds[0].bestParams
+        for fold in self.folds:
+            if str(sorted(fold.bestParams.items())) == mostCommonKey:
+                return fold.bestParams
+
+        return {}
 
     def __repr__(self) -> str:
         return (

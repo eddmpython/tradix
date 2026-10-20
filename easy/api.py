@@ -27,6 +27,7 @@ Usage:
     >>> best = optimize("005930", goldenCross, fast=(5, 20), slow=(20, 60))
 """
 
+from functools import lru_cache
 from typing import Union, Optional, Dict, Any, Callable, List, Tuple
 from datetime import datetime, timedelta
 import re
@@ -66,6 +67,112 @@ KOREAN_TICKERS = {
     "코스피": "KS11",
     "코스닥": "KQ11",
 }
+
+
+PRESET_NAMES = (
+    "goldenCross",
+    "rsiOversold",
+    "bollingerBreakout",
+    "macdCross",
+    "breakout",
+    "meanReversion",
+    "trendFollowing",
+    "emaCross",
+    "tripleScreen",
+    "dualMomentum",
+    "momentumCross",
+    "rocBreakout",
+    "stochasticCross",
+    "williamsReversal",
+    "cciBreakout",
+    "rsiDivergence",
+    "volatilityBreakout",
+    "keltnerChannel",
+    "bollingerSqueeze",
+    "superTrend",
+    "ichimokuCloud",
+    "parabolicSar",
+    "donchianBreakout",
+    "tripleEma",
+    "macdRsiCombo",
+    "trendMomentum",
+    "bollingerRsi",
+    "gapTrading",
+    "pyramiding",
+    "swingTrading",
+    "scalpingMomentum",
+    "buyAndHold",
+    "dollarCostAverage",
+)
+
+PRESET_NAME_ALIASES = {
+    **{name: name for name in PRESET_NAMES},
+    "골든크로스": "goldenCross",
+    "RSI과매도": "rsiOversold",
+    "볼린저돌파": "bollingerBreakout",
+    "MACD크로스": "macdCross",
+    "돌파전략": "breakout",
+    "평균회귀": "meanReversion",
+    "추세추종": "trendFollowing",
+    "EMA크로스": "emaCross",
+    "삼중스크린": "tripleScreen",
+    "듀얼모멘텀": "dualMomentum",
+    "모멘텀크로스": "momentumCross",
+    "ROC돌파": "rocBreakout",
+    "스토캐스틱크로스": "stochasticCross",
+    "윌리엄스반전": "williamsReversal",
+    "CCI돌파": "cciBreakout",
+    "RSI다이버전스": "rsiDivergence",
+    "변동성돌파": "volatilityBreakout",
+    "켈트너채널": "keltnerChannel",
+    "볼린저스퀴즈": "bollingerSqueeze",
+    "슈퍼트렌드": "superTrend",
+    "일목균형표": "ichimokuCloud",
+    "파라볼릭SAR": "parabolicSar",
+    "돈치안돌파": "donchianBreakout",
+    "삼중EMA": "tripleEma",
+    "MACD_RSI콤보": "macdRsiCombo",
+    "추세모멘텀": "trendMomentum",
+    "볼린저RSI": "bollingerRsi",
+    "갭트레이딩": "gapTrading",
+    "피라미딩": "pyramiding",
+    "스윙트레이딩": "swingTrading",
+    "스캘핑모멘텀": "scalpingMomentum",
+    "바이앤홀드": "buyAndHold",
+    "적립식투자": "dollarCostAverage",
+}
+
+
+@lru_cache(maxsize=1)
+def _getPresetFactories() -> Dict[str, Callable[..., QuickStrategy]]:
+    """Load preset strategy factories lazily to avoid import cycles."""
+    from tradix.easy import presets as presetModule
+
+    return {name: getattr(presetModule, name) for name in PRESET_NAMES}
+
+
+def _resolveStrategy(
+    strategy: Optional[Union[Strategy, QuickStrategy, str]],
+    strategyParams: Optional[Dict[str, Any]] = None,
+) -> Union[Strategy, QuickStrategy]:
+    """Normalize ``None`` or preset name strings into concrete strategy objects."""
+    if strategy is None:
+        strategy = "goldenCross"
+
+    if not isinstance(strategy, str):
+        return strategy
+
+    presetName = PRESET_NAME_ALIASES.get(strategy)
+    if presetName is None:
+        supported = ", ".join(PRESET_NAMES)
+        raise ValueError(
+            f"Unknown preset strategy '{strategy}'. "
+            f"Supported preset names: {supported}. "
+            "Pass a Strategy/QuickStrategy instance for custom event-driven strategies."
+        )
+
+    factory = _getPresetFactories()[presetName]
+    return factory(**(strategyParams or {}))
 
 
 class EasyResult:
@@ -289,7 +396,7 @@ def backtest(
 
     Args:
         symbol: Ticker code or Korean name (e.g., "005930", "삼성전자").
-        strategy: Strategy object or name (QuickStrategy, Strategy, or "goldenCross").
+        strategy: Strategy object or preset name string (or None for default preset).
         period: Time period (e.g., "3년", "6개월", "2020-01-01~2024-12-31").
         initialCash: Starting capital (e.g., 10_000_000, "1000만원", "1억").
         commission: Commission rate (default 0.015%).
@@ -298,9 +405,9 @@ def backtest(
             - auto: Vectorized for simple strategies, event-driven for complex ones.
             - vectorized: Numba-accelerated (up to 100x faster).
             - event: Traditional event-driven engine.
-        stopLoss: Stop-loss percent (vectorized mode only).
-        takeProfit: Take-profit percent (vectorized mode only).
-        **strategyParams: Strategy parameters (vectorized mode).
+        stopLoss: Stop-loss percent. Applied to vectorized mode and preset strings.
+        takeProfit: Take-profit percent. Applied to vectorized mode and preset strings.
+        **strategyParams: Strategy parameters for vectorized mode or preset strings.
 
     Returns:
         EasyResult or VectorizedResult: Backtest results with bilingual access.
@@ -341,12 +448,20 @@ def backtest(
 
         return vresult
 
+    eventStrategyParams = dict(strategyParams)
+    if stopLoss > 0:
+        eventStrategyParams.setdefault("stopLoss", stopLoss)
+    if takeProfit > 0:
+        eventStrategyParams.setdefault("takeProfit", takeProfit)
+
+    resolvedStrategy = _resolveStrategy(strategy, eventStrategyParams)
+
     data = FinanceDataReaderFeed(ticker, startDate, endDate)
     broker = SimpleBroker(commissionRate=commission)
 
     engine = BacktestEngine(
         data=data,
-        strategy=strategy,
+        strategy=resolvedStrategy,
         initialCash=cash,
         broker=broker,
     )
@@ -477,7 +592,8 @@ def optimize(
 
     bestResult = None
     bestParams = None
-    bestMetric = float('-inf')
+    bestScore = float('-inf')
+    bestMetricValue = None
 
     results = []
 
@@ -490,8 +606,9 @@ def optimize(
 
             compareValue = metricValue if metric != 'maxDrawdown' else -abs(metricValue)
 
-            if compareValue > bestMetric:
-                bestMetric = compareValue
+            if compareValue > bestScore:
+                bestScore = compareValue
+                bestMetricValue = metricValue
                 bestResult = result
                 bestParams = params
 
@@ -514,7 +631,7 @@ def optimize(
     return {
         'best': {
             'params': bestParams,
-            'metric': bestMetric,
+            'metric': bestMetricValue,
             'result': bestResult
         },
         'all': results[:10]

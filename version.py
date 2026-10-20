@@ -135,7 +135,7 @@ class Version:
 
 
 # 현재 버전
-CURRENT_VERSION = Version(1, 0, 0)
+CURRENT_VERSION = Version(1, 1, 0)
 
 VERSION_FEATURES: Dict[str, List[str]] = {
     "1.0.0": [

@@ -64,7 +64,7 @@ Modules:
 from tradix.entities import Order, OrderSide, OrderType, TimeInForce, Position, Trade, Bar
 from tradix.events import Event, MarketEvent, SignalEvent, OrderEvent, FillEvent
 from tradix.strategy import Strategy, Indicators
-from tradix.portfolio import Portfolio
+from tradix.portfolio import Portfolio, TradeLedger
 from tradix.engine import BacktestEngine, BacktestResult
 from tradix.optimize import Optimizer, ParameterSpace, OptimizeResult
 from tradix.walkforward import WalkForwardAnalyzer, WalkForwardResult, PeriodSplitter
@@ -226,7 +226,7 @@ from tradix.tui import (
     plotSeasonality,
 )
 
-__version__ = "1.0.0"
+__version__ = str(CURRENT_VERSION)
 
 __all__ = [
     # Version
@@ -319,6 +319,7 @@ __all__ = [
     "Strategy",
     "Indicators",
     "Portfolio",
+    "TradeLedger",
 
     # Entities
     "Order",

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=77.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,8 @@ name = "tradix"
 version = "1.1.0"
 description = "Blazing-fast vectorized backtesting engine for quantitative trading. 60+ indicators, 33 strategies, multi-source data (FDR/Yahoo/CCXT), advanced orders (OCO/Bracket/Trailing), Korean market native."
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.9"
 authors = [
     {name = "eddmpython"}
@@ -27,7 +28,6 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Financial and Insurance Industry",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
@@ -105,7 +105,7 @@ packages = [
 package-dir = {"tradix" = "."}
 
 [tool.setuptools.package-data]
-"*" = ["py.typed"]
+"tradix" = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
